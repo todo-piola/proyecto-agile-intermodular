@@ -2,12 +2,6 @@ import {REGEX} from './Regex.js';
 
 export function validarNombreApellido(nomApe){
     const nombreLimpio = nomApe ? nomApe.trim() : '';
-    /*
-    if (!nombreLimpio){
-        return {
-            boolean: false,
-            errMensaje: "El nombre es un campo obligatorio"}
-    }*/
 
     if(REGEX.nombreApellido.test(nombreLimpio)){
         return {
@@ -18,7 +12,7 @@ export function validarNombreApellido(nomApe){
     else{
         return {
             boolean: false,
-            errMensaje: "El nombre no se ajusta al patrón. Solo puede introducir su nombre y uno de sus apellidos"
+            errMensaje: "Solo nombre y apellido. Numeros no permitidos"
         };
     }
 
@@ -26,13 +20,6 @@ export function validarNombreApellido(nomApe){
 
 export function validarCorreo(correo){
     const correoLimpio = correo ? correo.trim() : '';
-    /*
-    if (!correoLimpio){
-        return {
-            boolean: false,
-            errMensaje: "El correo es un campo obligatorio"
-        };
-    }*/
 
     if(!correoLimpio.includes('@')){
         return {
@@ -82,19 +69,11 @@ export function validarCorreo(correo){
 export function validarContrasennia(passwd){
     const passwdLimpia = passwd ? passwd.trim() : '';
 
-    /*
-    if (!passwdLimpia){
-        return {
-            boolean: false,
-            errMensaje: "La contraseña es obligatoria"
-        };
-    }*/
-
     if (!REGEX.password.test(passwdLimpia)){
         return {
             boolean: false,
-            errMensaje: "La contraseña no cumple los requisitos mínimos. Debe tener mínimo 8 carácteres " +
-                "e incluir una letra mayúscula, una minúscula, un número, un carácter especial"
+            errMensaje: "Contraseña no valida. Min 8 carácteres " +
+                "una mayúscula, una minúscula, un número, un carácter especial"
         };
     }
     else{
@@ -134,13 +113,5 @@ export function validarFecha(fecha){
         boolean: true,
         errMensaje: "Fecha seleccionada correctamente"
     }
-}
-
-export function campoVacio(input){
-    return input.trim() !== "";
-}
-
-export function validacionFinal(){
-
 }
 
