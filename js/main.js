@@ -1,4 +1,5 @@
 import * as fh from './form-hadler.js'
+import * as u from './ui.js'
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -9,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const password = document.getElementById('contrasena');
     const doubleCheck = document.getElementById('confirmarContrasena');
     const fechaN = document.getElementById('fechaNacimiento');
+    const icono_ojito = document.querySelector('.bi')
 
     nombreApe.addEventListener('input', fh.inputNombreApellido);
     email.addEventListener('input', fh.inputCorreo);
@@ -16,6 +18,10 @@ document.addEventListener('DOMContentLoaded', () => {
     doubleCheck.addEventListener('input', fh.inputConfirmacion);
 
     fechaN.addEventListener('input', fh.inputFecha);
+
+    icono_ojito.addEventListener('click', e => {
+        u.mostrarPasswd(icono_ojito, password);
+    })
 
     form.addEventListener('submit', fh.manejarSubmit);
 })

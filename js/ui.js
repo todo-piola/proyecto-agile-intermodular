@@ -46,6 +46,19 @@ export function mostrarMensajeExito(mensaje){
     document.getElementById("mensajeExito").textContent = mensaje;
 }
 
+export function mostrarPasswd(icono,contrasenna){
+    if (contrasenna.type === "password"){
+        contrasenna.type = "text";
+        icono.classList.remove("bi-eye-fill");
+        icono.classList.add("bi-eye-slash-fill");
+    }
+    else{
+        contrasenna.type = "password"
+        icono.classList.add("bi-eye-fill");
+        icono.classList.remove("bi-eye-slash-fill");
+    }
+}
+
 export function limpiarFormulario(form){
     form.reset();
 }
