@@ -1,21 +1,42 @@
 import * as fh from './form-hadler.js'
+import * as u from './ui.js'
 
 document.addEventListener('DOMContentLoaded', () => {
 
     const form = document.getElementById('form-envio-1');
 
-    const nombreApe = document.getElementById('nombreApellido');
-    const email = document.getElementById('correo');
-    const password = document.getElementById('contrasena');
-    const doubleCheck = document.getElementById('confirmarContrasena');
-    const fechaN = document.getElementById('fechaNacimiento');
+    //Objeto que almacena referencias a todos los campos del formulario
+    const camposFormulario = {
+        nombreApe: document.getElementById('nombreApellido'),
+        correo: document.getElementById('correo'),
+        pass: document.getElementById('contrasena'),
+        sexo: document.querySelector('input[name="sexo"]:checked')?.value || "",
+        fechaN: document.getElementById('fechaNacimiento'),
+        notificaciones: document.getElementById('notificaciones'),
+        revista: document.getElementById('revista')
+    }
 
-    nombreApe.addEventListener('input', fh.inputNombreApellido);
-    email.addEventListener('input', fh.inputCorreo);
-    password.addEventListener('input', fh.inputPasswd);
+    //Campo adicional para confirmación de contraseña
+    const doubleCheck = document.getElementById('confirmarContrasena');
+
+    //Icono de ojo para mostrar/ocultar contraseña (usa clase Bootstrap)
+    const icono_ojito = document.querySelector('.bi')
+
+    //Asigna event listeners a cada campo para validación en tiempo real
+    camposFormulario.nombreApe.addEventListener('input', fh.inputNombreApellido);
+    camposFormulario.correo.addEventListener('input', fh.inputCorreo);
+    camposFormulario.pass.addEventListener('input', fh.inputPasswd);
     doubleCheck.addEventListener('input', fh.inputConfirmacion);
 
-    fechaN.addEventListener('input', fh.inputFecha);
+    camposFormulario.fechaN.addEventListener('input', fh.inputFecha);
 
-    form.addEventListener('submit', fh.manejarSubmit);
+    //Event listener para el icono de mostrar/ocultar contraseña
+    icono_ojito.addEventListener('click', e => {
+        u.mostrarPasswd(icono_ojito, camposFormulario.pass);
+    })
+
+    //Event listener para el evento submit del formulario
+    form.addEventListener('submit', (e) => {
+        fh.manejarSubmit(e, camposFormulario);
+    });
 })

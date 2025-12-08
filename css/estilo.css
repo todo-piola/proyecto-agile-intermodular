@@ -169,7 +169,6 @@
         color: orangered;
     }
 
-
     .error{
         color: red;
 
@@ -181,6 +180,10 @@
 
     .asterisco{
         color: #ffc107;
+    }
+
+    .bi{
+        cursor: pointer;
     }
 
 
