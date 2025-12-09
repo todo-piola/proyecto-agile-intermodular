@@ -1,9 +1,0 @@
-{
-  "devDependencies": {
-    "chai": "^6.2.1",
-    "chromedriver": "^143.0.0",
-    "http-server": "^14.1.1",
-    "mocha": "^11.7.5",
-    "selenium-webdriver": "^4.39.0"
-  }
-}
