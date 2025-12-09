@@ -1,4 +1,4 @@
-import {REGEX} from './Regex.js';
+import {REGEX} from './regex.js';
 
 
 /**
