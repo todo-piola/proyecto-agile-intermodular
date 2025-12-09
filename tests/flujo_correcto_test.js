@@ -1,6 +1,10 @@
 const { Builder, By, until } = require("selenium-webdriver");
-const { expect } = require("chai");
 require("chromedriver");
+
+let expect;
+before(async () => {
+    ({ expect } = await import("chai"));
+});
 
     describe("Formulario correcto de LABUTACASOCIAL", function () {
     this.timeout(60000);

@@ -1,6 +1,10 @@
 const { Builder, By, until } = require("selenium-webdriver");
-const { expect } = require("chai");
 require("chromedriver");
+
+let expect;
+before(async () => {
+    ({ expect } = await import("chai"));
+});
 
 describe("Verificación de errores - formulario LABUTACASOCIAL", function () {
     this.timeout(60000);
