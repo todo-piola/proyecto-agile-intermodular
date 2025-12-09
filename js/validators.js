@@ -1,4 +1,4 @@
-import {REGEX} from './regex.js';
+import {regex} from './Regex.js';
 
 
 /**
@@ -9,7 +9,7 @@ import {REGEX} from './regex.js';
 export function validarNombreApellido(nomApe){
     const nombreLimpio = nomApe ? nomApe.trim() : '';
 
-    if(REGEX.nombreApellido.test(nombreLimpio)){
+    if(regex.nombreApellido.test(nombreLimpio)){
         return {
             boolean: true,
             errMensaje: ""
@@ -69,7 +69,7 @@ export function validarCorreo(correo){
         };
     }
 
-    if(!REGEX.correo.test(correo)){
+    if(!regex.correo.test(correo)){
         return {
             boolean: false,
             errMensaje: "Formato de Email invalido"
@@ -93,7 +93,7 @@ export function validarCorreo(correo){
 export function validarContrasennia(passwd){
     const passwdLimpia = passwd ? passwd.trim() : '';
 
-    if (!REGEX.password.test(passwdLimpia)){
+    if (!regex.password.test(passwdLimpia)){
         return {
             boolean: false,
             errMensaje: "Contraseña no valida. Min 8 carácteres " +

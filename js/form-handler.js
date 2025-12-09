@@ -1,4 +1,4 @@
-import * as v from './validaciones.js';
+import * as v from './validators.js';
 import * as u from './ui.js';
 import {limpiarMensajeErrorFecha, mensajeErrorFecha} from "./ui.js";
 

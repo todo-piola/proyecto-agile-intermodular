@@ -1,5 +1,5 @@
 import * as fh from './form-hadler.js'
-import * as u from './ui.js'
+import {mostrarPasswd} from './ui.js'
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //Event listener para el icono de mostrar/ocultar contraseña
     icono_ojito.addEventListener('click', e => {
-        u.mostrarPasswd(icono_ojito, camposFormulario.pass);
+        mostrarPasswd(icono_ojito, camposFormulario.pass);
     })
 
     //Event listener para el evento submit del formulario
