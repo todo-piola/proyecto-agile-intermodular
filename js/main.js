@@ -1,4 +1,4 @@
-import * as fh from './form-hadler.js'
+import * as fh from './form-handler.js'
 import {mostrarPasswd} from './ui.js'
 
 document.addEventListener('DOMContentLoaded', () => {
