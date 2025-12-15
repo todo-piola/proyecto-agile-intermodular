@@ -17,10 +17,6 @@
         font-family: titulos;
     }
 
-    .texto-tarjeta {
-        font-family: cuerpo;
-    }
-
     .texto-cta {
         text-align: center;
         margin: 0;
@@ -191,65 +187,26 @@
    GRID DE TARJETAS
    ======================================== */
 
-    /* Contenedor del grid */
-    .grid-tarjeta {
-        display: flex;
-        transition: all 0.3s;
-    }
-
-    .grid-tarjeta > div {
-        flex: 1;
-        display: flex;
-        align-items: center;
-    }
-
-    .grid-tarjeta:hover {
-        transform: scale(1.03);
-        cursor: pointer;
-    }
-
-    /* Tarjetas individuales */
-    .tarjeta {
-        min-height: 250px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        transition: all 0.3s ease;
-        cursor: pointer;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .tarjeta:hover {
-        transform: scale(1.05);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-    }
-
-    /* Iconos dentro de las tarjetas */
+    /* Iconos dentro de las tarjetas */ 
     .icono-grid {
-        width: 60px;
-        margin-left: 5px;
-        margin-top: 5px;
-        transition: transform 0.3s ease;
+        width: 100px;
+        margin-top: 10px;
     }
 
-    .tarjeta:hover .icono-grid {
-        transform: scale(1.1) rotate(5deg);
-    }
-
-
-
-    /* Texto de las tarjetas */
-    .texto-tarjeta {
-        color: #000000;
-        transition: color 0.3s ease;
+    .card-title, .card-text {
+        font-family: cuerpo;
+        font-size: larger;
     }
 
     /* Sombra amarilla en hover */
-    .tarjeta:hover {
-        box-shadow: 0 8px 24px rgba(255, 193, 7, 0.6), /* Sombra exterior amarilla */
-                    0 0 40px rgba(255, 193, 7, 0.4);    /* Resplandor amarillo */
+    .card:hover {
+        box-shadow: 0 5px 24px rgba(255, 193, 7, 0.6),
+                    0 0 40px rgba(255, 193, 7, 0.4);
+        transform: scale(1.05);
+        background-color: #F6F6F5;
+        transition: transform 0.3s ease, background-color 0.3s ease;
     }
+
 
     .peliculas-esperadas-movil {
         font-size: 24px;
