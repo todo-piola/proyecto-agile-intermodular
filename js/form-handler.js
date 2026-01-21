@@ -173,7 +173,28 @@ export function inputTarjeta(e){
     }
 }
 
+let direccionValor = ""
+let paisValor = ""
 
+export function inputDireccion(e) {
+    direccionValor = e.target.value.trim();
+    actualizarVisibilidadTarjeta();
+}
+
+export function inputPais(e) {
+    paisValor = e.target.value;
+    actualizarVisibilidadTarjeta();
+}
+
+export function actualizarVisibilidadTarjeta() {
+    const campoTarjeta = document.getElementById('tarjeta');
+
+    if (direccionValor !== "" && paisValor !== "") {
+        campoTarjeta.style.display = "block";
+    } else {
+        campoTarjeta.style.display = "none";
+    }
+}
 
 /**
  * Verifica si todos los campos del formulario están validados correctamente

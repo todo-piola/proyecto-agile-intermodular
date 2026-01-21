@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
         pass: document.getElementById('contrasena'),
         sexo: document.querySelector('input[name="sexo"]:checked')?.value || "",
         fechaN: document.getElementById('fechaNacimiento'),
+        direccion: document.getElementById('direccion'),
+        pais: document.getElementById('pais'),
         tarjeta: document.getElementById('tarjeta'),
         notificaciones: document.getElementById('notificaciones'),
         revista: document.getElementById('revista')
@@ -30,7 +32,10 @@ document.addEventListener('DOMContentLoaded', () => {
     doubleCheck.addEventListener('input', fh.inputConfirmacion);
 
     camposFormulario.fechaN.addEventListener('input', fh.inputFecha);
-    camposFormulario.tarjeta.addEventListener('input', fh.inputTarjeta)
+
+    camposFormulario.direccion.addEventListener('input', fh.inputDireccion);
+    camposFormulario.pais.addEventListener('input', fh.inputPais);
+    camposFormulario.tarjeta.addEventListener('input', fh.actualizarVisibilidadTarjeta)
 
     //Event listener para el icono de mostrar/ocultar contraseña
     icono_ojito.addEventListener('click', e => {
