@@ -11,11 +11,37 @@
 </head>
 <body>
     <div class="container-fluid bg-black">
-
         <!-- Encabezado con logo -->
-        <div class="row" id="encabezado">
-            <img src="img/LOGO LABUTACASOCIAL.webp" id="logo-encabezado" alt="logo">
-        </div>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-black">
+            <div class="container justify-content-center">
+
+                <a class="navbar-brand mx-auto" href="#">
+                    <img id="logo-encabezado"
+                         src="img/LOGO LABUTACASOCIAL.webp"
+                         alt="logo labutacas">
+                </a>
+
+                <button class="navbar-toggler ms-auto" type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-center"
+                     id="navbarSupportedContent">
+                    <ul class="navbar-nav text-center">
+                        <li class="nav-item"><a class="nav-link texto-cta text-white" href="#">Películas</a></li>
+                        <li class="nav-item"><a class="nav-link texto-cta text-white" href="#">Lista</a></li>
+                        <li class="nav-item"><a class="nav-link texto-cta text-white" href="#">Blog</a></li>
+                        <li class="nav-item"><a class="nav-link texto-cta text-white" href="#">Contacto</a></li>
+                        <li class="nav-item"><a class="nav-link texto-cta text-white" href="#">Login</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </nav>
+
+
 
         <!-- Modal -->
         <div class="modal fade" id="modal">

@@ -37,16 +37,16 @@
 
     /* Logos responsive - 40% en móvil, 20% desde md */
     #logo-encabezado, #logo-footer {
-        width: 40%;
-        justify-content: center;
-        align-items: center;
-        background-color: #000000;
-        transition: width 0.3s ease;
+        height: 10vw;
+        max-height: 200px;
+        min-height: 60px;
+        width: auto;
+        transition: height 0.3s ease;
     }
 
     @media (min-width: 768px) {
         #logo-encabezado, #logo-footer {
-            width: 20%;
+            height: 150px;
         }
     }
 
