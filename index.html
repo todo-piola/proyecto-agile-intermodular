@@ -29,10 +29,17 @@
             </div>
             <div class="modal-body">
                 <form id="form-envio-1">
+                    <!--Nombre-->
                     <div class="mb-3 field">
                         <label for="nombreApellido" class="form-label">Nombre y Apellido <span class="asterisco">*</span></label>
                         <input type="text" class="form-control" id="nombreApellido" required>
                         <p id = "errNombre" class="error"></p>
+                    </div>
+                    <!--Apellido(No tiene validaciones)-->
+                    <div class="mb-3 field">
+                        <label for="apellido" class="form-label">Apellido <span class="asterisco">*</span></label>
+                        <input type="text" class="form-control" id="apellido" required>
+                        <p id = "errApellido" class="error"></p>
                     </div>
                     
                     <!--Correo-->
