@@ -151,3 +151,27 @@ export function validarFecha(fecha){
     }
 }
 
+
+/**
+ * Validar una tarjeta de crédito/débito según:
+ * - Mínimo 16 caractéres
+ * - Sólo numeros
+ * @param {string} tarjeta - Tarjeta a validar
+ * @returns {Object} - Objeto con resultado booleano y mensaje de error
+ */
+export function validarTarjeta(tarjeta){
+    const tarjetaLimpia = tarjeta ? tarjeta.trim() : '';
+
+    if (!regex.tarjeta.test(tarjetaLimpia)){
+        return {
+            boolean: false,
+            errMensaje: "Tarjeta no valida. Debe contener 16 números. Puede incluir espacios"
+        };
+    }
+    else{
+        return {
+            boolean: true,
+            errMensaje: ""
+        };
+    }
+}

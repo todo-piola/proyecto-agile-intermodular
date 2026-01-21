@@ -3,13 +3,17 @@ import * as u from './ui.js';
 import {limpiarMensajeErrorFecha, mensajeErrorFecha} from "./ui.js";
 
 //Objeto que almacena el estado de validación de cada campo del formulario
-//Inicialmente todos en false excepto fecha que comienza como true
+//Inicialmente todos en false excepto fecha, dirección, pais y tarjeta que 
+// al ser opcionales empiezan como true
 const estadoInputs = {
     nombreApellido: false,
     correo: false,
     password: false,
     confirmacion: false,
-    fecha: true
+    fecha: true,
+    direccion: true,
+    pais: true,
+    tarjeta: true
 }
 
 
@@ -145,6 +149,31 @@ export function inputFecha(e){
     }
 }
 
+/**
+ * Maneja la validación en tiempo real del campo de la tarjeta bancaria
+ * Se ejecuta durante el evento input del campo correspondiente
+ * @param {Event} e - Evento de entrada del campo
+ * @returns {boolean} - Resultado de la validación
+ */
+
+export function inputTarjeta(e){
+    const valor = e.target.value;
+
+    const objFuncion = v.validarTarjeta(valor);
+
+    if (!objFuncion.boolean){
+        u.mensajesError("errTarjeta", objFuncion.errMensaje, e.target);
+        cambiosEstadoInputs("tarjeta", false);
+        return false;
+    }
+    else{
+        u.limpiarMensajesError("errTarjeta", e.target);
+        cambiosEstadoInputs("tarjeta", true);
+        return true;
+    }
+}
+
+
 
 /**
  * Verifica si todos los campos del formulario están validados correctamente
@@ -155,7 +184,8 @@ function revalidarTodo() {
         estadoInputs.correo &&
         estadoInputs.password &&
         estadoInputs.confirmacion &&
-        estadoInputs.fecha;
+        estadoInputs.fecha &&
+        estadoInputs.tarjeta
 }
 
 
