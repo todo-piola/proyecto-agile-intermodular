@@ -17,6 +17,7 @@
         <!-- Encabezado con logo -->
         <div class="row" id="encabezado">
             <img src="img/LOGO LABUTACASOCIAL.webp" id="logo-encabezado" alt="logo">
+            
         </div>
 
         <!-- Modal -->
@@ -262,13 +263,7 @@
             </div>
         </div>
 
-        <!-- Línea divisoria -->
-        <hr class="linea-blanca">
-
-        <!-- Footer con logo -->
-        <div class="row" id="footer">
-            <img src="img/LOGO LABUTACASOCIAL.webp" id="logo-footer" alt="logo labutacasocial">
-        </div>
+        <?php include ("templates/footer.html") ?>
     </div>
 
     <script src="recursos/bootstrap.bundle.min.js"></script>
