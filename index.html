@@ -10,502 +10,481 @@
     <link rel="icon" type="image/png" href="img/logo favicon butaca.png">
 </head>
 <body>
-    <div class="container-fluid bg-black">
-        <!-- Encabezado con logo -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-black">
-            <div class="container justify-content-center">
+    <div id="encabezado"></div>
+    <main class="container-fluid bg-black">
+        <div class="container-fluid bg-black">
 
-                <a class="navbar-brand mx-auto" href="#">
-                    <img id="logo-encabezado"
-                         src="img/LOGO LABUTACASOCIAL.webp"
-                         alt="logo labutacas">
-                </a>
-
-                <button class="navbar-toggler ms-auto" type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#navbarSupportedContent">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse justify-content-center"
-                     id="navbarSupportedContent">
-                    <ul class="navbar-nav text-center">
-                        <li class="nav-item"><a class="nav-link texto-cta text-white" href="#">Películas</a></li>
-                        <li class="nav-item"><a class="nav-link texto-cta text-white" href="#">Lista</a></li>
-                        <li class="nav-item"><a class="nav-link texto-cta text-white" href="#">Blog</a></li>
-                        <li class="nav-item"><a class="nav-link texto-cta text-white" href="#">Contacto</a></li>
-                        <li class="nav-item"><a class="nav-link texto-cta text-white" href="#">Login</a></li>
-                    </ul>
+            <!-- Modal -->
+            <div class="modal fade" id="modal">
+            <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-dark text-white">
+                <div class="modal-header border-warning">
+                    <h4 class="modal-title">Regístrate en pocos pasos</h4>
+                    <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                <div class="modal-body">
+                    <form id="form-envio-1">
+                        <div class="mb-3 field">
+                            <label for="nombreApellido" class="form-label">Nombre y Apellido <span class="asterisco">*</span></label>
+                            <input type="text" class="form-control" id="nombreApellido" required>
+                            <p id = "errNombre" class="error"></p>
+                        </div>
+                        
+                        <!--Correo-->
+                        <div class="mb-3 field">
+                            <label for="correo" class="form-label">Email<span class="asterisco">*</span></label>
+                            <input type="text" class="form-control" id="correo" required>
+                            <p id = "errCorreo" class="error"></p>
+                        </div>
+                        
+                        <!-- Contraseña -->
+                        <div class="mb-3 field">
+                            <label for="contrasena" class="form-label">Contraseña<span class="asterisco">*</span>
+                                <i class="bi bi-eye-fill"></i>
+                            </label>
+                            <input type="password" class="form-control" id="contrasena" required>
+                            <p id = "errContrasena" class="error"></p>
+                        </div>
+                        
+                        <!-- Confirmar Contraseña -->
+                        <div class="mb-3 field">
+                            <label for="confirmarContrasena" class="form-label">Confirmar Contraseña<span class="asterisco">*</span></label>
+                            <input type="password" class="form-control" id="confirmarContrasena" required>
+                            <p id = "errConfirmarContrasena" class="error"></p>
+                        </div>
 
-            </div>
-        </nav>
+                        <!-- Dirección -->
+                        <div class="mb-3 field">
+                            <label for="direccion" class="form-label">Dirección</label>
+                            <input type="text" class="form-control" id="direccion">
+                            <p id = "errDireccion" class="error"></p>
+                        </div>
 
+                        <!-- Pais -->
+                        <div class="mb-3 field">
+                            <!-- 195 main countries -->
+                            <!-- Code and Name -->
+                            <select class="form-select" autocomplete="country" id="pais" name="pais">
+                                <option>Pais de residencia </option>
+                                <option value="AF">Afghanistan</option>
+                                <option value="AL">Albania</option>
+                                <option value="DZ">Algeria</option>
+                                <option value="AD">Andorra</option>
+                                <option value="AO">Angola</option>
+                                <option value="AG">Antigua and Barbuda</option>
+                                <option value="AR">Argentina</option>
+                                <option value="AM">Armenia</option>
+                                <option value="AU">Australia</option>
+                                <option value="AT">Austria</option>
+                                <option value="AZ">Azerbaijan</option>
+                                <option value="BS">Bahamas</option>
+                                <option value="BH">Bahrain</option>
+                                <option value="BD">Bangladesh</option>
+                                <option value="BB">Barbados</option>
+                                <option value="BY">Belarus</option>
+                                <option value="BE">Belgium</option>
+                                <option value="BZ">Belize</option>
+                                <option value="BJ">Benin</option>
+                                <option value="BT">Bhutan</option>
+                                <option value="BO">Bolivia (Plurinational State of)</option>
+                                <option value="BA">Bosnia and Herzegovina</option>
+                                <option value="BW">Botswana</option>
+                                <option value="BR">Brazil</option>
+                                <option value="BN">Brunei Darussalam</option>
+                                <option value="BG">Bulgaria</option>
+                                <option value="BF">Burkina Faso</option>
+                                <option value="BI">Burundi</option>
+                                <option value="CV">Cabo Verde</option>
+                                <option value="KH">Cambodia</option>
+                                <option value="CM">Cameroon</option>
+                                <option value="CA">Canada</option>
+                                <option value="CF">Central African Republic</option>
+                                <option value="TD">Chad</option>
+                                <option value="CL">Chile</option>
+                                <option value="CN">China</option>
+                                <option value="CO">Colombia</option>
+                                <option value="KM">Comoros</option>
+                                <option value="CG">Congo</option>
+                                <option value="CD">Congo, Democratic Republic of the</option>
+                                <option value="CR">Costa Rica</option>
+                                <option value="HR">Croatia</option>
+                                <option value="CU">Cuba</option>
+                                <option value="CY">Cyprus</option>
+                                <option value="CZ">Czech Republic</option>
+                                <option value="CI">Côte d'Ivoire</option>
+                                <option value="DK">Denmark</option>
+                                <option value="DJ">Djibouti</option>
+                                <option value="DM">Dominica</option>
+                                <option value="DO">Dominican Republic</option>
+                                <option value="EC">Ecuador</option>
+                                <option value="EG">Egypt</option>
+                                <option value="SV">El Salvador</option>
+                                <option value="GQ">Equatorial Guinea</option>
+                                <option value="ER">Eritrea</option>
+                                <option value="EE">Estonia</option>
+                                <option value="SZ">Eswatini (Swaziland)</option>
+                                <option value="ET">Ethiopia</option>
+                                <option value="FJ">Fiji</option>
+                                <option value="FI">Finland</option>
+                                <option value="FR">France</option>
+                                <option value="GA">Gabon</option>
+                                <option value="GM">Gambia</option>
+                                <option value="GE">Georgia</option>
+                                <option value="DE">Germany</option>
+                                <option value="GH">Ghana</option>
+                                <option value="GR">Greece</option>
+                                <option value="GD">Grenada</option>
+                                <option value="GT">Guatemala</option>
+                                <option value="GN">Guinea</option>
+                                <option value="GW">Guinea-Bissau</option>
+                                <option value="GY">Guyana</option>
+                                <option value="HT">Haiti</option>
+                                <option value="HN">Honduras</option>
+                                <option value="HU">Hungary</option>
+                                <option value="IS">Iceland</option>
+                                <option value="IN">India</option>
+                                <option value="ID">Indonesia</option>
+                                <option value="IR">Iran</option>
+                                <option value="IQ">Iraq</option>
+                                <option value="IE">Ireland</option>
+                                <option value="IL">Israel</option>
+                                <option value="IT">Italy</option>
+                                <option value="JM">Jamaica</option>
+                                <option value="JP">Japan</option>
+                                <option value="JO">Jordan</option>
+                                <option value="KZ">Kazakhstan</option>
+                                <option value="KE">Kenya</option>
+                                <option value="KI">Kiribati</option>
+                                <option value="KP">Korea, North</option>
+                                <option value="KR">Korea, South</option>
+                                <option value="KW">Kuwait</option>
+                                <option value="KG">Kyrgyzstan</option>
+                                <option value="LA">Lao People's Democratic Republic</option>
+                                <option value="LV">Latvia</option>
+                                <option value="LB">Lebanon</option>
+                                <option value="LS">Lesotho</option>
+                                <option value="LR">Liberia</option>
+                                <option value="LY">Libya</option>
+                                <option value="LI">Liechtenstein</option>
+                                <option value="LT">Lithuania</option>
+                                <option value="LU">Luxembourg</option>
+                                <option value="MK">Macedonia North</option>
+                                <option value="MG">Madagascar</option>
+                                <option value="MW">Malawi</option>
+                                <option value="MY">Malaysia</option>
+                                <option value="MV">Maldives</option>
+                                <option value="ML">Mali</option>
+                                <option value="MT">Malta</option>
+                                <option value="MH">Marshall Islands</option>
+                                <option value="MR">Mauritania</option>
+                                <option value="MU">Mauritius</option>
+                                <option value="MX">Mexico</option>
+                                <option value="FM">Micronesia</option>
+                                <option value="MD">Moldova</option>
+                                <option value="MC">Monaco</option>
+                                <option value="MN">Mongolia</option>
+                                <option value="ME">Montenegro</option>
+                                <option value="MA">Morocco</option>
+                                <option value="MZ">Mozambique</option>
+                                <option value="MM">Myanmar (Burma)</option>
+                                <option value="NA">Namibia</option>
+                                <option value="NR">Nauru</option>
+                                <option value="NP">Nepal</option>
+                                <option value="NL">Netherlands</option>
+                                <option value="NZ">New Zealand</option>
+                                <option value="NI">Nicaragua</option>
+                                <option value="NE">Niger</option>
+                                <option value="NG">Nigeria</option>
+                                <option value="NO">Norway</option>
+                                <option value="OM">Oman</option>
+                                <option value="PK">Pakistan</option>
+                                <option value="PW">Palau</option>
+                                <option value="PA">Panama</option>
+                                <option value="PG">Papua New Guinea</option>
+                                <option value="PY">Paraguay</option>
+                                <option value="PE">Peru</option>
+                                <option value="PH">Philippines</option>
+                                <option value="PL">Poland</option>
+                                <option value="PT">Portugal</option>
+                                <option value="QA">Qatar</option>
+                                <option value="RO">Romania</option>
+                                <option value="RU">Russian Federation</option>
+                                <option value="RW">Rwanda</option>
+                                <option value="KN">Saint Kitts and Nevis</option>
+                                <option value="LC">Saint Lucia</option>
+                                <option value="VC">Saint Vincent and the Grenadines</option>
+                                <option value="WS">Samoa</option>
+                                <option value="SM">San Marino</option>
+                                <option value="ST">Sao Tome and Principe</option>
+                                <option value="SA">Saudi Arabia</option>
+                                <option value="SN">Senegal</option>
+                                <option value="RS">Serbia</option>
+                                <option value="SC">Seychelles</option>
+                                <option value="SL">Sierra Leone</option>
+                                <option value="SG">Singapore</option>
+                                <option value="SK">Slovakia</option>
+                                <option value="SI">Slovenia</option>
+                                <option value="SB">Solomon Islands</option>
+                                <option value="SO">Somalia</option>
+                                <option value="ZA">South Africa</option>
+                                <option value="SS">South Sudan</option>
+                                <option value="ES">Spain</option>
+                                <option value="LK">Sri Lanka</option>
+                                <option value="SD">Sudan</option>
+                                <option value="SR">Suriname</option>
+                                <option value="SE">Sweden</option>
+                                <option value="CH">Switzerland</option>
+                                <option value="SY">Syria</option>
+                                <option value="TW">Taiwan</option>
+                                <option value="TJ">Tajikistan</option>
+                                <option value="TZ">Tanzania</option>
+                                <option value="TH">Thailand</option>
+                                <option value="TL">Timor-Leste</option>
+                                <option value="TG">Togo</option>
+                                <option value="TO">Tonga</option>
+                                <option value="TT">Trinidad and Tobago</option>
+                                <option value="TN">Tunisia</option>
+                                <option value="TR">Turkey (Türkiye)</option>
+                                <option value="TM">Turkmenistan</option>
+                                <option value="TV">Tuvalu</option>
+                                <option value="UG">Uganda</option>
+                                <option value="UA">Ukraine</option>
+                                <option value="AE">United Arab Emirates</option>
+                                <option value="GB">United Kingdom</option>
+                                <option value="US">United States</option>
+                                <option value="UY">Uruguay</option>
+                                <option value="UZ">Uzbekistan</option>
+                                <option value="VU">Vanuatu</option>
+                                <option value="VA">Vatican City Holy See</option>
+                                <option value="VE">Venezuela</option>
+                                <option value="VN">Vietnam</option>
+                                <option value="YE">Yemen</option>
+                                <option value="ZM">Zambia</option>
+                                <option value="ZW">Zimbabwe</option>
+                            </select>
+                            <!-- total - 195 -->
+                        </div>
 
-
-        <!-- Modal -->
-        <div class="modal fade" id="modal">
-        <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content bg-dark text-white">
-            <div class="modal-header border-warning">
-                <h4 class="modal-title">Regístrate en pocos pasos</h4>
-                <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form id="form-envio-1">
-                    <div class="mb-3 field">
-                        <label for="nombreApellido" class="form-label">Nombre y Apellido <span class="asterisco">*</span></label>
-                        <input type="text" class="form-control" id="nombreApellido" required>
-                        <p id = "errNombre" class="error"></p>
-                    </div>
-                    
-                    <!--Correo-->
-                    <div class="mb-3 field">
-                        <label for="correo" class="form-label">Email<span class="asterisco">*</span></label>
-                        <input type="text" class="form-control" id="correo" required>
-                        <p id = "errCorreo" class="error"></p>
-                    </div>
-                    
-                    <!-- Contraseña -->
-                    <div class="mb-3 field">
-                        <label for="contrasena" class="form-label">Contraseña<span class="asterisco">*</span>
-                            <i class="bi bi-eye-fill"></i>
-                        </label>
-                        <input type="password" class="form-control" id="contrasena" required>
-                        <p id = "errContrasena" class="error"></p>
-                    </div>
-                    
-                    <!-- Confirmar Contraseña -->
-                    <div class="mb-3 field">
-                        <label for="confirmarContrasena" class="form-label">Confirmar Contraseña<span class="asterisco">*</span></label>
-                        <input type="password" class="form-control" id="confirmarContrasena" required>
-                        <p id = "errConfirmarContrasena" class="error"></p>
-                    </div>
-
-                    <!-- Dirección -->
-                    <div class="mb-3 field">
-                        <label for="direccion" class="form-label">Dirección</label>
-                        <input type="text" class="form-control" id="direccion">
-                        <p id = "errDireccion" class="error"></p>
-                    </div>
-
-                    <!-- Pais -->
-                    <div class="mb-3 field">
-                        <!-- 195 main countries -->
-                        <!-- Code and Name -->
-                        <select class="form-select" autocomplete="country" id="pais" name="pais">
-                            <option>Pais de residencia </option>
-                            <option value="AF">Afghanistan</option>
-                            <option value="AL">Albania</option>
-                            <option value="DZ">Algeria</option>
-                            <option value="AD">Andorra</option>
-                            <option value="AO">Angola</option>
-                            <option value="AG">Antigua and Barbuda</option>
-                            <option value="AR">Argentina</option>
-                            <option value="AM">Armenia</option>
-                            <option value="AU">Australia</option>
-                            <option value="AT">Austria</option>
-                            <option value="AZ">Azerbaijan</option>
-                            <option value="BS">Bahamas</option>
-                            <option value="BH">Bahrain</option>
-                            <option value="BD">Bangladesh</option>
-                            <option value="BB">Barbados</option>
-                            <option value="BY">Belarus</option>
-                            <option value="BE">Belgium</option>
-                            <option value="BZ">Belize</option>
-                            <option value="BJ">Benin</option>
-                            <option value="BT">Bhutan</option>
-                            <option value="BO">Bolivia (Plurinational State of)</option>
-                            <option value="BA">Bosnia and Herzegovina</option>
-                            <option value="BW">Botswana</option>
-                            <option value="BR">Brazil</option>
-                            <option value="BN">Brunei Darussalam</option>
-                            <option value="BG">Bulgaria</option>
-                            <option value="BF">Burkina Faso</option>
-                            <option value="BI">Burundi</option>
-                            <option value="CV">Cabo Verde</option>
-                            <option value="KH">Cambodia</option>
-                            <option value="CM">Cameroon</option>
-                            <option value="CA">Canada</option>
-                            <option value="CF">Central African Republic</option>
-                            <option value="TD">Chad</option>
-                            <option value="CL">Chile</option>
-                            <option value="CN">China</option>
-                            <option value="CO">Colombia</option>
-                            <option value="KM">Comoros</option>
-                            <option value="CG">Congo</option>
-                            <option value="CD">Congo, Democratic Republic of the</option>
-                            <option value="CR">Costa Rica</option>
-                            <option value="HR">Croatia</option>
-                            <option value="CU">Cuba</option>
-                            <option value="CY">Cyprus</option>
-                            <option value="CZ">Czech Republic</option>
-                            <option value="CI">Côte d'Ivoire</option>
-                            <option value="DK">Denmark</option>
-                            <option value="DJ">Djibouti</option>
-                            <option value="DM">Dominica</option>
-                            <option value="DO">Dominican Republic</option>
-                            <option value="EC">Ecuador</option>
-                            <option value="EG">Egypt</option>
-                            <option value="SV">El Salvador</option>
-                            <option value="GQ">Equatorial Guinea</option>
-                            <option value="ER">Eritrea</option>
-                            <option value="EE">Estonia</option>
-                            <option value="SZ">Eswatini (Swaziland)</option>
-                            <option value="ET">Ethiopia</option>
-                            <option value="FJ">Fiji</option>
-                            <option value="FI">Finland</option>
-                            <option value="FR">France</option>
-                            <option value="GA">Gabon</option>
-                            <option value="GM">Gambia</option>
-                            <option value="GE">Georgia</option>
-                            <option value="DE">Germany</option>
-                            <option value="GH">Ghana</option>
-                            <option value="GR">Greece</option>
-                            <option value="GD">Grenada</option>
-                            <option value="GT">Guatemala</option>
-                            <option value="GN">Guinea</option>
-                            <option value="GW">Guinea-Bissau</option>
-                            <option value="GY">Guyana</option>
-                            <option value="HT">Haiti</option>
-                            <option value="HN">Honduras</option>
-                            <option value="HU">Hungary</option>
-                            <option value="IS">Iceland</option>
-                            <option value="IN">India</option>
-                            <option value="ID">Indonesia</option>
-                            <option value="IR">Iran</option>
-                            <option value="IQ">Iraq</option>
-                            <option value="IE">Ireland</option>
-                            <option value="IL">Israel</option>
-                            <option value="IT">Italy</option>
-                            <option value="JM">Jamaica</option>
-                            <option value="JP">Japan</option>
-                            <option value="JO">Jordan</option>
-                            <option value="KZ">Kazakhstan</option>
-                            <option value="KE">Kenya</option>
-                            <option value="KI">Kiribati</option>
-                            <option value="KP">Korea, North</option>
-                            <option value="KR">Korea, South</option>
-                            <option value="KW">Kuwait</option>
-                            <option value="KG">Kyrgyzstan</option>
-                            <option value="LA">Lao People's Democratic Republic</option>
-                            <option value="LV">Latvia</option>
-                            <option value="LB">Lebanon</option>
-                            <option value="LS">Lesotho</option>
-                            <option value="LR">Liberia</option>
-                            <option value="LY">Libya</option>
-                            <option value="LI">Liechtenstein</option>
-                            <option value="LT">Lithuania</option>
-                            <option value="LU">Luxembourg</option>
-                            <option value="MK">Macedonia North</option>
-                            <option value="MG">Madagascar</option>
-                            <option value="MW">Malawi</option>
-                            <option value="MY">Malaysia</option>
-                            <option value="MV">Maldives</option>
-                            <option value="ML">Mali</option>
-                            <option value="MT">Malta</option>
-                            <option value="MH">Marshall Islands</option>
-                            <option value="MR">Mauritania</option>
-                            <option value="MU">Mauritius</option>
-                            <option value="MX">Mexico</option>
-                            <option value="FM">Micronesia</option>
-                            <option value="MD">Moldova</option>
-                            <option value="MC">Monaco</option>
-                            <option value="MN">Mongolia</option>
-                            <option value="ME">Montenegro</option>
-                            <option value="MA">Morocco</option>
-                            <option value="MZ">Mozambique</option>
-                            <option value="MM">Myanmar (Burma)</option>
-                            <option value="NA">Namibia</option>
-                            <option value="NR">Nauru</option>
-                            <option value="NP">Nepal</option>
-                            <option value="NL">Netherlands</option>
-                            <option value="NZ">New Zealand</option>
-                            <option value="NI">Nicaragua</option>
-                            <option value="NE">Niger</option>
-                            <option value="NG">Nigeria</option>
-                            <option value="NO">Norway</option>
-                            <option value="OM">Oman</option>
-                            <option value="PK">Pakistan</option>
-                            <option value="PW">Palau</option>
-                            <option value="PA">Panama</option>
-                            <option value="PG">Papua New Guinea</option>
-                            <option value="PY">Paraguay</option>
-                            <option value="PE">Peru</option>
-                            <option value="PH">Philippines</option>
-                            <option value="PL">Poland</option>
-                            <option value="PT">Portugal</option>
-                            <option value="QA">Qatar</option>
-                            <option value="RO">Romania</option>
-                            <option value="RU">Russian Federation</option>
-                            <option value="RW">Rwanda</option>
-                            <option value="KN">Saint Kitts and Nevis</option>
-                            <option value="LC">Saint Lucia</option>
-                            <option value="VC">Saint Vincent and the Grenadines</option>
-                            <option value="WS">Samoa</option>
-                            <option value="SM">San Marino</option>
-                            <option value="ST">Sao Tome and Principe</option>
-                            <option value="SA">Saudi Arabia</option>
-                            <option value="SN">Senegal</option>
-                            <option value="RS">Serbia</option>
-                            <option value="SC">Seychelles</option>
-                            <option value="SL">Sierra Leone</option>
-                            <option value="SG">Singapore</option>
-                            <option value="SK">Slovakia</option>
-                            <option value="SI">Slovenia</option>
-                            <option value="SB">Solomon Islands</option>
-                            <option value="SO">Somalia</option>
-                            <option value="ZA">South Africa</option>
-                            <option value="SS">South Sudan</option>
-                            <option value="ES">Spain</option>
-                            <option value="LK">Sri Lanka</option>
-                            <option value="SD">Sudan</option>
-                            <option value="SR">Suriname</option>
-                            <option value="SE">Sweden</option>
-                            <option value="CH">Switzerland</option>
-                            <option value="SY">Syria</option>
-                            <option value="TW">Taiwan</option>
-                            <option value="TJ">Tajikistan</option>
-                            <option value="TZ">Tanzania</option>
-                            <option value="TH">Thailand</option>
-                            <option value="TL">Timor-Leste</option>
-                            <option value="TG">Togo</option>
-                            <option value="TO">Tonga</option>
-                            <option value="TT">Trinidad and Tobago</option>
-                            <option value="TN">Tunisia</option>
-                            <option value="TR">Turkey (Türkiye)</option>
-                            <option value="TM">Turkmenistan</option>
-                            <option value="TV">Tuvalu</option>
-                            <option value="UG">Uganda</option>
-                            <option value="UA">Ukraine</option>
-                            <option value="AE">United Arab Emirates</option>
-                            <option value="GB">United Kingdom</option>
-                            <option value="US">United States</option>
-                            <option value="UY">Uruguay</option>
-                            <option value="UZ">Uzbekistan</option>
-                            <option value="VU">Vanuatu</option>
-                            <option value="VA">Vatican City Holy See</option>
-                            <option value="VE">Venezuela</option>
-                            <option value="VN">Vietnam</option>
-                            <option value="YE">Yemen</option>
-                            <option value="ZM">Zambia</option>
-                            <option value="ZW">Zimbabwe</option>
-                        </select>
-                        <!-- total - 195 -->
-                    </div>
-
-                    <!-- Tarjeta de crédito -->
-                    <div class="mb-3 field">
-                        <label for="tarjeta" class="form-label">Tarjeta bancaria</label>
-                        <input type="text" class="form-control" id="tarjeta">
-                        <p id = "errTarjeta" class="error"></p>
-                    </div>
-                    
-                    <!-- Sexo (Radio buttons) -->
-                    <fieldset class="form-check" aria-label="Botones selectores de sexo">
-                        <label class="form-check-label">
-                            Sexo
-                        </label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="sexo" id="masculino" value="masculino">
-                            <label class="form-check-label" for="masculino">
-                                Masculino
+                        <!-- Tarjeta de crédito -->
+                        <div class="mb-3 field">
+                            <label for="tarjeta" class="form-label">Tarjeta bancaria</label>
+                            <input type="text" class="form-control" id="tarjeta">
+                            <p id = "errTarjeta" class="error"></p>
+                        </div>
+                        
+                        <!-- Sexo (Radio buttons) -->
+                        <fieldset class="form-check" aria-label="Botones selectores de sexo">
+                            <label class="form-check-label">
+                                Sexo
+                            </label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="sexo" id="masculino" value="masculino">
+                                <label class="form-check-label" for="masculino">
+                                    Masculino
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="sexo" id="femenino" value="femenino">
+                                <label class="form-check-label" for="femenino">
+                                    Femenino
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="sexo" id="prefiero-no-decir" value="prefiero-no-decir">
+                                <label class="form-check-label" for="prefiero-no-decir">
+                                    Prefiero no decir
+                                </label>
+                            </div>
+                        </fieldset>
+                        
+                        <!-- Fecha de Nacimiento -->
+                        <div class="mb-3">
+                            <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento</label>
+                            <input type="date" class="form-control" id="fechaNacimiento">
+                            <p id = "errNacimiento" class="error"></p>
+                        </div>
+                        
+                        <!-- Activar Notificaciones (Checkbox) -->
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="notificaciones">
+                            <label class="form-check-label" for="notificaciones">
+                                Activar notificaciones
                             </label>
                         </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="sexo" id="femenino" value="femenino">
-                            <label class="form-check-label" for="femenino">
-                                Femenino
+                        
+                        <!-- Recibir Revista Digital (Checkbox) -->
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="revistaDigital">
+                            <label class="form-check-label" for="revistaDigital">
+                                Recibir revista digital
                             </label>
+                            <p class="exito" id="mensajeExito"></p>
                         </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="sexo" id="prefiero-no-decir" value="prefiero-no-decir">
-                            <label class="form-check-label" for="prefiero-no-decir">
-                                Prefiero no decir
-                            </label>
+                        <div class="modal-footer border-warning">
+                            <button type="submit" class="btn btn-warning" id="btn-envio">Enviar formulario</button>
                         </div>
-                    </fieldset>
-                    
-                    <!-- Fecha de Nacimiento -->
-                    <div class="mb-3">
-                        <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento</label>
-                        <input type="date" class="form-control" id="fechaNacimiento">
-                        <p id = "errNacimiento" class="error"></p>
+                    </form>
+                </div>
+            </div>
+            </div>
+            </div>
+
+            <!-- Hero móvil - Solo visible en pantallas pequeñas -->
+            <div class="row d-md-none align-items-center p-5" id="hero-movil" style="background-image: url('img/img-landing-parasite.jpg')">
+                <div class="text-start text-white p-1">
+                    <h2 class="hero-cta">¡Sigue la evolución <br> del cine, sin salir <br> de tu casa!</h2>
+                    <a href="#" class="btn btn-warning mt-2" data-bs-toggle="modal" data-bs-target="#modal">    <!-- Activador de modal -->
+                        <p class="texto-cta">Regístrate ahora</p>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Hero escritorio - Visible desde md en adelante -->
+            <div class="row d-none d-md-flex align-items-center p-5" id="hero-escritorio" style="background-image: url('img/img-dune-landing.jpeg')">
+                <div class="col-5 text-left text-white p-5 div-hero">
+                    <h1 class="hero-cta">¡Sigue la evolución del cine, sin salir de tu casa!</h1>
+                    <a href="#" class="btn btn-warning mt-2" data-bs-toggle="modal" data-bs-target="#modal">    <!-- Activador de modal -->
+                        <p class="texto-cta">Regístrate ahora</p>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Grid de funcionalidades - 6 tarjetas con iconos -->
+            <div class="row gap-2 mt-4 d-flex justify-content-center" id="funcionalidades">
+                <div class="card col-12 col-md-3 mb-2 mt-2">
+                    <div class="d-flex justify-content-center">
+                        <img src="img/iconos/estrella.png" class="icono-grid" alt="icono estrella">
                     </div>
-                    
-                    <!-- Activar Notificaciones (Checkbox) -->
-                    <div class="form-check mb-3">
-                        <input class="form-check-input" type="checkbox" id="notificaciones">
-                        <label class="form-check-label" for="notificaciones">
-                            Activar notificaciones
-                        </label>
+                    <div class="card-body">
+                    <h4 class="card-title text-center">VALORA</h4>
+                    <p class="card-text text-center">tus películas favoritas y expresa tus gustos personales.</p>
                     </div>
-                    
-                    <!-- Recibir Revista Digital (Checkbox) -->
-                    <div class="form-check mb-3">
-                        <input class="form-check-input" type="checkbox" id="revistaDigital">
-                        <label class="form-check-label" for="revistaDigital">
-                            Recibir revista digital
-                        </label>
-                        <p class="exito" id="mensajeExito"></p>
+                </div>
+                <div class="card col-12 col-md-3 mb-2 mt-2">
+                    <div class="d-flex justify-content-center">
+                        <img src="img/iconos/teclado.png" class="icono-grid" alt="icono teclado">
                     </div>
-                    <div class="modal-footer border-warning">
-                        <button type="submit" class="btn btn-warning" id="btn-envio">Enviar formulario</button>
+                    <div class="card-body">
+                    <h4 class="card-title text-center">ESCRIBE</h4>
+                    <p class="card-text text-center">reviews sinceras y comparte tus impresiones mas auténticas.</p>
                     </div>
-                </form>
+                </div>
+                <div class="card col-12 col-md-3 mb-2 mt-2">
+                    <div class="d-flex justify-content-center">
+                        <img src="img/iconos/comparte.png" class="icono-grid" alt="icono comparte">
+                    </div>
+                    <div class="card-body">
+                    <h4 class="card-title text-center">COMPARTE</h4>
+                    <p class="card-text text-center">listas personalizadas con otros usuarios mostrando tus gustos.</p>
+                    </div>
+                </div>
+                <div class="card col-12 col-md-3">
+                    <div class="d-flex justify-content-center">
+                        <img src="img/iconos/diamante.png" class=" icono-grid" alt="icono diamante">
+                    </div>
+                    <div class="card-body">
+                    <h4 class="card-title text-center">SEGUIMIENTO CONTINUO</h4>
+                    <p class="card-text text-center">de tus películas favoritas y de las que planeas ver próximamente.</p>
+                    </div>
+                </div>
+                <div class="card col-12 col-md-3">
+                    <div class="d-flex justify-content-center">
+                        <img src="img/iconos/corazon.png" class="icono-grid" alt="icono corazón">
+                    </div>    
+                    <div class="card-body">
+                    <h4 class="card-title text-center">PUNTÚA</h4>
+                    <p class="card-text text-center">listas y películas, valora y refleja tus sentimientos y sensaciones.</p>
+                    </div>
+                </div>
+                <div class="card col-12 col-md-3 ">
+                    <div class="d-flex justify-content-center">
+                        <img src="img/iconos/lista.png" class="icono-grid" alt="icono lista">
+                    </div>
+                    <div class="card-body mb-2 mt-2 tarjeta">
+                    <h4 class="card-title text-center">CREA</h4>
+                    <p class="card-text text-center">un diario de películas guarda tus sensaciones mas influyentes.</p>
+                    </div>
+                </div>
             </div>
-        </div>
-        </div>
-        </div>
 
-        <!-- Hero móvil - Solo visible en pantallas pequeñas -->
-        <div class="row d-md-none align-items-center p-5" id="hero-movil" style="background-image: url('img/img-landing-parasite.jpg')">
-            <div class="text-start text-white p-1">
-                <h2 class="hero-cta">¡Sigue la evolución <br> del cine, sin salir <br> de tu casa!</h2>
-                <a href="#" class="btn btn-warning mt-2" data-bs-toggle="modal" data-bs-target="#modal">    <!-- Activador de modal -->
-                    <p class="texto-cta">Regístrate ahora</p>
-                </a>
+            <!-- Catálogo de películas esperadas -->
+            <div class="row p-5 bg-black">
+                <div class="col-12 d-md-none">
+                    <h3 class="text-center text-md-start w-100 text-white peliculas-esperadas-movil">
+                        Películas más esperadas de 2026</h3>
+                </div>
+                <div class="col-12 d-none d-md-flex">
+                    <h3 class="text-center text-md-start w-100 text-white peliculas-esperadas-escritorio">
+                        Películas más esperadas de 2026</h3>
+                </div>
+                <div class="col-4 col-md-2">
+                    <div class="bg-dark h-100">
+                        <img src="img/poster_CumbresBorrascosas.webp" class="imagen-catalogo w-100 h-100 object-fit-cover" alt="poster cumbres borrascosas">
+                    </div>
+                </div>
+                <div class="col-4 col-md-2">
+                    <div class="bg-dark h-100">
+                        <img src="img/poster_MandoGrogu.webp" class="imagen-catalogo w-100 h-100 object-fit-cover" alt="poster mando grogu">
+                    </div>
+                </div>
+                <div class="col-4 col-md-2">
+                    <div class="bg-dark h-100">
+                        <img src="img/poster_Odisea_Nolan.webp" class="imagen-catalogo w-100 h-100 object-fit-cover" alt="poster odisea">
+                    </div>
+                </div>
+                <div class="col-4 col-md-2">
+                    <div class="bg-dark h-100">
+                        <img src="img/poster_proyect_hailMary.webp" class="imagen-catalogo w-100 h-100 object-fit-cover" alt="poster hail mary">
+                    </div>
+                </div>
+                <div class="col-4 col-md-2">
+                    <div class="bg-dark h-100">
+                        <img src="img/poster_theBride.webp" class="imagen-catalogo w-100 h-100 object-fit-cover" alt="poster the bride">
+                    </div>
+                </div>
+                <div class="col-4 col-md-2">
+                    <div class="bg-dark h-100">
+                        <img src="img/poster_WeBuryTheDead.webp" class="imagen-catalogo w-100 h-100 object-fit-cover" alt="poster we bury the dead">
+                    </div>
+                </div>
             </div>
-        </div>
 
-        <!-- Hero escritorio - Visible desde md en adelante -->
-        <div class="row d-none d-md-flex align-items-center p-5" id="hero-escritorio" style="background-image: url('img/img-dune-landing.jpeg')">
-            <div class="col-5 text-left text-white p-5 div-hero">
-                <h1 class="hero-cta">¡Sigue la evolución del cine, sin salir de tu casa!</h1>
-                <a href="#" class="btn btn-warning mt-2" data-bs-toggle="modal" data-bs-target="#modal">    <!-- Activador de modal -->
-                    <p class="texto-cta">Regístrate ahora</p>
-                </a>
+            <!-- CTA móvil - Solo visible en pantallas pequeñas -->
+            <div class="row d-flex d-md-none align-items-center justify-content-center p-5">
+                <div class="text-center text-white ">
+                    <h3 class="hero-cta">Únete a la comunidad cinéfila del momento y consigue tu medalla distintiva antes que nadie</h3>
+                    <a href="#" class="btn btn-warning mt-1 justify-content-center" data-bs-toggle="modal" data-bs-target="#modal">  <!-- Activador de modal -->
+                        <p class="texto-cta">Empieza tu aventura</p>
+                    </a>
+                </div>
             </div>
-        </div>
 
-        <!-- Grid de funcionalidades - 6 tarjetas con iconos -->
-        <div class="row gap-2 mt-4 d-flex justify-content-center" id="funcionalidades">
-            <div class="card col-12 col-md-3 mb-2 mt-2">
-                <div class="d-flex justify-content-center">
-                    <img src="img/iconos/estrella.png" class="icono-grid" alt="icono estrella">
-                </div>
-                <div class="card-body">
-                  <h4 class="card-title text-center">VALORA</h4>
-                  <p class="card-text text-center">tus películas favoritas y expresa tus gustos personales.</p>
+            <!-- CTA escritorio - Visible desde md en adelante -->
+            <div class="row d-none d-md-flex align-items-center justify-content-center p-5">
+                <div class="col-8 text-center text-white p-2">
+                    <h2 class="hero-cta">Únete a la comunidad cinéfila del momento y  consigue tu medalla distintiva antes que nadie</h2>
+                    <a href="#" class="btn btn-warning mt-1 justify-content-center" data-bs-toggle="modal" data-bs-target="#modal"> <!-- Activador de modal -->
+                        <p class="texto-cta">Empieza tu aventura</p>
+                    </a>
                 </div>
             </div>
-            <div class="card col-12 col-md-3 mb-2 mt-2">
-                <div class="d-flex justify-content-center">
-                    <img src="img/iconos/teclado.png" class="icono-grid" alt="icono teclado">
-                </div>
-                <div class="card-body">
-                  <h4 class="card-title text-center">ESCRIBE</h4>
-                  <p class="card-text text-center">reviews sinceras y comparte tus impresiones mas auténticas.</p>
-                </div>
-            </div>
-            <div class="card col-12 col-md-3 mb-2 mt-2">
-                <div class="d-flex justify-content-center">
-                    <img src="img/iconos/comparte.png" class="icono-grid" alt="icono comparte">
-                </div>
-                <div class="card-body">
-                  <h4 class="card-title text-center">COMPARTE</h4>
-                  <p class="card-text text-center">listas personalizadas con otros usuarios mostrando tus gustos.</p>
-                </div>
-            </div>
-            <div class="card col-12 col-md-3">
-                <div class="d-flex justify-content-center">
-                    <img src="img/iconos/diamante.png" class=" icono-grid" alt="icono diamante">
-                </div>
-                <div class="card-body">
-                  <h4 class="card-title text-center">SEGUIMIENTO CONTINUO</h4>
-                  <p class="card-text text-center">de tus películas favoritas y de las que planeas ver próximamente.</p>
-                </div>
-            </div>
-            <div class="card col-12 col-md-3">
-                <div class="d-flex justify-content-center">
-                    <img src="img/iconos/corazon.png" class="icono-grid" alt="icono corazón">
-                </div>    
-                <div class="card-body">
-                  <h4 class="card-title text-center">PUNTÚA</h4>
-                  <p class="card-text text-center">listas y películas, valora y refleja tus sentimientos y sensaciones.</p>
-                </div>
-            </div>
-            <div class="card col-12 col-md-3 ">
-                <div class="d-flex justify-content-center">
-                    <img src="img/iconos/lista.png" class="icono-grid" alt="icono lista">
-                </div>
-                <div class="card-body mb-2 mt-2 tarjeta">
-                  <h4 class="card-title text-center">CREA</h4>
-                  <p class="card-text text-center">un diario de películas guarda tus sensaciones mas influyentes.</p>
-                </div>
-            </div>
-        </div>
 
-        <!-- Catálogo de películas esperadas -->
-        <div class="row p-5 bg-black">
-            <div class="col-12 d-md-none">
-                <h3 class="text-center text-md-start w-100 text-white peliculas-esperadas-movil">
-                    Películas más esperadas de 2026</h3>
-            </div>
-            <div class="col-12 d-none d-md-flex">
-                <h3 class="text-center text-md-start w-100 text-white peliculas-esperadas-escritorio">
-                    Películas más esperadas de 2026</h3>
-            </div>
-            <div class="col-4 col-md-2">
-                <div class="bg-dark h-100">
-                    <img src="img/poster_CumbresBorrascosas.webp" class="imagen-catalogo w-100 h-100 object-fit-cover" alt="poster cumbres borrascosas">
-                </div>
-            </div>
-            <div class="col-4 col-md-2">
-                <div class="bg-dark h-100">
-                    <img src="img/poster_MandoGrogu.webp" class="imagen-catalogo w-100 h-100 object-fit-cover" alt="poster mando grogu">
-                </div>
-            </div>
-            <div class="col-4 col-md-2">
-                <div class="bg-dark h-100">
-                    <img src="img/poster_Odisea_Nolan.webp" class="imagen-catalogo w-100 h-100 object-fit-cover" alt="poster odisea">
-                </div>
-            </div>
-            <div class="col-4 col-md-2">
-                <div class="bg-dark h-100">
-                    <img src="img/poster_proyect_hailMary.webp" class="imagen-catalogo w-100 h-100 object-fit-cover" alt="poster hail mary">
-                </div>
-            </div>
-            <div class="col-4 col-md-2">
-                <div class="bg-dark h-100">
-                    <img src="img/poster_theBride.webp" class="imagen-catalogo w-100 h-100 object-fit-cover" alt="poster the bride">
-                </div>
-            </div>
-            <div class="col-4 col-md-2">
-                <div class="bg-dark h-100">
-                    <img src="img/poster_WeBuryTheDead.webp" class="imagen-catalogo w-100 h-100 object-fit-cover" alt="poster we bury the dead">
-                </div>
-            </div>
+            <!-- Línea divisoria -->
+            <div class="linea-blanca"></div>
         </div>
+    </main>
 
-        <!-- CTA móvil - Solo visible en pantallas pequeñas -->
-        <div class="row d-flex d-md-none align-items-center justify-content-center p-5">
-            <div class="text-center text-white ">
-                <h3 class="hero-cta">Únete a la comunidad cinéfila del momento y consigue tu medalla distintiva antes que nadie</h3>
-                <a href="#" class="btn btn-warning mt-1 justify-content-center" data-bs-toggle="modal" data-bs-target="#modal">  <!-- Activador de modal -->
-                    <p class="texto-cta">Empieza tu aventura</p>
-                </a>
-            </div>
-        </div>
+    <div id="piepagina"></div>
 
-        <!-- CTA escritorio - Visible desde md en adelante -->
-        <div class="row d-none d-md-flex align-items-center justify-content-center p-5">
-            <div class="col-8 text-center text-white p-2">
-                <h2 class="hero-cta">Únete a la comunidad cinéfila del momento y  consigue tu medalla distintiva antes que nadie</h2>
-                <a href="#" class="btn btn-warning mt-1 justify-content-center" data-bs-toggle="modal" data-bs-target="#modal"> <!-- Activador de modal -->
-                    <p class="texto-cta">Empieza tu aventura</p>
-                </a>
-            </div>
-        </div>
-
-        <!-- Línea divisoria -->
-        <hr class="linea-blanca">
-
-        <!-- Footer con logo -->
-        <div class="row" id="footer">
-            <img src="img/LOGO LABUTACASOCIAL.webp" id="logo-footer" alt="logo labutacasocial">
-        </div>
-    </div>
+    <script>
+        fetch('templates/header.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('encabezado').innerHTML = data);
+        
+        fetch('templates/footer.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('piepagina').innerHTML = data);
+    </script>
 
     <script src="recursos/bootstrap.bundle.min.js"></script>
     <script type="module" src="./js/main.js"></script>

@@ -2,244 +2,255 @@
    TIPOGRAFÍAS
    ======================================== */
 
-    @font-face {
-        font-family: titulos;
-        src: url(../recursos/tipografias/MiriamLibre-Regular.woff);
-    }
+@font-face {
+    font-family: titulos;
+    src: url(../recursos/tipografias/MiriamLibre-Regular.woff);
+}
 
-    @font-face {
-        font-family: cuerpo;
-        src: url(../recursos/tipografias/DroidSans.ttf);
-    }
+@font-face {
+    font-family: cuerpo;
+    src: url(../recursos/tipografias/DroidSans.ttf);
+}
 
-    /* Aplicación de tipografías */
-    .hero-cta, .form-check, .peliculas-esperadas-movil, .peliculas-esperadas-escritorio {
-        font-family: titulos;
-    }
+/* Aplicación de tipografías */
+.hero-cta,
+.form-check,
+.peliculas-esperadas-movil,
+.peliculas-esperadas-escritorio {
+    font-family: titulos;
+}
 
-    .texto-cta {
-        text-align: center;
-        margin: 0;
-        font-family: cuerpo;
-    }
+.texto-cta {
+    text-align: center;
+    margin: 0;
+    font-family: cuerpo;
+}
 
 /* ========================================
    HEADER Y FOOTER
    ======================================== */
 
-    #encabezado, #footer {
-        display: flex;
-        width: 100%;
-        background-color: #000000;
-        justify-content: center;
-        align-items: center;
-    }
+#encabezado,
+#piepagina {
+    display: flex;
+    width: 100%;
+    background-color: #000000;
+    justify-content: center;
+    align-items: center;
+}
 
-    /* Logos responsive - 40% en móvil, 20% desde md */
-    #logo-encabezado, #logo-footer {
-        height: 10vw;
-        max-height: 200px;
-        min-height: 60px;
-        width: auto;
-        transition: height 0.3s ease;
-    }
+/* Logos responsive - 40% en móvil, 20% desde md */
+#logo-encabezado,
+#logo-footer {
+    height: 10vw;
+    max-height: 200px;
+    min-height: 60px;
+    width: auto;
+    transition: height 0.3s ease;
+}
 
-    @media (min-width: 768px) {
-        #logo-encabezado, #logo-footer {
-            height: 150px;
-        }
+@media (min-width: 768px) {
+
+    #logo-encabezado,
+    #logo-footer {
+        height: 150px;
     }
+}
 
 /* ========================================
    SECCIONES HERO
    ======================================== */
 
-    /* Hero móvil y escritorio - estilos compartidos */
-    #hero-movil, #hero-escritorio {
-        background-size: cover;
-        background-position: center;
-    }
+/* Hero móvil y escritorio - estilos compartidos */
+#hero-movil,
+#hero-escritorio {
+    background-size: cover;
+    background-position: center;
+}
 
-    #hero-movil {
-        min-height: 500px;
-    }
+#hero-movil {
+    min-height: 500px;
+}
 
-    #hero-escritorio {
-        min-height: 600px;
-    }
+#hero-escritorio {
+    min-height: 600px;
+}
 
-    #hero-movil img, #hero-escritorio img {
-        width: 100%;
-        height: auto;
-    }
+#hero-movil img,
+#hero-escritorio img {
+    width: 100%;
+    height: auto;
+}
 
 /* ========================================
    PERSONALIZACIÓN FORMULARIO MODAL
    ======================================== */
 
-   /* Radio buttons y checkboxes - Fondo amarillo cuando están marcados */
-   .form-check-input:checked {
-       background-color: #ffc107 !important;    /* Fuerzo el color con !important */
-       border-color: #ffc107 !important;
-   }
-   
-   /* Check (✓) en negro para checkbox */
-   .form-check-input:checked[type="checkbox"] {
-       background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e") !important;
-   }
-   
-   /* Punto en negro para radio button */
-   .form-check-input:checked[type="radio"] {
-       background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23000'/%3e%3c/svg%3e") !important;
-   }
+/* Radio buttons y checkboxes - Fondo amarillo cuando están marcados */
+.form-check-input:checked {
+    background-color: #ffc107 !important;
+    /* Fuerzo el color con !important */
+    border-color: #ffc107 !important;
+}
 
-    /* Hover sutil */
-    .form-check-input:hover {
-        border-color: #ffc107;
-        cursor: pointer;
-    }
+/* Check (✓) en negro para checkbox */
+.form-check-input:checked[type="checkbox"] {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e") !important;
+}
 
-    /* Inputs del formulario con focus amarillo */
-    .modal .form-control:focus, 
-    .modal .form-select:focus,
-    .form-check-input:focus {
-        border-color: #ffc107;
-        box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, 0.25);
-    }
+/* Punto en negro para radio button */
+.form-check-input:checked[type="radio"] {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23000'/%3e%3c/svg%3e") !important;
+}
 
-    .modal .form-label {
-        font-weight: 500;
-    }
+/* Hover sutil */
+.form-check-input:hover {
+    border-color: #ffc107;
+    cursor: pointer;
+}
 
-    .modal-title{
-        font-family: titulos;
-    }
+/* Inputs del formulario con focus amarillo */
+.modal .form-control:focus,
+.modal .form-select:focus,
+.form-check-input:focus {
+    border-color: #ffc107;
+    box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, 0.25);
+}
 
-    .form-label,
-    .form-check label,
-    #btn-envio {
-        font-family: cuerpo;
-    }
+.modal .form-label {
+    font-weight: 500;
+}
 
-    /*Inputs del formulario con iconos de check o de cross*/
+.modal-title {
+    font-family: titulos;
+}
 
-    .field{
-        position: relative;
-    }
+.form-label,
+.form-check label,
+#btn-envio {
+    font-family: cuerpo;
+}
 
-    .field.valido .form-control{
-        border-color: green;
-    }
+/*Inputs del formulario con iconos de check o de cross*/
 
-    .field.incorrecto .form-control{
-        border-color: orangered;
-    }
+.field {
+    position: relative;
+}
 
-    .field.incorrecto::after {
-        content: "";
-        font-size: 18px;
-        position: absolute;
-        right: 10px;
-        top: 50%;
-        transform: translateY(-50%);
-        pointer-events: none;
-    }
+.field.valido .form-control {
+    border-color: green;
+}
 
-    .field.valido::after{
-        content: "";
-        font-size: 18px;
-        position: absolute;
-        right: 10px;
-        top: 70%;
-        transform: translateY(-50%);
-        pointer-events: none;
-    }
+.field.incorrecto .form-control {
+    border-color: orangered;
+}
 
-    .field.valido::after {
-        content: "✓";
-        color: green;
-    }
+.field.incorrecto::after {
+    content: "";
+    font-size: 18px;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
 
-    .field.incorrecto::after {
-        content: "✗";
-        color: orangered;
-    }
+.field.valido::after {
+    content: "";
+    font-size: 18px;
+    position: absolute;
+    right: 10px;
+    top: 70%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
 
-    .error{
-        color: red;
+.field.valido::after {
+    content: "✓";
+    color: green;
+}
 
-    }
+.field.incorrecto::after {
+    content: "✗";
+    color: orangered;
+}
 
-    .exito{
-        color: lawngreen;
-    }
+.error {
+    color: red;
 
-    .asterisco{
-        color: #ffc107;
-    }
+}
 
-    .bi{
-        cursor: pointer;
-    }
+.exito {
+    color: lawngreen;
+}
+
+.asterisco {
+    color: #ffc107;
+}
+
+.bi {
+    cursor: pointer;
+}
 
 
 /* ========================================
    GRID DE TARJETAS
    ======================================== */
 
-    /* Iconos dentro de las tarjetas */ 
-    .icono-grid {
-        width: 100px;
-        margin-top: 10px;
-    }
+/* Iconos dentro de las tarjetas */
+.icono-grid {
+    width: 100px;
+    margin-top: 10px;
+}
 
-    .card-title, .card-text {
-        font-family: cuerpo;
-        font-size: larger;
-    }
+.card-title,
+.card-text {
+    font-family: cuerpo;
+    font-size: larger;
+}
 
-    /* Sombra amarilla en hover */
-    .card:hover {
-        box-shadow: 0 5px 24px rgba(255, 193, 7, 0.6),
-                    0 0 40px rgba(255, 193, 7, 0.4);
-        transform: scale(1.05);
-        background-color: #F6F6F5;
-        transition: transform 0.3s ease, background-color 0.3s ease;
-    }
+/* Sombra amarilla en hover */
+.card:hover {
+    box-shadow: 0 5px 24px rgba(255, 193, 7, 0.6),
+        0 0 40px rgba(255, 193, 7, 0.4);
+    transform: scale(1.05);
+    background-color: #F6F6F5;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
 
 
-    .peliculas-esperadas-movil {
-        font-size: 24px;
-    }
+.peliculas-esperadas-movil {
+    font-size: 24px;
+}
 
 /* ========================================
    ELEMENTOS DECORATIVOS
    ======================================== */
-
-    .linea-blanca {
-        border: none;
-        border-top: 2px solid white;
-        margin: 20px auto;
-        width: 95%;
-    }
+   
+.linea-blanca {
+    width: 80%;
+    height: 2px;
+    background-color: white;
+    margin: 0 auto 0 auto;
+}
 
 /* ========================================
    MEDIA QUERIES
    ======================================== */
 
-    /* Fija la altura de las tarjetas de función */
+/* Fija la altura de las tarjetas de función */
 
-    /* Móvil y tablet pequeña */
-    @media (max-width: 576px) {
-        .grid-tarjeta > div {
-            min-height: 120px;
-        }
+/* Móvil y tablet pequeña */
+@media (max-width: 576px) {
+    .grid-tarjeta>div {
+        min-height: 120px;
     }
+}
 
-    /* Escritorio */
-    @media (min-width: 993px) {
-        .grid-tarjeta > div {
-            min-height: 220px;
-            max-height: 120px;
-        }
+/* Escritorio */
+@media (min-width: 993px) {
+    .grid-tarjeta>div {
+        min-height: 220px;
+        max-height: 120px;
     }
+}
