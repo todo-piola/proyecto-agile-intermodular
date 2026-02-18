@@ -10,9 +10,27 @@
     <link rel="icon" type="image/png" href="img/logo_invisible_butaca.png">
 </head>
 <body>
-    <div id="encabezado"></div>
     <main class="container-fluid bg-black">
+        <div id="encabezado"></div>
+    
         <div class="container-fluid bg-black">
+
+            <div class="row d-md-none align-items-center p-5" id="hero-movil" style="background-image: url('img/img-landing-parasite.jpg')">
+                <div class="col-12 col-md-4 text-start text-white p-1">
+                    <h2 class="hero-cta">¡Sigue la evolución del cine, sin salir de tu casa!</h2>
+                    <button type="button" class="btn btn-warning mt-2 " data-bs-toggle="modal" data-bs-target="#modal">
+                        ¡Regístrate ahora! </button>
+                </div>
+            </div>
+    
+            <div class="row d-none d-md-flex align-items-center p-5" id="hero-escritorio" style="background-image: url('img/img-dune-landing.jpeg')">
+                <div class="col-5 text-left text-white p-5">
+                    <h2 class="hero-cta">¡Sigue la evolución del cine, sin salir de tu casa!</h2>
+                    <button type="button" class="btn btn-warning mt-2 " data-bs-toggle="modal" data-bs-target="#modal">
+                        ¡Regístrate ahora!
+                    </button>
+                </div>
+            </div>
 
             <!-- Modal -->
             <div class="modal fade" id="modal">
@@ -329,126 +347,154 @@
             </div>
             </div>
 
-        <!-- Grid de funcionalidades - 6 tarjetas con iconos -->
-        <div class="row g-4 mt-4 d-flex justify-content-center" id="funcionalidades">
-    
-            <div class="col-6 col-md-4 col-xl-4">
-                <div class="card h-100 shadow-sm p-3">
-                    <div class="d-flex justify-content-center mt-2">
-                        <img src="img/iconos/estrella.png" class="icono-grid" alt="icono estrella">
-                    </div>
-                    <div class="card-body d-flex flex-column p-1">
-                        <h5 class="card-title text-center">VALORA</h5>
-                        <p class="card-text text-center text-muted">tus películas favoritas y expresa tus gustos personales.</p>
-                    </div>
-                </div>
-            </div>
-        
-            <div class="col-6 col-md-4 col-xl-4">
-                <div class="card h-100 shadow-sm p-3">
-                    <div class="d-flex justify-content-center mt-2">
-                        <img src="img/iconos/teclado.png" class="icono-grid" alt="icono teclado">
-                    </div>
-                    <div class="card-body d-flex flex-column p-1">
-                        <h5 class="card-title text-center">ESCRIBE</h5>
-                        <p class="card-text text-center text-muted">reviews sinceras y comparte tus impresiones más auténticas.</p>
-                    </div>
-                </div>
-            </div>
-        
-            <div class="col-6 col-md-4 col-xl-4">
-                <div class="card h-100 shadow-sm p-3">
-                    <div class="d-flex justify-content-center mt-2">
-                        <img src="img/iconos/comparte.png" class="icono-grid" alt="icono comparte">
-                    </div>
-                    <div class="card-body d-flex flex-column p-1">
-                        <h5 class="card-title text-center">COMPARTE</h5>
-                        <p class="card-text text-center text-muted">listas personalizadas con otros usuarios mostrando tus gustos.</p>
-                    </div>
-                </div>
-            </div>
-        
-            <div class="col-6 col-md-4 col-xl-4">
-                <div class="card h-100 shadow-sm p-3">
-                    <div class="d-flex justify-content-center mt-2">
-                        <img src="img/iconos/diamante.png" class="icono-grid" alt="icono diamante">
-                    </div>
-                    <div class="card-body d-flex flex-column p-1">
-                        <h5 class="card-title text-center">SEGUIMIENTO</h5>
-                        <p class="card-text text-center text-muted">de tus películas favoritas y de las que planeas ver próximamente.</p>
-                    </div>
-                </div>
-            </div>
-        
-            <div class="col-6 col-md-4 col-xl-4">
-                <div class="card h-100 shadow-sm p-3">
-                    <div class="d-flex justify-content-center mt-2">
-                        <img src="img/iconos/corazon.png" class="icono-grid" alt="icono corazón">
-                    </div>
-                    <div class="card-body d-flex flex-column p-1">
-                        <h5 class="card-title text-center">PUNTÚA</h5>
-                        <p class="card-text text-center text-muted">listas y películas, valora y refleja tus sentimientos y sensaciones.</p>
-                    </div>
-                </div>
-            </div>
-        
-            <div class="col-6 col-md-4 col-xl-4">
-                <div class="card h-100 shadow-sm p-3">
-                    <div class="d-flex justify-content-center mt-2">
-                        <img src="img/iconos/lista.png" class="icono-grid" alt="icono lista">
-                    </div>
-                    <div class="card-body d-flex flex-column p-1">
-                        <h5 class="card-title text-center">CREA</h5>
-                        <p class="card-text text-center text-muted">un diario de películas guarda tus sensaciones más influyentes.</p>
-                    </div>
-                </div>
-            </div>
-        
-        </div>
+            <!-- Grid de funcionalidades - 6 tarjetas con iconos -->
+            <div class="row g-4 mt-4 d-flex justify-content-center" id="funcionalidades">
 
-        <!-- Catálogo de películas esperadas -->
-        <div class="row p-5 bg-black">
-            <div class="col-12 d-md-none">
-                <h3 class="text-center text-md-start w-100 text-white peliculas-esperadas-movil">
-                    Películas más esperadas de 2026</h3>
+                <div class="col-6 col-md-4 col-xl-4">
+                    <div class="card h-100 shadow-sm p-3">
+                        <div class="d-flex justify-content-center mt-2">
+                            <img src="img/iconos/estrella.png" class="icono-grid" alt="icono estrella">
+                        </div>
+                        <div class="card-body d-flex flex-column p-1">
+                            <h5 class="card-title text-center">VALORA</h5>
+                            <p class="card-text text-center text-muted">tus películas favoritas y expresa tus gustos personales.</p>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="col-6 col-md-4 col-xl-4">
+                    <div class="card h-100 shadow-sm p-3">
+                        <div class="d-flex justify-content-center mt-2">
+                            <img src="img/iconos/teclado.png" class="icono-grid" alt="icono teclado">
+                        </div>
+                        <div class="card-body d-flex flex-column p-1">
+                            <h5 class="card-title text-center">ESCRIBE</h5>
+                            <p class="card-text text-center text-muted">reviews sinceras y comparte tus impresiones más auténticas.</p>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="col-6 col-md-4 col-xl-4">
+                    <div class="card h-100 shadow-sm p-3">
+                        <div class="d-flex justify-content-center mt-2">
+                            <img src="img/iconos/comparte.png" class="icono-grid" alt="icono comparte">
+                        </div>
+                        <div class="card-body d-flex flex-column p-1">
+                            <h5 class="card-title text-center">COMPARTE</h5>
+                            <p class="card-text text-center text-muted">listas personalizadas con otros usuarios mostrando tus gustos.</p>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="col-6 col-md-4 col-xl-4">
+                    <div class="card h-100 shadow-sm p-3">
+                        <div class="d-flex justify-content-center mt-2">
+                            <img src="img/iconos/diamante.png" class="icono-grid" alt="icono diamante">
+                        </div>
+                        <div class="card-body d-flex flex-column p-1">
+                            <h5 class="card-title text-center">SEGUIMIENTO</h5>
+                            <p class="card-text text-center text-muted">de tus películas favoritas y de las que planeas ver próximamente.</p>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="col-6 col-md-4 col-xl-4">
+                    <div class="card h-100 shadow-sm p-3">
+                        <div class="d-flex justify-content-center mt-2">
+                            <img src="img/iconos/corazon.png" class="icono-grid" alt="icono corazón">
+                        </div>
+                        <div class="card-body d-flex flex-column p-1">
+                            <h5 class="card-title text-center">PUNTÚA</h5>
+                            <p class="card-text text-center text-muted">listas y películas, valora y refleja tus sentimientos y sensaciones.</p>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="col-6 col-md-4 col-xl-4">
+                    <div class="card h-100 shadow-sm p-3">
+                        <div class="d-flex justify-content-center mt-2">
+                            <img src="img/iconos/lista.png" class="icono-grid" alt="icono lista">
+                        </div>
+                        <div class="card-body d-flex flex-column p-1">
+                            <h5 class="card-title text-center">CREA</h5>
+                            <p class="card-text text-center text-muted">un diario de películas guarda tus sensaciones más influyentes.</p>
+                        </div>
+                    </div>
+                </div>
+            
             </div>
-            <div class="col-12 d-none d-md-flex">
-                <h3 class="text-center text-md-start w-100 text-white peliculas-esperadas-escritorio">
-                    Películas más esperadas de 2026</h3>
-            </div>
-            <div class="col-4 col-md-2">
-                <div class="bg-dark h-100">
-                    <img src="img/poster_CumbresBorrascosas.webp" class="imagen-catalogo w-100 h-100 object-fit-cover" alt="poster cumbres borrascosas">
+
+            <!-- Catálogo de películas esperadas -->
+            <div class="row p-5 bg-black">
+
+                <div class="col-12 d-md-none">
+                    <h3 class="text-center text-md-start w-100 text-white peliculas-esperadas-movil">
+                        Películas más esperadas de 2026
+                    </h3>
                 </div>
+
+                <div class="d-none d-md-flex">
+                    <h3 class="text-center text-md-start w-100 text-white peliculas-esperadas-escritorio">
+                        Películas más esperadas de 2026
+                    </h3>
+                </div>
+
                 <div class="col-4 col-md-2">
-                    <div class="bg-dark h-100">
-                        <img src="img/poster_Odisea_Nolan.webp" class="imagen-catalogo w-100 h-100 object-fit-cover" alt="poster odisea">
+                    <div class="bg-dark">
+                        <img src="img/poster_CumbresBorrascosas.webp"
+                                class="w-100 object-fit-cover"
+                                alt="">
                     </div>
                 </div>
+
                 <div class="col-4 col-md-2">
-                    <div class="bg-dark h-100">
-                        <img src="img/poster_proyect_hailMary.webp" class="imagen-catalogo w-100 h-100 object-fit-cover" alt="poster hail mary">
+                    <div class="bg-dark">
+                        <img src="img/poster_Odisea_Nolan.webp"
+                                class="w-100 object-fit-cover"
+                                alt="">
                     </div>
                 </div>
+            
                 <div class="col-4 col-md-2">
-                    <div class="bg-dark h-100">
-                        <img src="img/poster_theBride.webp" class="imagen-catalogo w-100 h-100 object-fit-cover" alt="poster the bride">
+                    <div class="bg-dark">
+                        <img src="img/poster_proyect_hailMary.webp"
+                                class="w-100 object-fit-cover"
+                                alt="">
                     </div>
                 </div>
+            
                 <div class="col-4 col-md-2">
-                    <div class="bg-dark h-100">
-                        <img src="img/poster_WeBuryTheDead.webp" class="imagen-catalogo w-100 h-100 object-fit-cover" alt="poster we bury the dead">
+                    <div class="bg-dark">
+                        <img src="img/poster_theBride.webp"
+                                class="w-100 object-fit-cover"
+                                alt="">
                     </div>
                 </div>
+            
+                <div class="col-4 col-md-2">
+                    <div class="bg-dark">
+                        <img src="img/poster_WeBuryTheDead.webp"
+                                class="w-100 object-fit-cover"
+                                alt="">
+                    </div>
+                </div>
+
+                <div class="col-4 col-md-2">
+                    <div class="bg-dark">
+                        <img src="img/poster_MandoGrogu.webp"
+                                class="w-100 object-fit-cover"
+                                alt="">
+                    </div>
+                </div>
+            
             </div>
 
             <!-- CTA móvil - Solo visible en pantallas pequeñas -->
             <div class="row d-flex d-md-none align-items-center justify-content-center p-5">
                 <div class="text-center text-white ">
                     <h3 class="hero-cta">Únete a la comunidad cinéfila del momento y consigue tu medalla distintiva antes que nadie</h3>
-                    <a href="#" class="btn btn-warning mt-1 justify-content-center" data-bs-toggle="modal" data-bs-target="#modal">  <!-- Activador de modal -->
-                        <p class="texto-cta">Empieza tu aventura</p>
-                    </a>
+                    <button type="button" class="btn btn-warning mt-2 " data-bs-toggle="modal" data-bs-target="#modal">
+                        Empieza tu aventura </button>
                 </div>
             </div>
 
@@ -456,18 +502,18 @@
             <div class="row d-none d-md-flex align-items-center justify-content-center p-5">
                 <div class="col-8 text-center text-white p-2">
                     <h2 class="hero-cta">Únete a la comunidad cinéfila del momento y  consigue tu medalla distintiva antes que nadie</h2>
-                    <a href="#" class="btn btn-warning mt-1 justify-content-center" data-bs-toggle="modal" data-bs-target="#modal"> <!-- Activador de modal -->
-                        <p class="texto-cta">Empieza tu aventura</p>
-                    </a>
+                    <button type="button" class="btn btn-warning mt-2 " data-bs-toggle="modal" data-bs-target="#modal">
+                        Empieza tu aventura </button>
                 </div>
             </div>
 
             <!-- Línea divisoria -->
             <div class="linea-blanca"></div>
-        </div>
-    </main>
 
-    <div id="piepagina"></div>
+        </div>
+
+        <div id="piepagina"></div>
+    </main>
 
     <script>
         fetch('templates/header.html')
