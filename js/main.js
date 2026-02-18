@@ -1,7 +1,30 @@
 import * as fh from './form-handler.js'
 import {mostrarPasswd} from './ui.js'
 
-document.addEventListener('DOMContentLoaded', () => {
+// Si estamos en GitHub Pages, usará el nombre del repo. 
+// Si estamos en Local (localhost), se quedará vacío para buscar en la raíz del servidor.
+const repo = window.location.hostname.includes('github.io') 
+             ? '/proyecto-agile-intermodular' 
+             : '';
+
+async function cargarComponente(idPadre, rutaArchivo) {
+    const contenedor = document.getElementById(idPadre);
+    if (!contenedor) return;
+
+    try {
+        const respuesta = await fetch(rutaArchivo);
+        if (!respuesta.ok) throw new Error(`Error ${respuesta.status}`);
+        const html = await respuesta.text();
+        contenedor.innerHTML = html;
+    } catch (err) {
+        console.error("Error cargando:", rutaArchivo, err);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
+        // Ahora 'repo' es inteligente y se adapta al entorno
+        await cargarComponente('footer-main', `${repo}/componentes/footer.html`);
+    });
 
     const form = document.getElementById('form-envio-1');
 
@@ -46,4 +69,3 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', (e) => {
         fh.manejarSubmit(e, camposFormulario);
     });
-})
