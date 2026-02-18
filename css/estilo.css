@@ -197,60 +197,60 @@
    GRID DE TARJETAS
    ======================================== */
 
-/* Iconos dentro de las tarjetas */
-.icono-grid {
-    width: 100px;
-    margin-top: 10px;
-}
+   /*  ESTILOS BASE (Móvil y General)  */
+    #funcionalidades .card {
+        transition: all 0.5s ease;
+        background-color: #dbdbdb;
+    }
 
-.card-title,
-.card-text {
-    font-family: cuerpo;
-    font-size: larger;
-}
+    #funcionalidades .card:hover {
+        transform: translateY(-5px);
+    }
 
-/* Sombra amarilla en hover */
-.card:hover {
-    box-shadow: 0 5px 24px rgba(255, 193, 7, 0.6),
-        0 0 40px rgba(255, 193, 7, 0.4);
-    transform: scale(1.05);
-    background-color: #F6F6F5;
-    transition: transform 0.3s ease, background-color 0.3s ease;
-}
+    .icono-grid {
+        width: 40px; 
+        height: 40px;
+        object-fit: contain;
+        margin-bottom: 10px;
+    }
 
+    .card-title {
+        font-size: 0.9rem !important;
+        letter-spacing: 1px;
+        font-weight: bold;
+    }
 
-.peliculas-esperadas-movil {
-    font-size: 24px;
-}
+    .card-text {
+        font-size: 0.75rem !important;
+        line-height: 1.2;
+    }
+
+    /*  AJUSTES PARA PANTALLAS GRANDES (Tablet y PC)  */
+    @media (min-width: 768px) {
+        .icono-grid {
+            width: 55px;
+            height: 55px;
+        }
+        .card-title {
+            font-size: 1.1rem !important;
+        }
+        .card-text {
+            font-size: 0.9rem !important;
+        }
+    }
+
+    /* Mantiene el título de la sección móvil que tenías */
+    .peliculas-esperadas-movil {
+        font-size: 24px;
+    }
 
 /* ========================================
    ELEMENTOS DECORATIVOS
    ======================================== */
-   
-.linea-blanca {
-    width: 80%;
-    height: 2px;
-    background-color: white;
-    margin: 0 auto 0 auto;
-}
 
-/* ========================================
-   MEDIA QUERIES
-   ======================================== */
-
-/* Fija la altura de las tarjetas de función */
-
-/* Móvil y tablet pequeña */
-@media (max-width: 576px) {
-    .grid-tarjeta>div {
-        min-height: 120px;
+    .linea-blanca {
+        border: none;
+        border-top: 2px solid white;
+        margin: 20px auto;
+        width: 95%;
     }
-}
-
-/* Escritorio */
-@media (min-width: 993px) {
-    .grid-tarjeta>div {
-        min-height: 220px;
-        max-height: 120px;
-    }
-}
