@@ -20,10 +20,11 @@
     font-family: titulos;
 }
 
-.texto-cta {
+.btn,
+.card-body {
+    font-family: cuerpo !important;
     text-align: center;
     margin: 0;
-    font-family: cuerpo;
 }
 
 /* ========================================
@@ -253,4 +254,9 @@
         border-top: 2px solid white;
         margin: 20px auto;
         width: 95%;
+    }
+
+    .imagen-catalogo {
+        aspect-ratio: 2 / 3;
+        object-fit: cover;
     }
