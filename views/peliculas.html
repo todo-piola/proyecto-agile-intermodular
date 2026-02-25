@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LABUTACASOCIAL</title>
+    <link href="../css/estilo.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="icon" type="image/png" href="../img/logo_invisible_butaca.png">
+</head>
+<body>
+
+    <div id="encabezado" class="pb-5"></div>
+
+    <main class="container-fluid bg-black p-5">
+
+      <div class="row justify-content-around mb-5">
+        <!-- Sección 1: Más vistas -->
+        <div class="row col-12 col-xl-6 justify-content-center mb-4 mb-xl-0 seccion-peliculas">
+          <p class="fs-3 text-white text-center cuerpo">Películas más vistas esta semana</p>
+          <div class="row row-cols-2 row-cols-md-3 gy-3 justify-content-center" id="grid-mas-vistas">
+            <div class="col"><img src="../img/poster-prueba.jpg" class="img-fluid poster-pelicula-peliculas"></div>
+            <div class="col"><img src="../img/poster-prueba.jpg" class="img-fluid poster-pelicula-peliculas"></div>
+            <div class="col"><img src="../img/poster-prueba.jpg" class="img-fluid poster-pelicula-peliculas"></div>
+            <div class="col"><img src="../img/poster-prueba.jpg" class="img-fluid poster-pelicula-peliculas"></div>
+            <div class="col"><img src="../img/poster-prueba.jpg" class="img-fluid poster-pelicula-peliculas"></div>
+            <div class="col"><img src="../img/poster-prueba.jpg" class="img-fluid poster-pelicula-peliculas"></div>
+          </div>
+        </div>
+
+        <!-- Sección 2: Más gustadas -->
+        <div class="row col-12 col-xl-6 seccion-peliculas justify-content-center mt-5">
+          <p class="fs-3 text-white text-center cuerpo">Películas que más gustan</p>
+          <div class="row row-cols-2 row-cols-md-3 gy-3 justify-content-center" id="grid-mas-gustadas">
+            <div class="col"><img src="../img/poster-prueba.jpg" class="img-fluid poster-pelicula-peliculas"></div>
+            <div class="col"><img src="../img/poster-prueba.jpg" class="img-fluid poster-pelicula-peliculas"></div>
+            <div class="col"><img src="../img/poster-prueba.jpg" class="img-fluid poster-pelicula-peliculas"></div>
+            <div class="col"><img src="../img/poster-prueba.jpg" class="img-fluid poster-pelicula-peliculas"></div>
+            <div class="col"><img src="../img/poster-prueba.jpg" class="img-fluid poster-pelicula-peliculas"></div>
+            <div class="col"><img src="../img/poster-prueba.jpg" class="img-fluid poster-pelicula-peliculas"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row pt-5">
+          <p class="fs-3 text-white text-center cuerpo d-xl-none">Últimas reseñas</p>
+          <div class="col-6 seccion-peliculas d-flex flex-column align-items-center">
+            <p class="fs-3 text-white text-center cuerpo d-none d-xl-flex">Últimas reseñas</p>
+              <div class="card mb-3 border-0" style="max-width: 540px;">
+                <div class="row g-0">
+                  <div class="col-md-4 peliculas-reseñas">
+                    <img src="../img/poster-prueba.jpg" class="img-fluid object-fit-cover h-100 w-100 rounded-start poster-peliculas-reseñas">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title mt-3">Card title</h5>
+                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      <div class="likes-comentarios d-flex gap-2 justify-content-center">
+                        <p class="text-danger">Deja tu like</p>
+                        <i class="bi bi-heart fs-5 text-danger corazon"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card mb-3 border-0 align-content-center" style="max-width: 540px;">
+                <div class="row g-0">
+                  <div class="col-md-4 peliculas-reseñas">
+                    <img src="../img/poster-prueba.jpg" class="img-fluid object-fit-cover h-100 w-100 rounded-start poster-peliculas-reseñas">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title mt-3">Card title</h5>
+                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      <div class="likes-comentarios d-flex gap-2 justify-content-center">
+                        <p class="text-danger">Deja tu like</p>
+                        <i class="bi bi-heart fs-5 text-danger corazon"></i>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            
+            <div class="col-6 seccion-peliculas d-none d-xl-flex flex-column">
+              <p class="fs-3 text-white text-center cuerpo">Tráiler de la semana</p>
+            
+              <div class="ratio ratio-16x9 rounded overflow-hidden flex-grow-1">
+                <video class="w-100 h-100 object-fit-cover" controls autoplay muted loop>
+                  <source src="../img/trailer.mp4" type="video/mp4">
+                </video>
+              </div>
+            </div>
+
+            <div class="col-6 seccion-peliculas d-flex d-xl-none flex-column align-items-center">
+
+              <div class="card mb-3 border-0" style="max-width: 540px;">
+                <div class="row g-0">
+                  <div class="col-md-4 peliculas-reseñas">
+                    <img src="../img/poster-prueba.jpg" class="img-fluid object-fit-cover h-100 w-100 rounded-start poster-peliculas-reseñas">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title mt-3">Card title</h5>
+                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      <div class="likes-comentarios d-flex gap-2 justify-content-center">
+                        <p class="text-danger">Deja tu like</p>
+                        <i class="bi bi-heart fs-5 text-danger corazon"></i>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card mb-3 border-0 align-content-center" style="max-width: 540px;">
+                <div class="row g-0">
+                  <div class="col-md-4 peliculas-reseñas">
+                    <img src="../img/poster-prueba.jpg" class="img-fluid object-fit-cover h-100 w-100 rounded-start poster-peliculas-reseñas">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title mt-3">Card title</h5>
+                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      <div class="likes-comentarios d-flex gap-2 justify-content-center">
+                        <p class="text-danger">Deja tu like</p>
+                        <i class="bi bi-heart fs-5 text-danger corazon"></i>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+        </div>
+
+        <div class="linea-blanca mt-5 w-50"></div>
+    </main>
+
+    <div id="piepagina"></div>
+    
+    <script>
+      const lupas = ['contenedor-lupa', 'contenedor-lupa-movil']
+
+      fetch('../templates/header.html')
+          .then(response => response.text())
+          .then(data => {
+            document.getElementById('encabezado').innerHTML = data;
+
+            lupas.forEach(id => {
+              const contenedor = document.getElementById(id);
+              if (contenedor) {
+                contenedor.innerHTML = '<i id="lupaBtn" class="bi bi-search fs-4 text-warning bg-black mx-5" style="cursor:pointer"></i>';
+              }
+            });
+        });
+      
+      fetch('../templates/footer.html')
+          .then(response => response.text())
+          .then(data => document.getElementById('piepagina').innerHTML = data);
+
+    </script>
+
+<script src="../recursos/bootstrap.bundle.min.js"></script>
+<script type="module" src="../js/main.js"></script>
+</body>
+</html>
