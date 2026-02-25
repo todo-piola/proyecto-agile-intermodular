@@ -1,5 +1,7 @@
 import * as fh from './form-handler.js'
 import {mostrarPasswd} from './ui.js'
+import { getPeliculasSemana, getPeliculasMejorValoradas } from './movie-service.js';
+import { renderizarPeliculas, mostrarError } from './movie-ui.js';
 
 // Si estamos en GitHub Pages, usará el nombre del repo. 
 // Si estamos en Local (localhost), se quedará vacío para buscar en la raíz del servidor.
@@ -80,4 +82,32 @@ document.addEventListener('DOMContentLoaded', async () => {
         loginForm.addEventListener('submit', (e) => fh.manejarSubmit(e, camposLogin));
     }
 
+
+    /* ================ TOGGLE ICONOS ================ */
+
+  const corazon = document.querySelectorAll('.corazon');
+
+    corazon.forEach(c => {
+      c.addEventListener('click', () => {
+          c.classList.toggle('bi-heart');
+          c.classList.toggle('bi-heart-fill');
+        });
+    });
+
+
+
+    /* ================ PELÍCULAS DE LA SEMANA ================ */
+
+    try {
+        const [masVistas, masGustadas] = await Promise.all([
+          getPeliculasSemana(),
+          getPeliculasMejorValoradas()
+        ]);
+        renderizarPeliculas(masVistas, 'grid-mas-vistas');
+        renderizarPeliculas(masGustadas, 'grid-mas-gustadas');
+      } catch (err) {
+        mostrarError('grid-mas-vistas');
+        mostrarError('grid-mas-gustadas');
+        console.error(err);
+    }
 });
