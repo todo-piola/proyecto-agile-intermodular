@@ -10,18 +10,34 @@ const options = {
   }
 };
 
-export async function getPeliculasSemana() {
-  const res = await fetch(`${BASE_URL}/trending/movie/week?language=es-ES`, options);
+async function fetchConCache(url, claveCache) {
+  // Si ya está en cache, devuelve los datos sin hacer fetch
+  const cached = sessionStorage.getItem(claveCache);
+
+  if (cached) {
+    console.log(`Datos de ${claveCache} obtenidos de cache`);
+    return JSON.parse(cached);
+  }
+
+  // Si no está, hace el fetch y lo guarda
+  const res = await fetch(url, options);
   if (!res.ok) throw new Error(`Error TMDB: ${res.status}`);
   const datos = await res.json();
+  sessionStorage.setItem(claveCache, JSON.stringify(datos.results));
   return datos.results;
 }
 
-export async function getPeliculasMejorValoradas() {
-  const res = await fetch(`${BASE_URL}/movie/top_rated?language=es-ES`, options);
-  if (!res.ok) throw new Error(`Error TMDB: ${res.status}`);
-  const datos = await res.json();
-  return datos.results;
+export function getPeliculasSemana() {
+  return fetchConCache(
+    `${BASE_URL}/trending/movie/week?language=es-ES`,
+    'tmdb_trending'
+  );
 }
 
+export function getPeliculasMejorValoradas() {
+  return fetchConCache(
+    `${BASE_URL}/movie/top_rated?language=es-ES`,
+    'tmdb_top_rated'
+  );
+}
 
