@@ -12,8 +12,8 @@
                 <li class="nav-item"><a class="nav-link texto-cta text-white" href="#">Lista</a></li>
                 <li class="nav-item"><a class="nav-link texto-cta text-white" href="#">Blog</a></li>
                 <li class="nav-item"><a class="nav-link texto-cta text-white" href="#">Contacto</a></li>
-                <li class="nav-item">
-                    <a class="nav-link texto-cta text-white" href="#" data-bs-toggle="collapse" data-bs-target="#loginForm">
+                <li class="nav-item" id="loginBtn">
+                    <a class="nav-link texto-cta text-white" href="#" data-bs-toggle="modal" data-bs-target="#loginForm">
                       Login
                     </a>
                 </li>
@@ -21,20 +21,36 @@
             </ul>
         </div>
               
-        <!-- Formulario de login, oculto por defecto -->
-        <div class="collapse" id="loginForm">
-            <form class="d-flex align-items-center gap-2 ms-auto">
-            <div class="d-flex flex-column">
-                <input type="text" id="correoLogin" class="form-control form-control-sm item-form-login " placeholder="Usuario">
-                <p id = "errCorreo" class="error"></p>
+        <!-- Modal de Login -->
+        <div class="modal fade" id="loginForm" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content bg-dark text-white">
+
+                <div class="modal-header border-secondary">
+                    <h5 class="modal-title" id="loginModalLabel">Iniciar sesión</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+
+                <div class="modal-body">
+                    <form>
+                    <div class="mb-3">
+                        <label for="correoLogin" class="form-label">Usuario</label>
+                        <input type="text" id="correoLogin" class="form-control item-form-login" placeholder="Usuario">
+                        <p id="errCorreoLogin" class="error"></p>
+                    </div>
+                    <div class="mb-3">
+                        <label for="contrasenaLogin" class="form-label">Contraseña</label>
+                        <input type="password" id="contrasenaLogin" class="form-control item-form-login" placeholder="Contraseña">
+                        <p id="errContrasenaLogin" class="error"></p>
+                    </div>
+                    <div class="d-grid">
+                        <button class="btn btn-outline-warning" type="submit">Entrar</button>
+                    </div>
+                    </form>
+                </div>
+
+                </div>
             </div>
-            <div class="d-flex flex-column">
-                <input type="password" id="contrasenaLogin" class="form-control form-control-sm item-form-login" placeholder="Contraseña" >
-                <p id = "errContrasena" class="error"></p>
-            </div>
-            <button class="btn btn-sm btn-outline-warning" type="submit"> Entrar </button>
-            <button type="button" class="btn-close btn-close-white" data-bs-toggle="collapse" data-bs-target="#loginForm"></button>
-            </form>
         </div>
                 
     </div>

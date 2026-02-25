@@ -55,18 +55,18 @@ export function inputNombreApellido(e){
  * @param {Event} e - Evento de entrada del campo
  * @returns {boolean} - Resultado de la validación
  */
-export function inputCorreo(e){
+export function inputCorreo(e, idError = "errCorreo"){
     const valor = e.target.value;
 
     const objFuncion = v.validarCorreo(valor);
 
     if (!objFuncion.boolean){
-        u.mensajesError("errCorreo", objFuncion.errMensaje, e.target);
+        u.mensajesError(idError, objFuncion.errMensaje, e.target);
         cambiosEstadoInputs("correo", false);
         return false;
     }
     else{
-        u.limpiarMensajesError("errCorreo", e.target);
+        u.limpiarMensajesError(idError, e.target);
         cambiosEstadoInputs("correo", true);
         return true;
     }
@@ -79,18 +79,18 @@ export function inputCorreo(e){
  * @param {Event} e - Evento de entrada del campo
  * @returns {boolean} - Resultado de la validación
  */
-export function inputPasswd(e){
+export function inputPasswd(e, idError = "errContrasena"){
     const valor = e.target.value;
 
     const objFuncion = v.validarContrasennia(valor);
 
     if (!objFuncion.boolean){
-        u.mensajesError("errContrasena", objFuncion.errMensaje, e.target);
+        u.mensajesError(idError, objFuncion.errMensaje, e.target);
         cambiosEstadoInputs("password", false);
         return false;
     }
     else{
-        u.limpiarMensajesError("errContrasena", e.target);
+        u.limpiarMensajesError(idError, e.target);
         cambiosEstadoInputs("password", true);
         return true;
     }
