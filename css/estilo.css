@@ -274,3 +274,11 @@ main, nav {
         aspect-ratio: 2 / 3;
         object-fit: cover;
     }
+
+/* ========================================
+   ANIMACIONES
+   ======================================== */
+
+   .animate__animated.animate__rubberBand {
+    --animate-duration: 3s;
+  }
