@@ -16,15 +16,15 @@
 .hero-cta,
 .form-check,
 .peliculas-esperadas-movil,
-.peliculas-esperadas-escritorio {
-    font-family: titulos;
+.peliculas-esperadas-escritorio,
+.seccion-peliculas {
+    font-family: titulos !important;
 }
 
 .btn,
-.card-body {
-    font-family: cuerpo !important;
-    text-align: center;
-    margin: 0;
+.card-body, 
+main, nav {
+    font-family: cuerpo;
 }
 
 /* ========================================
@@ -243,6 +243,20 @@
     /* Mantiene el título de la sección móvil que tenías */
     .peliculas-esperadas-movil {
         font-size: 24px;
+    }
+
+
+/* ========================================
+    VISTA PELÍCULAS
+    ======================================== */
+
+    .seccion-peliculas .poster-pelicula-peliculas {
+        height: 300px ; 
+        object-fit: cover;
+    }
+
+    .peliculas-reseñas .poster-peliculas-reseñas {
+        height: 200px ;
     }
 
 /* ========================================
