@@ -250,13 +250,52 @@ main, nav {
     VISTA PELÍCULAS
     ======================================== */
 
+    .contenedor-fondo-peliculas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        z-index: -1; /* Al fondo */
+        background-color: #000;
+        overflow: hidden;
+    }
+
+    #fondo-peliculas {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: blur(5px) brightness(0.4); /* Desenfoque y oscurecido */
+        transform: scale(1.05); /* Evita bordes blancos por el blur */
+    }
+
+    .capa-oscura {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle, transparent 0%, rgba(0,0,0,0.4) 100%);
+    }
+
+    /* Estilo para las tarjetas/secciones */
+    .seccion-peliculas {
+        background: rgba(255, 255, 255, 0.03); /* Fondo casi transparente */
+        backdrop-filter: blur(10px); /* Efecto cristal */
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 20px;
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+    }
+
     .seccion-peliculas .poster-pelicula-peliculas {
         height: 300px ; 
         object-fit: cover;
+        border-radius: 5%;
     }
 
     .peliculas-reseñas .poster-peliculas-reseñas {
-        height: 200px ;
+        height: 200px;
     }
 
 /* ========================================
