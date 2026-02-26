@@ -103,7 +103,9 @@ document.addEventListener('DOMContentLoaded', async () => {
           getPeliculasSemana(),
           getPeliculasMejorValoradas()
         ]);
+        renderizarPeliculas(masVistas, 'grid-mas-vistas-sm');
         renderizarPeliculas(masVistas, 'grid-mas-vistas');
+        renderizarPeliculas(masGustadas, 'grid-mas-gustadas-sm');
         renderizarPeliculas(masGustadas, 'grid-mas-gustadas');
       } catch (err) {
         mostrarError('grid-mas-vistas');
