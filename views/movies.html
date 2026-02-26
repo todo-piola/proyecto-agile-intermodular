@@ -12,47 +12,51 @@
 </head>
 <body>
 
-    <div id="encabezado" class="pb-5"></div>
+  <div id="encabezado" class="pb-5"></div>
 
-    <main class="container-fluid bg-black p-5">
+  <!-- FONDO FIJO CON IMAGEN -->
+  <div class="contenedor-fondo-peliculas">
+      <img id="fondo-peliculas" src="../img/view-peliculas-fondo.webp" class="d-block">
+      <div class="capa-oscura"></div> 
+  </div>
 
-      <div class="row justify-content-around mb-5">
-        <!-- Sección 1: Más vistas -->
-        <div class="row col-12 col-xl-6 justify-content-center seccion-peliculas">
-          <p class="fs-3 text-white text-center mt-3 cuerpo animate__animated animate__rubberBand animate__delay-2s animate__repeat-2">Películas más vistas esta semana</p>
-          <div class="row row-cols-2 row-cols-md-3 gy-3 justify-content-center" id="grid-mas-vistas">
-            <div class="col"><img src="../img/poster-prueba.jpg" class="img-fluid poster-pelicula-peliculas"></div>
-            <div class="col"><img src="../img/poster-prueba.jpg" class="img-fluid poster-pelicula-peliculas"></div>
-            <div class="col"><img src="../img/poster-prueba.jpg" class="img-fluid poster-pelicula-peliculas"></div>
-            <div class="col"><img src="../img/poster-prueba.jpg" class="img-fluid poster-pelicula-peliculas"></div>
-            <div class="col"><img src="../img/poster-prueba.jpg" class="img-fluid poster-pelicula-peliculas"></div>
-            <div class="col"><img src="../img/poster-prueba.jpg" class="img-fluid poster-pelicula-peliculas"></div>
-          </div>
-        </div>
+  <main class="container-fluid p-5 position-relative">
 
-        <!-- Sección 2: Más gustadas -->
-        <div class="row col-12 col-xl-6 justify-content-center seccion-peliculas">
-          <p class="fs-3 text-white text-center mt-3 cuerpo animate__animated animate__rubberBand animate__delay-2s animate__repeat-2">Películas que más gustan</p>
-          <div class="row row-cols-2 row-cols-md-3 gy-3 justify-content-center" id="grid-mas-gustadas">
-            <div class="col"><img src="../img/poster-prueba.jpg" class="img-fluid poster-pelicula-peliculas"></div>
-            <div class="col"><img src="../img/poster-prueba.jpg" class="img-fluid poster-pelicula-peliculas"></div>
-            <div class="col"><img src="../img/poster-prueba.jpg" class="img-fluid poster-pelicula-peliculas"></div>
-            <div class="col"><img src="../img/poster-prueba.jpg" class="img-fluid poster-pelicula-peliculas"></div>
-            <div class="col"><img src="../img/poster-prueba.jpg" class="img-fluid poster-pelicula-peliculas"></div>
-            <div class="col"><img src="../img/poster-prueba.jpg" class="img-fluid poster-pelicula-peliculas"></div>
-          </div>
-        </div>
+    <!-- ===================== GRID DE PELÍCULAS ================= -->
+    <div class="row g-5 justify-content-around">
 
-      </div>
+      <!-- SECCIÓN 1: Mejores películas de la semana -->
+      <section class="col-12 col-xl-5 seccion-peliculas">
+          <p class="fs-3 text-white text-center mt-3 cuerpo animate__animated animate__rubberBand animate__delay-2s">
+              Mejores películas semana
+          </p>
+          <div class="row row-cols-2 d-md-none gy-3 justify-content-center" id="grid-mas-vistas-sm"></div>
+          <div class="row d-none d-md-flex row-cols-md-4 gy-3 justify-content-center" id="grid-mas-vistas"></div>
+      </section>
 
-      <div class="row pt-5">
-          <p class="fs-3 text-white text-center cuerpo d-xl-none">Últimas reseñas</p>
-          <div class="col-6 seccion-peliculas d-flex flex-column align-items-center">
+      <!-- SECCIÓN 2: Películas mejor valoradas -->
+      <section class="col-12 col-xl-5 seccion-peliculas">
+          <p class="fs-3 text-white text-center mt-3 cuerpo animate__animated animate__rubberBand animate__delay-2s animate__repeat-2">
+              Películas que más gustan
+          </p>
+          <div class="row row-cols-2 d-md-none gy-3 justify-content-center" id="grid-mas-gustadas-sm"></div>
+          <div class="row d-none d-md-flex row-cols-md-4 gy-3 justify-content-center" id="grid-mas-gustadas"></div>
+      </section>
+
+    </div>
+
+    <!-- FILA INFERIOR: reseñas a la izquierda, trailer a la derecha -->
+    <div class="row pt-5 gx-2 justify-content-center">
+
+        <p class="fs-3 text-white text-center cuerpo d-xl-none">Últimas reseñas</p>
+
+        <!-- COLUMNA RESEÑAS: visible siempre, ocupa todo en móvil y mitad en tamaños pequeños -->
+        <div class="col-12 col-xl-6 d-flex flex-sm-row gap-3 flex-xl-column align-items-center">
             <p class="fs-3 text-white text-center cuerpo d-none d-xl-flex">Últimas reseñas</p>
-              <div class="card mb-3 border-0" style="max-width: 540px;">
+            <div class="card mb-3 border-0 rounded-4" style="max-width: 540px;">
                 <div class="row g-0">
                   <div class="col-md-4 peliculas-reseñas">
-                    <img src="../img/poster-prueba.jpg" class="img-fluid object-fit-cover h-100 w-100 rounded-start poster-peliculas-reseñas">
+                    <img src="../img/poster-prueba.jpg" class="img-fluid object-fit-cover h-100 w-100 rounded-top poster-peliculas-reseñas">
                   </div>
                   <div class="col-md-8">
                     <div class="card-body">
@@ -65,44 +69,11 @@
                     </div>
                   </div>
                 </div>
-              </div>
-
-              <div class="card mb-3 border-0 align-content-center" style="max-width: 540px;">
-                <div class="row g-0">
-                  <div class="col-md-4 peliculas-reseñas">
-                    <img src="../img/poster-prueba.jpg" class="img-fluid object-fit-cover h-100 w-100 rounded-start poster-peliculas-reseñas">
-                  </div>
-                  <div class="col-md-8">
-                    <div class="card-body">
-                      <h5 class="card-title mt-3">Card title</h5>
-                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                      <div class="likes-comentarios d-flex gap-2 justify-content-center">
-                        <p class="text-danger">Deja tu like</p>
-                        <i class="bi bi-heart fs-5 text-danger corazon"></i>
-                    </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
             </div>
-            
-            <div class="col-6 seccion-peliculas d-none d-xl-flex flex-column">
-              <p class="fs-3 text-white text-center cuerpo">Tráiler de la semana</p>
-            
-              <div class="ratio ratio-16x9 rounded overflow-hidden flex-grow-1">
-                <video class="w-100 h-100 object-fit-cover" controls autoplay muted loop>
-                  <source src="../img/trailer.mp4" type="video/mp4">
-                </video>
-              </div>
-            </div>
-
-            <div class="col-6 seccion-peliculas d-flex d-xl-none flex-column align-items-center">
-
-              <div class="card mb-3 border-0" style="max-width: 540px;">
+            <div class="card mb-3 border-0 rounded-4 align-content-center" style="max-width: 540px;">
                 <div class="row g-0">
                   <div class="col-md-4 peliculas-reseñas">
-                    <img src="../img/poster-prueba.jpg" class="img-fluid object-fit-cover h-100 w-100 rounded-start poster-peliculas-reseñas">
+                    <img src="../img/poster-prueba.jpg" class="img-fluid object-fit-cover h-100 w-100 rounded-top poster-peliculas-reseñas">
                   </div>
                   <div class="col-md-8">
                     <div class="card-body">
@@ -111,35 +82,64 @@
                       <div class="likes-comentarios d-flex gap-2 justify-content-center">
                         <p class="text-danger">Deja tu like</p>
                         <i class="bi bi-heart fs-5 text-danger corazon"></i>
-                    </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="card mb-3 border-0 align-content-center" style="max-width: 540px;">
-                <div class="row g-0">
-                  <div class="col-md-4 peliculas-reseñas">
-                    <img src="../img/poster-prueba.jpg" class="img-fluid object-fit-cover h-100 w-100 rounded-start poster-peliculas-reseñas">
-                  </div>
-                  <div class="col-md-8">
-                    <div class="card-body">
-                      <h5 class="card-title mt-3">Card title</h5>
-                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                      <div class="likes-comentarios d-flex gap-2 justify-content-center">
-                        <p class="text-danger">Deja tu like</p>
-                        <i class="bi bi-heart fs-5 text-danger corazon"></i>
-                    </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-
             </div>
         </div>
 
-        <div class="linea-blanca mt-5 w-50"></div>
-    </main>
+        <!-- COLUMNA TRAILER: solo visible en xl -->
+        <div class="col-xl-6 d-none d-xl-flex flex-column">
+            <p class="fs-3 text-white text-center cuerpo">Tráiler de la semana</p>
+            <div class="ratio ratio-16x9 rounded overflow-hidden flex-grow-1">
+                <video class="w-100 h-100 object-fit-cover rounded-4" controls autoplay muted loop>
+                    <source src="../img/trailer.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+
+        <!-- COLUMNA RESEÑAS EXTRA para visualizaciones pequeñas, desaparece en xl -->
+        <div class="col-12 col-xl-6 d-flex flex-sm-row gap-3 d-xl-none align-items-center">
+            <div class="card mb-3 border-0 rounded-4" style="max-width: 540px;">
+                <div class="row g-0">
+                  <div class="col-md-4 peliculas-reseñas">
+                    <img src="../img/poster-prueba.jpg" class="img-fluid object-fit-cover h-100 w-100 rounded-top poster-peliculas-reseñas">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title mt-3">Card title</h5>
+                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      <div class="likes-comentarios d-flex gap-2 justify-content-center">
+                        <p class="text-danger">Deja tu like</p>
+                        <i class="bi bi-heart fs-5 text-danger corazon"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div class="card mb-3 border-0 rounded-4 align-content-center" style="max-width: 540px;">
+                <div class="row g-0">
+                  <div class="col-md-4 peliculas-reseñas">
+                    <img src="../img/poster-prueba.jpg" class="img-fluid object-fit-cover h-100 w-100 rounded-top poster-peliculas-reseñas">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title mt-3">Card title</h5>
+                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      <div class="likes-comentarios d-flex gap-2 justify-content-center">
+                        <p class="text-danger">Deja tu like</p>
+                        <i class="bi bi-heart fs-5 text-danger corazon"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</main>
 
     <div id="piepagina"></div>
     
