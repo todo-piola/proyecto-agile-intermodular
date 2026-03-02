@@ -31,7 +31,6 @@ main, nav {
    HEADER Y FOOTER
    ======================================== */
 
-#encabezado,
 #piepagina {
     display: flex;
     width: 100%;
@@ -40,24 +39,52 @@ main, nav {
     align-items: center;
 }
 
-/* Logos responsive - 40% en móvil, 20% desde md */
+/* Logos responsive */
 #logo-encabezado,
 #logo-footer {
-    height: 10vw;
-    max-height: 200px;
-    min-height: 60px;
+    height: 80px;   /* móvil */
     width: auto;
+    max-height: 100px;  /* evita que se deforme en pantallas grandes */
     transition: height 0.3s ease;
 }
 
-@media (min-width: 768px) {
-
+@media (min-width: 992px) {
     #logo-encabezado,
     #logo-footer {
-        height: 150px;
+        height: 120px;  /* escritorio */
     }
 }
+/*HOVER NAVBAR*/
+.navbar-nav .nav-link {
+    transition: all 0.3s ease;
+}
 
+.navbar-nav .nav-link:hover {
+    color: #eca35a !important; /* Amarillo Bootstrap */
+    transform: translateY(-2px);
+}
+/* ----FOOTER---- */
+
+.footer-link {
+    text-decoration: none;
+    color: #aaa;
+    transition: all 0.3s ease;
+}
+
+.footer-link:hover {
+    color: #ffc107;
+    padding-left: 5px;
+}
+
+.footer-icon {
+    color: #aaa;
+    transition: all 0.3s ease;
+}
+
+.footer-icon:hover {
+    color: #ffc107;
+    transform: scale(1.2);
+}
 /* ========================================
    SECCIONES HERO
    ======================================== */
