@@ -1,3 +1,4 @@
+<?php require_once("bd/conexion.php"); ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
