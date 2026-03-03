@@ -1,0 +1,44 @@
+document.addEventListener("DOMContentLoaded", async () => {
+    await cargarTemplate("encabezado", "/templates/header.html");
+    insertarLupas(); // Hasta que header.html no cargue, no se insertan las lupas
+    await cargarTemplate("piepagina", "/templates/footer.html");
+  });
+  
+  /**
+   * Carga un template HTML dentro de un contenedor
+   * @param {string} idContenedor
+   * @param {string} ruta
+   */
+
+  async function cargarTemplate(idContenedor, ruta) {
+    const contenedor = document.getElementById(idContenedor);
+    if (!contenedor) return;
+  
+    try {
+      const response = await fetch(ruta);
+        
+      if (!response.ok) throw new Error(`Error status: ${response.status}`);
+
+      const data = await response.text(); // En vez de .json() se usa .text() para los templates HTML
+
+      contenedor.innerHTML = data;    
+
+    } catch (err) {
+      console.error(`Error cargando ${ruta}:`, err);
+    }
+  }
+  
+  /**
+   * Inserta las lupas en los contenedores correspondientes
+   */
+  function insertarLupas() {
+    const lupas = ["contenedor-lupa", "contenedor-lupa-movil"];
+  
+    lupas.forEach(id => {
+      const contenedor = document.getElementById(id);
+      if (contenedor) {
+        contenedor.innerHTML =
+          '<i id="lupaBtn" class="bi bi-search fs-4 text-warning bg-black mx-5" style="cursor:pointer"></i>';
+      }
+    });
+  }
