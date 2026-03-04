@@ -37,8 +37,21 @@ document.addEventListener("DOMContentLoaded", async () => {
     lupas.forEach(id => {
       const contenedor = document.getElementById(id);
       if (contenedor) {
-        contenedor.innerHTML =
-          '<i id="lupaBtn" class="bi bi-search fs-4 text-warning bg-black mx-5" style="cursor:pointer"></i>';
+          const barraBusqueda = document.createElement("input");
+          barraBusqueda.id = "barraBusqueda";
+          barraBusqueda.type = "search";
+          barraBusqueda.className = "form-control me-2";
+          barraBusqueda.placeholder = "Buscar...";
+          barraBusqueda.ariaLabel = "Buscar";
+
+
+          const lupa = document.createElement("i");
+          lupa.id = "lupaBtn";
+          lupa.className = "bi bi-search fs-4 text-warning bg-black mx-2 rounded";
+          lupa.style.cursor = "pointer";
+
+          contenedor.appendChild(barraBusqueda);
+          contenedor.appendChild(lupa);
       }
     });
   }
