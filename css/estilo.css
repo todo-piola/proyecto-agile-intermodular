@@ -62,7 +62,6 @@ main, nav {
    SECCIONES HERO
    ======================================== */
 
-/* Hero móvil y escritorio - estilos compartidos */
 #hero-movil,
 #hero-escritorio {
     background-size: cover;
@@ -198,126 +197,181 @@ main, nav {
    GRID DE TARJETAS
    ======================================== */
 
-   /*  ESTILOS BASE (Móvil y General)  */
-    #funcionalidades .card {
-        transition: all 0.5s ease;
-        background-color: #dbdbdb;
-    }
+#funcionalidades .card {
+    transition: all 0.5s ease;
+    background-color: #dbdbdb;
+}
 
-    #funcionalidades .card:hover {
-        transform: translateY(-5px);
-    }
+#funcionalidades .card:hover {
+    transform: translateY(-5px);
+}
 
+.icono-grid {
+    width: 40px; 
+    height: 40px;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+.card-title {
+    font-size: 0.9rem !important;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+.card-text {
+    font-size: 0.75rem !important;
+    line-height: 1.2;
+}
+
+/*  AJUSTES PARA GRANDES RESOLUCIONES  */
+@media (min-width: 768px) {
     .icono-grid {
-        width: 40px; 
-        height: 40px;
-        object-fit: contain;
-        margin-bottom: 10px;
+        width: 55px;
+        height: 55px;
     }
-
     .card-title {
-        font-size: 0.9rem !important;
-        letter-spacing: 1px;
-        font-weight: bold;
+        font-size: 1.1rem !important;
     }
-
     .card-text {
-        font-size: 0.75rem !important;
-        line-height: 1.2;
+        font-size: 0.9rem !important;
     }
+}
 
-    /*  AJUSTES PARA PANTALLAS GRANDES (Tablet y PC)  */
-    @media (min-width: 768px) {
-        .icono-grid {
-            width: 55px;
-            height: 55px;
-        }
-        .card-title {
-            font-size: 1.1rem !important;
-        }
-        .card-text {
-            font-size: 0.9rem !important;
-        }
-    }
-
-    /* Mantiene el título de la sección móvil que tenías */
-    .peliculas-esperadas-movil {
-        font-size: 24px;
-    }
+.peliculas-esperadas-movil {
+    font-size: 24px;
+}
 
 
 /* ========================================
     VISTA PELÍCULAS
     ======================================== */
 
-    .contenedor-fondo-peliculas {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        z-index: -1; /* Al fondo */
-        background-color: #000;
-        overflow: hidden;
-    }
+.contenedor-fondo-peliculas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1; /* Al fondo */
+    background-color: #000;
+    overflow: hidden;
+}
 
-    #fondo-peliculas {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        filter: blur(5px) brightness(0.4); /* Desenfoque y oscurecido */
-        transform: scale(1.05); /* Evita bordes blancos por el blur */
-    }
+#fondo-peliculas {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(5px) brightness(0.4); /* Desenfoque y oscurecido */
+    transform: scale(1.05); /* Evita bordes blancos por el blur */
+}
 
-    .capa-oscura {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: radial-gradient(circle, transparent 0%, rgba(0,0,0,0.4) 100%);
-    }
+.capa-oscura {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, transparent 0%, rgba(0,0,0,0.4) 100%);
+}
 
-    /* Estilo para las tarjetas/secciones */
-    .seccion-peliculas {
-        background: rgba(255, 255, 255, 0.03); /* Fondo casi transparente */
-        backdrop-filter: blur(10px); /* Efecto cristal */
-        border-radius: 20px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        padding: 20px;
-        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
-    }
+/* Estilo para las tarjetas/secciones */
+.seccion-peliculas {
+    background: rgba(255, 255, 255, 0.03); /* Fondo casi transparente */
+    backdrop-filter: blur(10px); /* Efecto cristal */
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+}
 
-    .seccion-peliculas .poster-pelicula-peliculas {
-        height: 300px ; 
-        object-fit: cover;
-        border-radius: 5%;
-    }
+.seccion-peliculas .poster-pelicula-peliculas {
+    height: 300px ; 
+    object-fit: cover;
+    border-radius: 5%;
+}
 
-    .peliculas-reseñas .poster-peliculas-reseñas {
-        height: 200px;
-    }
+.peliculas-reseñas .poster-peliculas-reseñas {
+    height: 200px;
+}
+
+/* ========================================
+    VISTA PELÍCULA
+    ======================================== */
+ 
+.columna-reseñar{
+    height: 500px;
+}
+ 
+.banner-pelicula{
+    height: 300px;
+}
+ 
+.contenedor-director-img {
+    aspect-ratio: 2 / 3;
+    width: 100%;
+    overflow: hidden;
+}
+ 
+.foto-director {
+    width: 100%;         
+    height: 300px;
+    object-fit: cover;     
+    max-width: 220px;      
+    margin: 0 auto;
+    display: block;
+}
+
+
+.poster-pelicula-peliculas{
+    max-height: 240px;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    width: 100%;
+}
+
+.reparto-actor{
+    width: 100%;         
+    height: 300px;
+    object-fit: cover;     
+    max-width: 220px;      
+    margin: 0 auto;
+    display: block;
+}
+
+.sus-peliculas-destacadas {
+    transition: all 0.3s ease; /* Transición suave para el brillo */
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    filter: brightness(0.8);
+}
+
+
+.sus-peliculas-destacadas:hover{
+    filter: brightness(1);
+    transform: translateY(-2px);
+}
+
 
 /* ========================================
    ELEMENTOS DECORATIVOS
    ======================================== */
 
-    .linea-blanca {
-        border: none;
-        border-top: 2px solid white;
-        margin: 20px auto;
-        width: 95%;
-    }
+.linea-blanca {
+    border: none;
+    border-top: 2px solid white;
+    margin: 20px auto;
+    width: 95%;
+}
 
-    .imagen-catalogo {
-        aspect-ratio: 2 / 3;
-        object-fit: cover;
-    }
+.imagen-catalogo {
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+}
 
 /* ========================================
    ANIMACIONES
    ======================================== */
 
-   .animate__animated.animate__rubberBand {
-    --animate-duration: 3s;
-  }
+.animate__animated.animate__rubberBand {
+--animate-duration: 3s;
+}
