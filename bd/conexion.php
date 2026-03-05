@@ -1,138 +1,96 @@
 <?php
+
 $server = "localhost";
 $user = "root";
 $password = "";
 $db = "proyecto_peliculas";
 
+//////////////////////////////////////////////////////
+// CONEXION AL SERVIDOR
+//////////////////////////////////////////////////////
+
 try {
-    // Conectar solo al servidor
     $conexion = new PDO("mysql:host=$server;charset=utf8mb4", $user, $password);
     $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
 } catch (PDOException $e) {
     die("Conexion fallida: " . $e->getMessage());
 }
 
-// Crear base de datos si no existe
+//////////////////////////////////////////////////////
+// CREAR BASE DE DATOS
+//////////////////////////////////////////////////////
+
 try {
     $sqlDB = "CREATE DATABASE IF NOT EXISTS $db
               CHARACTER SET utf8mb4
               COLLATE utf8mb4_general_ci";
     $conexion->exec($sqlDB);
-
 } catch (PDOException $e) {
-    die("No se puede crear la base de datos: " . $e->getMessage());
+    die("Error creando base de datos: " . $e->getMessage());
 }
 
-// Conectar a la base de datos
+//////////////////////////////////////////////////////
+// CONECTAR A LA BASE DE DATOS
+//////////////////////////////////////////////////////
+
 try {
     $conexion = new PDO("mysql:host=$server;dbname=$db;charset=utf8mb4", $user, $password);
     $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
 } catch (PDOException $e) {
-    die("No se puede conectar a la base '$db': " . $e->getMessage());
+    die("Error conectando a la base: " . $e->getMessage());
 }
 
 //////////////////////////////////////////////////////
-//                CREACIÓN DE TABLAS
+// TABLA USUARIOS
 //////////////////////////////////////////////////////
 
-// TABLA USUARIOS
 try {
+
     $conexion->exec("
         CREATE TABLE IF NOT EXISTS usuarios (
             id INT AUTO_INCREMENT PRIMARY KEY,
             nombre VARCHAR(100),
             apellido VARCHAR(100),
             email VARCHAR(150) UNIQUE,
-            contrasena VARCHAR(255),
-            sexo VARCHAR(20),
-            fecha_nacimiento DATE,
-            activar_notificacion BOOLEAN DEFAULT FALSE,
-            recibir_revista BOOLEAN DEFAULT FALSE,
-            pais VARCHAR(100),
-            num_tarjeta VARCHAR(50),
-            direccion VARCHAR(255)
+            contrasena VARCHAR(255)
         ) ENGINE=InnoDB;
     ");
+
 } catch (PDOException $e) {
     die("Error creando tabla usuarios: " . $e->getMessage());
 }
 
+//////////////////////////////////////////////////////
+// TABLA PELICULAS COMPLETA
+//////////////////////////////////////////////////////
 
-// TABLA PELICULAS
 try {
+
     $conexion->exec("
         CREATE TABLE IF NOT EXISTS peliculas (
             id INT AUTO_INCREMENT PRIMARY KEY,
             titulo VARCHAR(255),
-            reparto TEXT,
-            equipo TEXT,
+            titulo_original VARCHAR(255),
+            descripcion TEXT,
             generos VARCHAR(255),
-            detalles TEXT,
-            fecha_salida DATE
+            fecha_salida DATE,
+            duracion INT,
+            poster VARCHAR(255),
+            backdrop VARCHAR(255),
+            puntuacion DECIMAL(3,1)
         ) ENGINE=InnoDB;
     ");
+
 } catch (PDOException $e) {
     die("Error creando tabla peliculas: " . $e->getMessage());
 }
 
-
-// TABLA RESEÑAS
-try {
-    $conexion->exec("
-        CREATE TABLE IF NOT EXISTS resenas (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            puntuacion INT,
-            comentario TEXT,
-            favorita BOOLEAN DEFAULT FALSE,
-            watchlist BOOLEAN DEFAULT FALSE,
-            id_usuario INT,
-            id_pelicula INT,
-            FOREIGN KEY (id_usuario) REFERENCES usuarios(id) ON DELETE CASCADE,
-            FOREIGN KEY (id_pelicula) REFERENCES peliculas(id) ON DELETE CASCADE
-        ) ENGINE=InnoDB;
-    ");
-} catch (PDOException $e) {
-    die("Error creando tabla resenas: " . $e->getMessage());
-}
-
-
-// TABLA LISTAS
-try {
-    $conexion->exec("
-        CREATE TABLE IF NOT EXISTS listas (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            nombre_lista VARCHAR(255),
-            descripcion TEXT,
-            etiquetas VARCHAR(255),
-            id_usuario INT,
-            FOREIGN KEY (id_usuario) REFERENCES usuarios(id) ON DELETE CASCADE
-        ) ENGINE=InnoDB;
-    ");
-} catch (PDOException $e) {
-    die("Error creando tabla listas: " . $e->getMessage());
-}
-
-
-// TABLA INTERMEDIA LISTA - PELICULA
-try {
-    $conexion->exec("
-        CREATE TABLE IF NOT EXISTS lista_pelicula (
-            id_lista INT,
-            id_pelicula INT,
-            PRIMARY KEY (id_lista, id_pelicula),
-            FOREIGN KEY (id_lista) REFERENCES listas(id) ON DELETE CASCADE,
-            FOREIGN KEY (id_pelicula) REFERENCES peliculas(id) ON DELETE CASCADE
-        ) ENGINE=InnoDB;
-    ");
-} catch (PDOException $e) {
-    die("Error creando tabla lista_pelicula: " . $e->getMessage());
-}
-
-
+//////////////////////////////////////////////////////
 // TABLA PEDIDOS
+//////////////////////////////////////////////////////
+
 try {
+
     $conexion->exec("
         CREATE TABLE IF NOT EXISTS pedidos (
             id INT AUTO_INCREMENT PRIMARY KEY,
@@ -142,13 +100,17 @@ try {
             FOREIGN KEY (id_usuario) REFERENCES usuarios(id) ON DELETE CASCADE
         ) ENGINE=InnoDB;
     ");
+
 } catch (PDOException $e) {
     die("Error creando tabla pedidos: " . $e->getMessage());
 }
 
-
+//////////////////////////////////////////////////////
 // TABLA DETALLES PEDIDO
+//////////////////////////////////////////////////////
+
 try {
+
     $conexion->exec("
         CREATE TABLE IF NOT EXISTS detalles_pedido (
             id INT AUTO_INCREMENT PRIMARY KEY,
@@ -161,20 +123,22 @@ try {
             FOREIGN KEY (id_pelicula) REFERENCES peliculas(id) ON DELETE CASCADE
         ) ENGINE=InnoDB;
     ");
+
 } catch (PDOException $e) {
     die("Error creando tabla detalles_pedido: " . $e->getMessage());
 }
 
-
 //////////////////////////////////////////////////////
-//              CREAR ADMIN SI NO EXISTE
+// CREAR ADMIN SI NO EXISTE
 //////////////////////////////////////////////////////
 
 try {
-    $stmt = $conexion->query("SELECT * FROM usuarios WHERE email = 'admin@admin.com' LIMIT 1");
+
+    $stmt = $conexion->query("SELECT * FROM usuarios WHERE email='admin@admin.com' LIMIT 1");
     $admin = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if (!$admin) {
+
         $passwordHash = password_hash("1234", PASSWORD_DEFAULT);
 
         $stmtInsert = $conexion->prepare("
@@ -190,5 +154,78 @@ try {
     die("Error creando admin: " . $e->getMessage());
 }
 
-echo "Base de datos lista y conectada correctamente.";
+//////////////////////////////////////////////////////
+// IMPORTAR PELICULAS DESDE TMDB
+//////////////////////////////////////////////////////
+
+try {
+
+    $stmt = $conexion->query("SELECT COUNT(*) FROM peliculas");
+    $totalPeliculas = $stmt->fetchColumn();
+
+    if ($totalPeliculas == 0) {
+
+        $apiKey = "4c9ba4a79b657a025515aa64567b103b";
+
+        $url = "https://api.themoviedb.org/3/movie/popular?api_key=$apiKey&language=es-ES&page=1";
+
+        $response = file_get_contents($url);
+
+        if ($response !== false) {
+
+            $data = json_decode($response, true);
+
+            $insertStmt = $conexion->prepare("
+                INSERT INTO peliculas
+                (titulo, titulo_original, descripcion, generos, fecha_salida, duracion, poster, backdrop, puntuacion)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+            ");
+
+            foreach ($data['results'] as $movie) {
+
+                $movieId = $movie['id']; // ID de TMDB
+
+                // Llamada a la API para detalles completos
+                $urlDetail = "https://api.themoviedb.org/3/movie/$movieId?api_key=$apiKey&language=es-ES";
+                $detailResponse = file_get_contents($urlDetail);
+                $detailData = json_decode($detailResponse, true);
+
+                $titulo = $detailData['title'];
+                $tituloOriginal = $detailData['original_title'];
+                $descripcion = $detailData['overview'];
+                $fecha = $detailData['release_date'];
+                $poster = $detailData['poster_path'];
+                $backdrop = $detailData['backdrop_path'];
+                $puntuacion = $detailData['vote_average'];
+                $duracion = $detailData['runtime']; // duración en minutos
+
+                // Generar nombres de géneros
+                $generosArray = [];
+                if (isset($detailData['genres'])) {
+                    foreach ($detailData['genres'] as $g) {
+                        $generosArray[] = $g['name'];
+                    }
+                }
+                $generos = implode(", ", $generosArray);
+
+                // Insertar en la base
+                $insertStmt->execute([
+                    $titulo,
+                    $tituloOriginal,
+                    $descripcion,
+                    $generos,
+                    $fecha,
+                    $duracion,
+                    $poster,
+                    $backdrop,
+                    $puntuacion
+                ]);
+            }
+        }
+    }
+
+} catch (PDOException $e) {
+    echo "Error importando peliculas: " . $e->getMessage();
+}
+
 ?>
