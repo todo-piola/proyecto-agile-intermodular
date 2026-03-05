@@ -2,11 +2,13 @@ import * as fh from './register_form/form-handler.js'
 import {mostrarPasswd} from './register_form/ui.js'
 import { getPeliculasSemana, getPeliculasMejorValoradas } from './movie-movies/movie-service.js';
 import { renderizarPeliculas, mostrarError } from './movie-movies/movie-ui.js';
+import { initSearchBarNavigation, initSearchResultsPage } from './search/searchUi.js';
 
-// Si estamos en GitHub Pages, usará el nombre del repo. 
+
+// Si estamos en GitHub Pages, usará el nombre del repo.
 // Si estamos en Local (localhost), se quedará vacío para buscar en la raíz del servidor.
-const repo = window.location.hostname.includes('github.io') 
-             ? '/proyecto-agile-intermodular' 
+const repo = window.location.hostname.includes('github.io')
+             ? '/proyecto-agile-intermodular'
              : '';
 
 async function cargarComponente(idPadre, rutaArchivo) {
@@ -26,6 +28,9 @@ async function cargarComponente(idPadre, rutaArchivo) {
 document.addEventListener('DOMContentLoaded', async () => {
     // Ahora 'repo' es inteligente y se adapta al entorno
     await cargarComponente('footer-main', `${repo}/componentes/footer.html`);
+
+    initSearchBarNavigation();
+    await initSearchResultsPage();
 
     /* =========== FORMULARIO REGISTRO =============== */
     const form = document.getElementById('form-envio-1');

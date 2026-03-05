@@ -13,21 +13,21 @@
     <main>
         <div id="encabezado"></div>
 
-        <section>
+        <section class="bg-black">
             <!--Plantilla para cargar las películas que coinciden con la búsqueda del usuario-->
             <template id="template-pelicula">
-                <div class="col-12 col-md-6 col-lg-4 mb-4">
-                    <div class="card h-100 shadow-sm">
+                <div class="col-12 col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm bg-dark">
                         <!-- Versión escritorio (visible en md+) -->
                         <div class="d-none d-md-block">
-                            <img class="card-img-top" src="" alt="Imagen película" style="height: 250px; object-fit: cover;">
+                            <img class="card-img-top" src="" alt="Imagen película" style="height: 300px; object-fit: cover;">
                             <div class="card-body">
-                                <h5 class="card-title"></h5>
-                                <p class="card-text"><strong>Año:</strong> <span class="anio"></span></p>
-                                <p class="card-text"><strong>Director:</strong> <span class="director"></span></p>
-                                <p class="card-text small text-muted"><span class="descripcion"></span></p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <span class="h5 mb-0 precio"></span>
+                                <h5 class="card-title text-white"></h5>
+                                <p class="card-text text-white"><strong>Año:</strong> <span class="anio"></span></p>
+                                <p class="card-text text-white"><strong>Director:</strong> <span class="director"></span></p>
+                                <p class="card-text small  text-white"><span class="descripcion"></span></p>
+                                <div class="d-flex justify-content-between align-items-center align-content-end">
+                                    <span class="h5 mb-0 precio text-white"></span>
                                     <button class="btn btn-primary btn-alquilar">Alquilar</button>
                                 </div>
                             </div>
