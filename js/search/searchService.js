@@ -45,6 +45,24 @@ export function buildSearchPageUrl(query) {
     return `${repoBase}/views/search.html?q=${encodeURIComponent(q)}`;
 }
 
+/**
+ * Función auxiliar para obtener el director de una película
+ * @param movieId
+ * @returns {Promise<string>}
+ */
+async function fetchDirector(movieId) {
+    try {
+        const url = `${BASE_URL}/movie/${movieId}/credits`;
+        const res = await fetch(url, options);
+        const data = await res.json();
+
+        const director = data.crew?.find(person => person.job === 'Director');
+        return director?.name || 'Director desconocido';
+    } catch (err) {
+        console.error(`Error obteniendo director para película ${movieId}:`, err);
+        return 'Director desconocido';
+    }
+}
 
 /**
  *
@@ -57,7 +75,8 @@ export function buildSearchPageUrl(query) {
  */
 export async function searchMovies(query, page = 1) {
     const cleanQuery = normalizeQuery(query);
-    if (!cleanQuery || cleanQuery.lenght < 2) return [];
+
+    if (!cleanQuery || cleanQuery.length < 2) return [];
 
     const cacheKey = `tmdb_search_${cleanQuery.toLowerCase()}_p${page}`;
     const cached = sessionStorage.getItem(cacheKey);
@@ -68,61 +87,46 @@ export async function searchMovies(query, page = 1) {
         include_adult: 'false',
         language: 'es-ES',
         page: String(page)
-    })
+    });
 
     const url = `${BASE_URL}/search/movie?${params.toString()}`;
 
-    try{
+    try {
         const res = await fetch(url, options);
-        if (!res.ok) throw new Error(`Error TMDB: ${res.status}`);
         const data = await res.json();
 
-        const mapped = (data.results || []).map(movie => ({
+        console.log("Respuesta TMDB:", data);
+
+        // Primero mapeamos los resultados básicos
+        const basicResults = (data.results || []).map(movie => ({
             id: movie.id,
             titulo: movie.title || 'Título desconocido',
             fecha: movie.release_date || 'Fecha desconocida',
             descripcion: movie.overview || 'Sin descripcion',
             imagen: movie.poster_path ? `${IMG_URL}${movie.poster_path}` : '../img/poster-prueba.jpg',
             precio: '3,99 EUR',
-            director: movie.director || 'Director desconocido',
-        }))
+            director: 'Cargando director...' // Temporal mientras obtenemos los directores
+        }));
 
-        sessionStorage.setItem(cacheKey, JSON.stringify(mapped));
-        return mapped;
-    }
-    catch (err) {
+        /*
+        Necesitamos obtener el director de cada película de manera individual
+        porque la API que usamos de búsqueda no lo incluye en la información general de la película.
+         */
+        const resultsWithDirectors = await Promise.all(
+            basicResults.map(async (movie) => {
+                const director = await fetchDirector(movie.id);
+                return {
+                    ...movie,
+                    director: director
+                };
+            })
+        );
+
+        sessionStorage.setItem(cacheKey, JSON.stringify(resultsWithDirectors));
+        return resultsWithDirectors;
+
+    } catch (err) {
         console.error("Error en búsqueda:", err);
+        return [];
     }
-}
-
-/**
- * Inicializa la navegación de la barra de búsqueda,
- * tanto para el ícono de lupa como para la tecla Enter.
- */
-export function initSearchBarNavigation() {
-    //Escuchador que funciona para ambos icono de lupa, tanto el de la versión escritorio como la móvil.
-    document.addEventListener('click', (e) => {
-        const btn = e.target.closest('[data-role="search-btn"], #lupaBtn');
-        if (!btn) return;
-
-        const container = btn.closest('#contenedor-lupa, #contenedor-lupa-movil');
-        const input = container?.querySelector('[data-role="search-input"], #barraBusqueda, input[type="search"]');
-        if (!input) return;
-
-        const query = input.value.trim();
-        if (query.length < 2) return;
-
-        window.location.href = buildSearchPageUrl(query);
-    });
-
-    //Escuchador para tecla enter en cualquier input de búsuqeda
-    document.addEventListener('keydown', (e) => {
-        const isSearchInput = e.target.matches('[data-role="search-input"], #barraBusqueda, input[type="search"]');
-        if (!isSearchInput || e.key !== 'Enter') return;
-
-        const query = e.target.value.trim();
-        if (query.length < 2) return;
-
-        window.location.href = buildSearchPageUrl(query);
-    });
 }
