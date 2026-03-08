@@ -248,7 +248,6 @@ export async function manejarSubmit(event, datosForm){
         fecha: datosForm.fechaN?.value || "",
         notificaciones: datosForm.notificaciones?.checked ? 1 : 0,
         revista: datosForm.revista?.checked ? 1 : 0,
-        crear: datosForm.crear?.checked ? 1 : 0
     };
 
     try {

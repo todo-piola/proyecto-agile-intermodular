@@ -12,7 +12,7 @@
 </head>
 <body>
     <main class="container-fluid bg-black">
-        <div id="encabezado"></div>
+        <?php include("templates/header.php"); ?>
     
         <div class="container-fluid bg-black">
 
@@ -318,12 +318,6 @@
                             </label>
                         </div>
 
-                        <!-- Politica de privacidad -->
-                        <div class="form-check mb-3">
-                            <input class="form-check-input" type="checkbox" id="crear" name="crear">
-                            <label class="form-check-label" for="crear">Acepto la política de privacidad</label>
-                        </div>
-
                         <!-- Recibir Revista Digital -->
                         <div class="form-check mb-3">
                             <input class="form-check-input" type="checkbox" id="revistaDigital" name="revista">
@@ -503,18 +497,8 @@
 
         </div>
 
-        <div id="piepagina"></div>
+        <?php include("templates/footer.html"); ?>
     </main>
-
-    <script>
-        fetch('templates/header.html')
-            .then(response => response.text())
-            .then(data => document.getElementById('encabezado').innerHTML = data);
-        
-        fetch('templates/footer.html')
-            .then(response => response.text())
-            .then(data => document.getElementById('piepagina').innerHTML = data);
-    </script>
 
     <script src="recursos/bootstrap.bundle.min.js"></script>
     <script type="module" src="./js/main.js"></script>

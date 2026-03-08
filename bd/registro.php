@@ -16,7 +16,6 @@ $sexo           = $_POST["sexo"] ?? "";
 $fecha          = $_POST["fecha"] ?? "";
 $notificaciones = !empty($_POST["notificaciones"]) ? 1 : 0;
 $revista        = !empty($_POST["revista"]) ? 1 : 0;
-$crear          = !empty($_POST["crear"]) ? 1 : 0;
 
 // ===== VALIDACIONES =====
 
@@ -44,11 +43,6 @@ if($password === "") {
     $errores[] = "La contraseña es obligatoria.";
 } elseif(strlen($password) < 6) {
     $errores[] = "La contraseña debe tener al menos 6 caracteres.";
-}
-
-// Checkbox política de privacidad
-if(!$crear) {
-    $errores[] = "Debes aceptar la política de privacidad.";
 }
 
 // ===== COMPROBAR CORREO DUPLICADO =====

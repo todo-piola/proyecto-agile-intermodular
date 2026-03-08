@@ -38,7 +38,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             sexo: document.querySelector('input[name="sexo"]:checked')?.value || "",
             fechaN: document.getElementById('fechaNacimiento'),
             revista: document.getElementById('revistaDigital'),
-            crear: document.getElementById('crear'),
             notificaciones: document.getElementById('notificaciones')
         }
 
@@ -69,18 +68,25 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     /* ================ FORMULARIO LOGIN ================ */
     const loginForm = document.getElementById('loginForm');
-    
-    if (loginForm) {
-        const camposLogin = {
-            correoLogin: document.getElementById('correoLogin'),
-            contrasenaLogin: document.getElementById("contrasenaLogin")
-        }
-    
-        // Login (pasa sus propios IDs de error)
-        camposLogin.correoLogin.addEventListener('input', (e) => fh.inputCorreo(e, "errCorreoLogin"));
-        camposLogin.contrasenaLogin.addEventListener('input', (e) => fh.inputPasswd(e, "errContrasenaLogin"));
 
-        loginForm.addEventListener('submit', (e) => fh.manejarSubmit(e, camposLogin));
+    if (loginForm) {
+        const correoLogin = document.getElementById('correoLogin');
+        const contrasenaLogin = document.getElementById("contrasenaLogin");
+
+        if (correoLogin && contrasenaLogin) {
+            correoLogin.addEventListener('input', (e) => fh.inputCorreo(e, "errCorreoLogin"));
+            contrasenaLogin.addEventListener('input', (e) => fh.inputPasswd(e, "errContrasenaLogin"));
+            loginForm.addEventListener('submit', (e) => {
+
+                const correoValido = fh.inputCorreo({target: correoLogin}, "errCorreoLogin");
+                const passValida = fh.inputPasswd({target: contrasenaLogin}, "errContrasenaLogin");
+
+                if(!correoValido || !passValida){
+                    e.preventDefault(); // bloquea solo si hay errores
+                }
+
+            });;
+        }
     }
 
 
