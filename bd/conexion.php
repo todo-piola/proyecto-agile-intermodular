@@ -47,17 +47,16 @@ try {
     $conexion->exec("
         CREATE TABLE IF NOT EXISTS usuarios (
             id INT AUTO_INCREMENT PRIMARY KEY,
-            nombre VARCHAR(100),
-            apellido VARCHAR(100),
-            email VARCHAR(150) UNIQUE,
-            contrasena VARCHAR(255),
-            pais VARCHAR(50),
-            sexo VARCHAR(20),
+            nombre_completo VARCHAR(100) NOT NULL,
+            telefono VARCHAR(9),
+            correo VARCHAR(100) NOT NULL UNIQUE,
+            contrasenia VARCHAR(255) NOT NULL,
+            sexo ENUM('masculino','femenino','prefiero-no-decir'),
             fecha_nacimiento DATE,
-            tarjeta VARCHAR(50),
-            notificaciones TINYINT(1) DEFAULT 0,
-            revista_digital TINYINT(1) DEFAULT 0
-        ) ENGINE=InnoDB;
+            pais VARCHAR(100),
+            notificaciones TINYINT(1),
+            revista TINYINT(1)
+        );
     ");
 } catch (PDOException $e) {
     die("Error creando tabla usuarios: " . $e->getMessage());
@@ -136,19 +135,17 @@ try {
 //////////////////////////////////////////////////////
 
 try {
-
-    $stmt = $conexion->query("SELECT * FROM usuarios WHERE email='admin@admin.com' LIMIT 1");
+    // Buscar admin por correo
+    $stmt = $conexion->query("SELECT * FROM usuarios WHERE correo='admin@admin.com' LIMIT 1");
     $admin = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if (!$admin) {
-
         $passwordHash = password_hash("1234", PASSWORD_DEFAULT);
 
         $stmtInsert = $conexion->prepare("
-            INSERT INTO usuarios (nombre, email, contrasena)
-            VALUES ('admin', 'admin@admin.com', :pass)
+            INSERT INTO usuarios (nombre_completo, correo, contrasenia)
+            VALUES ('Administrador', 'admin@admin.com', :pass)
         ");
-
         $stmtInsert->bindParam(":pass", $passwordHash);
         $stmtInsert->execute();
     }

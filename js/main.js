@@ -31,14 +31,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     const form = document.getElementById('form-envio-1');
 
     if(form) {
-        const camposFormulario = {  //Objeto que almacena referencias a todos los campos del formulario
+        const camposFormulario = {
             nombreApe: document.getElementById('nombreApellido'),
             correo: document.getElementById('correo'),
             pass: document.getElementById('contrasena'),
             sexo: document.querySelector('input[name="sexo"]:checked')?.value || "",
             fechaN: document.getElementById('fechaNacimiento'),
-            notificaciones: document.getElementById('notificaciones'),
-            revista: document.getElementById('revista')
+            revista: document.getElementById('revistaDigital'),
+            crear: document.getElementById('crear'),
+            notificaciones: document.getElementById('notificaciones')
         }
 
         //Campo adicional para confirmación de contraseña

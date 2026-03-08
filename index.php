@@ -310,17 +310,23 @@
                             <p id = "errNacimiento" class="error"></p>
                         </div>
                         
-                        <!-- Activar Notificaciones (Checkbox) -->
+                        <!-- Activar Notificaciones -->
                         <div class="form-check mb-3">
-                            <input class="form-check-input" type="checkbox" id="notificaciones">
+                            <input class="form-check-input" type="checkbox" id="notificaciones" name="notificaciones">
                             <label class="form-check-label" for="notificaciones">
                                 Activar notificaciones
                             </label>
                         </div>
-                        
-                        <!-- Recibir Revista Digital (Checkbox) -->
+
+                        <!-- Politica de privacidad -->
                         <div class="form-check mb-3">
-                            <input class="form-check-input" type="checkbox" id="revistaDigital">
+                            <input class="form-check-input" type="checkbox" id="crear" name="crear">
+                            <label class="form-check-label" for="crear">Acepto la política de privacidad</label>
+                        </div>
+
+                        <!-- Recibir Revista Digital -->
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="revistaDigital" name="revista">
                             <label class="form-check-label" for="revistaDigital">
                                 Recibir revista digital
                             </label>
