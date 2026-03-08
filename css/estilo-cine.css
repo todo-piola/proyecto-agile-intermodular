@@ -176,6 +176,39 @@
 .card-genero:hover h5 {
     color: #000; /* Contraste con overlay amarillo */
 }
+/* ========================================
+   BOTONES ESPECIALES DE PELÍCULA
+======================================== */
+.btn-comprar {
+    background-color: rgba(250, 218, 11, 0.86); /* dorado */
+    color: #000;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 25px;
+    margin-right: 10px;
+    transition: all 0.3s ease;
+}
+
+.btn-comprar:hover {
+    background-color: rgb(255, 243, 5); /* dorado más oscuro */
+    box-shadow: 0 4px 15px rgba(0, 51, 102, 0.5);
+}
+
+.btn-agregar {
+    background-color: #001f4d; /* azul marino */
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 25px;
+    transition: all 0.3s ease;
+}
+
+.btn-agregar:hover {
+    background-color: #003366; /* azul más oscuro */
+    box-shadow: 0 4px 15px rgba(0, 51, 102, 0.5);
+}
 
 /* ========================================
    RESPONSIVE

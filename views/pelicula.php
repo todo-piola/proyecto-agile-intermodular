@@ -55,7 +55,15 @@ if (!empty($pelicula['trailer_url'])) {
                 <?php if (!empty($pelicula['frase_promocional'])): ?>
                     <p class="texto-cine"><strong>Frase promocional:</strong> <?= htmlspecialchars($pelicula['frase_promocional']) ?></p>
                 <?php endif; ?>
+                <p class="texto-cine"><?= htmlspecialchars($pelicula['descripcion']) ?></p>
 
+                <!-- BOTONES DE ACCIÓN -->
+                <div class="mb-4">
+                    <button class="btn-comprar">Comprar</button>
+                    <button class="btn-agregar">+Agregar</button>
+                </div>
+
+                <!-- Trailer -->
                 <?php if ($iframeUrl): ?>
                     <hr class="linea-blanca">
                     <h5 class="titulo-cine">Trailer</h5>
@@ -65,7 +73,9 @@ if (!empty($pelicula['trailer_url'])) {
                 <?php endif; ?>
 
                 <hr class="linea-blanca">
-                <p class="texto-cine"><?= htmlspecialchars($pelicula['descripcion']) ?></p>
+
+
+
                 <a href="javascript:history.back()" class="btn btn-cine mt-3">Volver</a>
             </div>
         </div>
