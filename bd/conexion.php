@@ -43,19 +43,22 @@ try {
 //////////////////////////////////////////////////////
 // TABLA USUARIOS
 //////////////////////////////////////////////////////
-
 try {
-
     $conexion->exec("
         CREATE TABLE IF NOT EXISTS usuarios (
             id INT AUTO_INCREMENT PRIMARY KEY,
             nombre VARCHAR(100),
             apellido VARCHAR(100),
             email VARCHAR(150) UNIQUE,
-            contrasena VARCHAR(255)
+            contrasena VARCHAR(255),
+            pais VARCHAR(50),
+            sexo VARCHAR(20),
+            fecha_nacimiento DATE,
+            tarjeta VARCHAR(50),
+            notificaciones TINYINT(1) DEFAULT 0,
+            revista_digital TINYINT(1) DEFAULT 0
         ) ENGINE=InnoDB;
     ");
-
 } catch (PDOException $e) {
     die("Error creando tabla usuarios: " . $e->getMessage());
 }
@@ -153,7 +156,20 @@ try {
 } catch(PDOException $e) {
     die("Error creando admin: " . $e->getMessage());
 }
+//////////////////////////////////////////////////////
+// TABLA SESIONES
+//////////////////////////////////////////////////////
 
+try {
+    $sqlTable = "CREATE TABLE IF NOT EXISTS sesiones (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        nombre_usuario VARCHAR(100),
+        fecha_inicio TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    ) ENGINE=InnoDB";
+    $conexion->exec($sqlTable);
+} catch (PDOException $e) {
+    die("No se puede crear la tabla sesiones: " . $e->getMessage());
+}
 //////////////////////////////////////////////////////
 // IMPORTAR PELICULAS DESDE TMDB
 //////////////////////////////////////////////////////
