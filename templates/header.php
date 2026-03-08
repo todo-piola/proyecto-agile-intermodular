@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 ?>
 <nav id="encabezado" class="navbar navbar-expand-lg navbar-dark bg-black py-2">
     <div class="container d-flex justify-content-center">
