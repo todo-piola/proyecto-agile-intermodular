@@ -1,0 +1,193 @@
+/* ========================================
+   TIPOGRAFÍAS
+======================================== */
+@font-face {
+    font-family: titulos;
+    src: url(../recursos/tipografias/MiriamLibre-Regular.woff);
+}
+@font-face {
+    font-family: cuerpo;
+    src: url(../recursos/tipografias/DroidSans.ttf);
+}
+
+.titulo-cine {
+    font-family: titulos;
+    font-size: 1.2rem; /* para listas.php */
+    color: #fff;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.titulo-cine-grande {
+    font-family: titulos;
+    font-size: 2.5rem; /* para pelicula.php */
+    color: #fff;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.texto-cine {
+    font-family: cuerpo;
+    font-size: 0.9rem;
+    color: #fff;
+}
+
+/* ========================================
+   FONDO CINEMATOGRÁFICO
+======================================== */
+.contenedor-fondo-peliculas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+    background-color: #000;
+    overflow: hidden;
+}
+
+#fondo-peliculas {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(5px) brightness(0.4);
+    transform: scale(1.05);
+}
+
+.capa-oscura {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.3);
+}
+
+/* ========================================
+   CARDS CINEMATOGRÁFICAS
+======================================== */
+.card-cine {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.8);
+    color: #fff;
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.card-cine:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.9);
+}
+
+.card-cine .card-body {
+    padding: 15px;
+    text-align: center;
+}
+
+/* ========================================
+   POSTERS
+======================================== */
+.poster-pelicula-peliculas {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 10px;
+    display: block;
+    margin: 0 auto;
+}
+
+/* ========================================
+   BOTONES
+======================================== */
+.btn-cine {
+    background-color: #ffc107;
+    border: none;
+    color: #000;
+    font-weight: bold;
+    border-radius: 25px;
+    padding: 6px 20px;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.btn-cine:hover {
+    background-color: #e0a800;
+}
+
+/* ========================================
+   SEPARADORES
+======================================== */
+.linea-blanca {
+    border: none;
+    border-top: 2px solid white;
+    margin: 20px auto;
+    width: 95%;
+}
+
+/* ========================================
+   CARD DE GÉNERO - OPCIÓN A
+======================================== */
+.card-genero {
+    position: relative;
+    height: 180px;
+    border-radius: 15px;
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-family: titulos;
+    font-size: 1.2rem;
+    text-shadow: 0 0 8px rgba(0,0,0,0.8);
+    transition: transform 0.3s ease, filter 0.3s ease, background-color 0.3s ease;
+}
+
+/* Overlay oscuro inicial */
+.card-genero::after {
+    content: "";
+    position: absolute;
+    top:0; left:0;
+    width:100%; height:100%;
+    background: rgba(69, 68, 68, 0.4);
+    transition: background 0.3s ease;
+}
+
+/* Hover: resalta con color más brillante */
+.card-genero:hover {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+}
+
+/* Hover overlay más oscuro / color distinto */
+.card-genero:hover::after {
+    background: rgba(241, 207, 27, 0.75); /* amarillo transparente */
+}
+
+/* Texto siempre visible encima del overlay */
+.card-genero h5 {
+    position: relative;
+    z-index: 1;
+    transition: color 0.3s ease;
+}
+
+.card-genero:hover h5 {
+    color: #000; /* Contraste con overlay amarillo */
+}
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+@media (max-width: 768px) {
+    .card-genero-poster {
+        height: 180px;
+    }
+    .titulo-cine {
+        font-size: 1rem;
+    }
+    .texto-cine {
+        font-size: 0.85rem;
+    }
+}
