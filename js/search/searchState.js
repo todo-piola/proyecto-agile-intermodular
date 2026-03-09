@@ -1,7 +1,7 @@
 export const searchState = {
     coincidences: [],
-    //Aquí gurdamos el término de búsqueda para mostrarlo
+    //Aquí guardamos el término de búsqueda
     query: '',
     error: null,
-    status: 'edle'
+    status: 'idle'
 }
