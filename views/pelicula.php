@@ -58,6 +58,28 @@ $fotos_reparto = json_decode($pelicula['fotos_reparto'], true);
                     <p class="texto-cine"><strong>Director:</strong> <?= htmlspecialchars($pelicula['director']) ?></p>
                 <?php endif; ?>
 
+                <?php if (!empty($pelicula['frase_promocional'])): ?>
+                    <p class="texto-cine mt-3"><strong>Frase promocional:</strong> <?= htmlspecialchars($pelicula['frase_promocional']) ?></p>
+                <?php endif; ?>
+
+                <p class="texto-cine mt-2"><?= htmlspecialchars($pelicula['descripcion']) ?></p>
+
+                <!-- BOTONES DE ACCIÓN -->
+                <div class="mb-4">
+                    <button class="btn-comprar">Comprar</button>
+                    <button class="btn-alquilar">+Aquilar</button>
+                </div>
+
+                <!-- Trailer -->
+                <?php if ($iframeUrl): ?>
+                    <hr class="linea-blanca">
+                    <h5 class="titulo-cine">Trailer</h5>
+                    <div class="ratio ratio-16x9 card-cine shadow rounded">
+                        <iframe src="<?= $iframeUrl ?>" title="Trailer de <?= htmlspecialchars($pelicula['titulo']) ?>" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                <?php endif; ?>
+                <hr class="linea-blanca">
+
                 <!-- Carrusel reparto -->
                 <?php if (!empty($reparto) && !empty($fotos_reparto)): ?>
                     <p class="texto-cine mt-3"><strong>Reparto principal:</strong></p>
@@ -93,28 +115,6 @@ $fotos_reparto = json_decode($pelicula['fotos_reparto'], true);
                     </div>
                 <?php endif; ?>
 
-                <?php if (!empty($pelicula['frase_promocional'])): ?>
-                    <p class="texto-cine mt-3"><strong>Frase promocional:</strong> <?= htmlspecialchars($pelicula['frase_promocional']) ?></p>
-                <?php endif; ?>
-
-                <p class="texto-cine mt-2"><?= htmlspecialchars($pelicula['descripcion']) ?></p>
-
-                <!-- BOTONES DE ACCIÓN -->
-                <div class="mb-4">
-                    <button class="btn-comprar">Comprar</button>
-                    <button class="btn-alquilar">+Aquilar</button>
-                </div>
-
-                <!-- Trailer -->
-                <?php if ($iframeUrl): ?>
-                    <hr class="linea-blanca">
-                    <h5 class="titulo-cine">Trailer</h5>
-                    <div class="ratio ratio-16x9 card-cine shadow rounded">
-                        <iframe src="<?= $iframeUrl ?>" title="Trailer de <?= htmlspecialchars($pelicula['titulo']) ?>" frameborder="0" allowfullscreen></iframe>
-                    </div>
-                <?php endif; ?>
-
-                <hr class="linea-blanca">
                 <a href="javascript:history.back()" class="btn btn-cine mt-3">Volver</a>
             </div>
         </div>
