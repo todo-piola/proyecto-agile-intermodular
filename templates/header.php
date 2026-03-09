@@ -30,7 +30,7 @@ if (session_status() == PHP_SESSION_NONE) {
                         <span class="nav-link text-warning">Hola, <?php echo $_SESSION['nombre_completo'] ?? ''; ?></span>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link texto-cta text-white" href="/proyecto-agile-intermodular/bd/logout.php">Cerrar sesión</a>
+                        <a class="nav-link texto-cta text-white" href="/proyecto-agile-intermodular/php/logout.php">Cerrar sesión</a>
                     </li>
                 <?php else: ?>
                     <li class="nav-item">
@@ -53,7 +53,7 @@ if (session_status() == PHP_SESSION_NONE) {
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
-                <form id="loginForm" method="POST" action="/proyecto-agile-intermodular/bd/login.php">
+                <form id="loginForm" method="POST" action="/proyecto-agile-intermodular/php/login.php">
                     <div class="mb-3">
                         <label class="form-label">Correo</label>
                         <input type="text" id="correoLogin" name="correo" class="form-control item-form-login" placeholder="Correo" required>

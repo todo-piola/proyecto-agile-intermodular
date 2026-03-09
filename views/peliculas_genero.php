@@ -1,11 +1,10 @@
 <?php
 session_start();
-require_once "../bd/conexion.php";
-if (!isset($_GET['genero'])) die("Género no especificado");
-$genero = $_GET['genero'];
-$stmt = $conexion->prepare("SELECT * FROM peliculas WHERE generos LIKE ?");
-$stmt->execute(["%$genero%"]);
-$peliculas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$data = require "../php/obtener_peliculas_genero.php";
+
+$genero = $data['genero'];
+$peliculas = $data['peliculas'];
 ?>
 <!DOCTYPE html>
 <html lang="es">

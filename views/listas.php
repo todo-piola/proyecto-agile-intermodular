@@ -1,20 +1,6 @@
 <?php
 session_start();
-require_once "../bd/conexion.php";
-
-// Obtener todos los géneros únicos
-$stmt = $conexion->query("SELECT generos FROM peliculas");
-$generosUnicos = [];
-
-while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-    $lista = explode(",", $fila['generos']);
-    foreach ($lista as $g) {
-        $g = trim($g);
-        if (!in_array($g, $generosUnicos) && $g !== "") {
-            $generosUnicos[] = $g;
-        }
-    }
-}
+$generosUnicos = require "../php/obtener_generos.php";
 ?>
 <!DOCTYPE html>
 <html lang="es">

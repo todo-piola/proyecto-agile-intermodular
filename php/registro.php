@@ -1,5 +1,5 @@
 <?php
-// bd/registro.php
+// php/registro.php
 header('Content-Type: application/json');
 require "conexion.php";
 
