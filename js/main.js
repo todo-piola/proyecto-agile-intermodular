@@ -1,7 +1,7 @@
-import * as fh from './form-handler.js'
-import {mostrarPasswd} from './ui.js'
-import { getPeliculasSemana, getPeliculasMejorValoradas } from './movie-service.js';
-import { renderizarPeliculas, mostrarError } from './movie-ui.js';
+import * as fh from './register_form/form-handler.js'
+import {mostrarPasswd} from './register_form/ui.js'
+import { getPeliculasSemana, getPeliculasMejorValoradas } from './movie-movies/movie-service.js';
+import { renderizarPeliculas, mostrarError } from './movie-movies/movie-ui.js';
 
 // Si estamos en GitHub Pages, usará el nombre del repo. 
 // Si estamos en Local (localhost), se quedará vacío para buscar en la raíz del servidor.

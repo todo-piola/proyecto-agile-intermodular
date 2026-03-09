@@ -251,7 +251,7 @@ export async function manejarSubmit(event, datosForm){
     };
 
     try {
-        const respuesta = await fetch('bd/registro.php', {
+        const respuesta = await fetch('php/registro.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: new URLSearchParams(payload)
