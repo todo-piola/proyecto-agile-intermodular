@@ -86,16 +86,16 @@ $fotos_reparto = json_decode($pelicula['fotos_reparto'], true);
                     <div id="carouselReparto" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <?php
-                            $chunks = array_chunk($reparto, 3); //3 actores por slide
+                            $chunks = array_chunk($reparto, 3); // 3 actores por slide
                             foreach($chunks as $i => $grupo):
                             ?>
                             <div class="carousel-item <?= $i === 0 ? 'active' : '' ?>">
                                 <div class="d-flex justify-content-center">
                                     <?php foreach($grupo as $j => $actor): ?>
-                                    <div class="text-center mx-2" style="width: 120px;">
+                                    <div class="text-center mx-2" style="width: 120px; height: 250px;">
                                         <img src="<?= $fotos_reparto[$i*3+$j] ?? '../img/default-actor.png' ?>"
                                              class="rounded shadow mb-2"
-                                             style="width:100%; height:auto;"
+                                             style="width:100%; height:140px; object-fit: cover;"
                                              alt="<?= htmlspecialchars($actor) ?>">
                                         <small class="texto-cine"><?= htmlspecialchars($actor) ?></small>
                                     </div>
