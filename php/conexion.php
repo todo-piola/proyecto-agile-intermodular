@@ -8,7 +8,6 @@ $db = "proyecto_peliculas";
 //////////////////////////////////////////////////////
 // CONEXION AL SERVIDOR
 //////////////////////////////////////////////////////
-
 try {
     $conexion = new PDO("mysql:host=$server;charset=utf8mb4", $user, $password);
     $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -19,7 +18,6 @@ try {
 //////////////////////////////////////////////////////
 // CREAR BASE DE DATOS
 //////////////////////////////////////////////////////
-
 try {
     $sqlDB = "CREATE DATABASE IF NOT EXISTS $db
               CHARACTER SET utf8mb4
@@ -32,7 +30,6 @@ try {
 //////////////////////////////////////////////////////
 // CONECTAR A LA BASE DE DATOS
 //////////////////////////////////////////////////////
-
 try {
     $conexion = new PDO("mysql:host=$server;dbname=$db;charset=utf8mb4", $user, $password);
     $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -80,7 +77,10 @@ try {
             presupuesto BIGINT,
             recaudacion BIGINT,
             frase_promocional VARCHAR(255),
-            trailer_url VARCHAR(255)
+            trailer_url VARCHAR(255),
+            director VARCHAR(255),
+            reparto TEXT,
+            fotos_reparto TEXT
         ) ENGINE=InnoDB;
     ");
 } catch (PDOException $e) {
@@ -160,7 +160,7 @@ try {
 }
 
 //////////////////////////////////////////////////////
-// IMPORTAR 100 PELICULAS DESDE TMDB CON TRAILER Y NUEVOS CAMPOS
+// IMPORTAR PELICULAS DESDE TMDB CON DIRECTOR Y REPARTO
 //////////////////////////////////////////////////////
 try {
 
@@ -175,8 +175,8 @@ try {
 
         $insertStmt = $conexion->prepare("
             INSERT INTO peliculas
-            (titulo, descripcion, generos, fecha_estreno, duracion_minutos, poster, fondo, puntuacion, presupuesto, recaudacion, frase_promocional, trailer_url)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            (titulo, descripcion, generos, fecha_estreno, duracion_minutos, poster, fondo, puntuacion, presupuesto, recaudacion, frase_promocional, trailer_url, director, reparto, fotos_reparto)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         ");
 
         while ($totalPeliculas < 30) {
@@ -192,14 +192,13 @@ try {
                 $detailResponse = file_get_contents($urlDetail);
                 $detailData = json_decode($detailResponse, true);
 
-                $titulo = $detailData['original_title']; // Solo título original
+                $titulo = $detailData['original_title'];
                 $descripcion = $detailData['overview'];
                 $fecha_estreno = $detailData['release_date'];
                 $poster = $detailData['poster_path'];
                 $fondo = $detailData['backdrop_path'];
                 $puntuacion = $detailData['vote_average'];
                 $duracion_minutos = $detailData['runtime'];
-
                 $presupuesto = $detailData['budget'];
                 $recaudacion = $detailData['revenue'];
                 $frase_promocional = $detailData['tagline'];
@@ -218,7 +217,6 @@ try {
                 $trailerResponse = file_get_contents($urlTrailer);
                 $trailerData = json_decode($trailerResponse, true);
                 $trailerUrl = null;
-
                 foreach ($trailerData['results'] as $video) {
                     if ($video['type'] === 'Trailer' && $video['site'] === 'YouTube') {
                         $trailerUrl = "https://www.youtube.com/watch?v=" . $video['key'];
@@ -226,6 +224,29 @@ try {
                     }
                 }
 
+                // Créditos: director y reparto
+                $urlCredits = "https://api.themoviedb.org/3/movie/$movieId/credits?api_key=$apiKey&language=es-ES";
+                $creditsResponse = file_get_contents($urlCredits);
+                $creditsData = json_decode($creditsResponse, true);
+
+                // Director
+                $director = null;
+                foreach ($creditsData['crew'] as $crewMember) {
+                    if ($crewMember['job'] === 'Director') {
+                        $director = $crewMember['name'];
+                        break;
+                    }
+                }
+
+                // Reparto principal (5 actores)
+                $reparto = [];
+                $fotos_reparto = [];
+                foreach (array_slice($creditsData['cast'], 0, 5) as $actor) {
+                    $reparto[] = $actor['name'] . " como " . $actor['character'];
+                    $fotos_reparto[] = $actor['profile_path'] ? "https://image.tmdb.org/t/p/w300" . $actor['profile_path'] : null;
+                }
+
+                // Insertar película
                 $insertStmt->execute([
                     $titulo,
                     $descripcion,
@@ -238,7 +259,10 @@ try {
                     $presupuesto,
                     $recaudacion,
                     $frase_promocional,
-                    $trailerUrl
+                    $trailerUrl,
+                    $director,
+                    json_encode($reparto),
+                    json_encode($fotos_reparto)
                 ]);
 
                 $totalPeliculas++;
