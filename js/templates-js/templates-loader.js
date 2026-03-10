@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", async () => {
     await cargarTemplate("encabezado", "/templates/header.html");
+    await cargarTemplate("carrito", "/templates/carrito.html");
     insertarLupas(); // Hasta que header.html no cargue, no se insertan las lupas
     await cargarTemplate("piepagina", "/templates/footer.html");
   });

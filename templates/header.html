@@ -1,7 +1,7 @@
 
 <nav id="encabezado" class="navbar navbar-expand-lg navbar-dark bg-black mt-3">
     <div class="container d-flex justify-content-center">
-        
+
         <a class="navbar-brand mx-auto" href="/index.html">
             <img id="logo-encabezado" src="../img/LOGO LABUTACASOCIAL.webp" alt="logo labutacas">
         </a>
@@ -28,7 +28,18 @@
             <!-- LUPA ESCRITORIO-->
             <div id="contenedor-lupa" class="position-relative d-none d-lg-flex align-items-center ms-2"></div>
         </div>
-              
+
+        <button
+                class="btn btn-warning"
+                type="button"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasScrolling"
+                aria-controls="offcanvasScrolling">
+            <i class="bi bi-basket" id="cart-icon">
+                <span id="cart-count">0</span>
+            </i>
+        </button>
+
         <!-- Modal de Login -->
         <div class="modal fade" id="loginForm" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
@@ -57,9 +68,7 @@
                         </form>
                     </div>
                 </div>
-
             </div>
-        </div>  
-
+        </div>
     </div>
 </nav>
