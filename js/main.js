@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         camposLogin.correoLogin.addEventListener('input', (e) => fh.inputCorreo(e, "errCorreoLogin"));
         camposLogin.contrasenaLogin.addEventListener('input', (e) => fh.inputPasswd(e, "errContrasenaLogin"));
 
-        loginForm.addEventListener('submit', (e) => fh.manejarSubmit(e, camposLogin));
+        //loginForm.addEventListener('submit', (e) => fh.manejarSubmit(e, camposLogin));
     }
 
 

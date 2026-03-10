@@ -1,3 +1,4 @@
+<?php require_once("php/conexion.php"); ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -8,14 +9,10 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="icon" type="image/png" href="img/logo_invisible_butaca.png">
-    <script src="../js/templates-js/templates-loader.js"></script>
 </head>
 <body>
     <main class="container-fluid bg-black">
-        <div id="encabezado"></div>
-
-        <div id="carrito"></div>
-
+        <?php include("templates/header.php"); ?>
 
         <div class="container-fluid bg-black">
 
@@ -26,7 +23,7 @@
                         ¡Regístrate ahora! </button>
                 </div>
             </div>
-    
+
             <div class="row d-none d-md-flex align-items-center p-5" id="hero-escritorio" style="background-image: url('img/img-dune-landing.jpeg')">
                 <div class="col-5 text-left text-white p-5">
                     <h2 class="hero-cta">¡Sigue la evolución del cine, sin salir de tu casa!</h2>
@@ -51,14 +48,14 @@
                             <input type="text" class="form-control" id="nombreApellido" required>
                             <p id = "errNombre" class="error"></p>
                         </div>
-                        
+
                         <!--Correo-->
                         <div class="mb-3 field">
                             <label for="correo" class="form-label">Email<span class="asterisco">*</span></label>
                             <input type="text" class="form-control" id="correo" required>
                             <p id = "errCorreo" class="error"></p>
                         </div>
-                        
+
                         <!-- Contraseña -->
                         <div class="mb-3 field">
                             <label for="contrasena" class="form-label">Contraseña<span class="asterisco">*</span>
@@ -67,7 +64,7 @@
                             <input type="password" class="form-control" id="contrasena" required>
                             <p id = "errContrasena" class="error"></p>
                         </div>
-                        
+
                         <!-- Confirmar Contraseña -->
                         <div class="mb-3 field">
                             <label for="confirmarContrasena" class="form-label">Confirmar Contraseña<span class="asterisco">*</span></label>
@@ -286,7 +283,7 @@
                             <input type="text" class="form-control" id="tarjeta">
                             <p id = "errTarjeta" class="error"></p>
                         </div>
-                        
+
                         <!-- Sexo (Radio buttons) -->
                         <fieldset class="form-check" aria-label="Botones selectores de sexo">
                             <label class="form-check-label">
@@ -305,25 +302,25 @@
                                 <label class="form-check-label" for="prefiero-no-decir"> Prefiero no decir </label>
                             </div>
                         </fieldset>
-                        
+
                         <!-- Fecha de Nacimiento -->
                         <div class="mb-3">
                             <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento</label>
                             <input type="date" class="form-control" id="fechaNacimiento">
                             <p id = "errNacimiento" class="error"></p>
                         </div>
-                        
-                        <!-- Activar Notificaciones (Checkbox) -->
+
+                        <!-- Activar Notificaciones -->
                         <div class="form-check mb-3">
-                            <input class="form-check-input" type="checkbox" id="notificaciones">
+                            <input class="form-check-input" type="checkbox" id="notificaciones" name="notificaciones">
                             <label class="form-check-label" for="notificaciones">
                                 Activar notificaciones
                             </label>
                         </div>
-                        
-                        <!-- Recibir Revista Digital (Checkbox) -->
+
+                        <!-- Recibir Revista Digital -->
                         <div class="form-check mb-3">
-                            <input class="form-check-input" type="checkbox" id="revistaDigital">
+                            <input class="form-check-input" type="checkbox" id="revistaDigital" name="revista">
                             <label class="form-check-label" for="revistaDigital">
                                 Recibir revista digital
                             </label>
@@ -352,7 +349,7 @@
                         </div>
                     </div>
                 </div>
-            
+
                 <div class="col-6 col-md-4 col-xl-4">
                     <div class="card h-100 shadow-sm p-3">
                         <div class="d-flex justify-content-center mt-2">
@@ -364,7 +361,7 @@
                         </div>
                     </div>
                 </div>
-            
+
                 <div class="col-6 col-md-4 col-xl-4">
                     <div class="card h-100 shadow-sm p-3">
                         <div class="d-flex justify-content-center mt-2">
@@ -376,7 +373,7 @@
                         </div>
                     </div>
                 </div>
-            
+
                 <div class="col-6 col-md-4 col-xl-4">
                     <div class="card h-100 shadow-sm p-3">
                         <div class="d-flex justify-content-center mt-2">
@@ -388,7 +385,7 @@
                         </div>
                     </div>
                 </div>
-            
+
                 <div class="col-6 col-md-4 col-xl-4">
                     <div class="card h-100 shadow-sm p-3">
                         <div class="d-flex justify-content-center mt-2">
@@ -400,7 +397,7 @@
                         </div>
                     </div>
                 </div>
-            
+
                 <div class="col-6 col-md-4 col-xl-4">
                     <div class="card h-100 shadow-sm p-3">
                         <div class="d-flex justify-content-center mt-2">
@@ -412,7 +409,7 @@
                         </div>
                     </div>
                 </div>
-            
+
             </div>
 
             <!-- Catálogo de películas esperadas -->
@@ -445,7 +442,7 @@
                                 alt="">
                     </div>
                 </div>
-            
+
                 <div class="col-4 col-md-2">
                     <div class="bg-dark">
                         <img src="img/poster_proyect_hailMary.webp"
@@ -453,7 +450,7 @@
                                 alt="">
                     </div>
                 </div>
-            
+
                 <div class="col-4 col-md-2">
                     <div class="bg-dark">
                         <img src="img/poster_theBride.webp"
@@ -461,7 +458,7 @@
                                 alt="">
                     </div>
                 </div>
-            
+
                 <div class="col-4 col-md-2">
                     <div class="bg-dark">
                         <img src="img/poster_WeBuryTheDead.webp"
@@ -477,7 +474,7 @@
                                 alt="">
                     </div>
                 </div>
-            
+
             </div>
 
             <!-- CTA móvil - Solo visible en pantallas pequeñas -->
@@ -500,7 +497,7 @@
 
         </div>
 
-        <div id="piepagina"></div>
+        <?php include("templates/footer.html"); ?>
     </main>
 
     <script src="recursos/bootstrap.bundle.min.js"></script>
