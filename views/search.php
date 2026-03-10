@@ -1,3 +1,4 @@
+<?php require_once(__DIR__ . "/../php/conexion.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +12,7 @@
 </head>
 <body>
     <main>
-        <div id="encabezado"></div>
+        <?php include(__DIR__ . "/../templates/header.php"); ?>
 
         <section class="bg-black">
             <!--Plantilla para cargar las películas que coinciden con la búsqueda del usuario-->
@@ -41,12 +42,12 @@
                                 </div>
                                 <div class="col-8">
                                     <div class="card-body">
-                                        <h6 class="card-title fw-bold mb-1"></h6>
-                                        <p class="card-text small mb-1">
+                                        <h6 class="card-title fw-bold mb-1 text-white"></h6>
+                                        <p class="card-text small mb-1 text-white">
                                             <span class="anio"></span> | <span class="director"></span>
                                         </p>
                                         <div class="d-flex justify-content-between align-items-center">
-                                            <span class="small fw-bold precio"></span>
+                                            <span class="small fw-bold precio text-white"></span>
                                             <button class="btn btn-sm btn-primary btn-alquilar">Alquilar</button>
                                         </div>
                                     </div>
@@ -62,7 +63,7 @@
 
         </section>
 
-        <div id="piepagina"></div>
+        <?php include(__DIR__ . "/../templates/footer.html"); ?>
     </main>
 
 <script type="module" src="../js/main.js"></script>

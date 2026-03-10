@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", async () => {
-    await cargarTemplate("encabezado", "/templates/header.html");
-    await cargarTemplate("carrito", "/templates/carrito.html");
+  await cargarTemplate("encabezado", "/templates/header.html");
+  await cargarTemplate("carrito", "/templates/carrito.html");
     insertarLupas(); // Hasta que header.html no cargue, no se insertan las lupas
     await cargarTemplate("piepagina", "/templates/footer.html");
   });
@@ -14,6 +14,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   async function cargarTemplate(idContenedor, ruta) {
     const contenedor = document.getElementById(idContenedor);
     if (!contenedor) return;
+
+    // En la capa PHP el header/footer ya vienen renderizados por include,
+    // asi que solo inyectamos templates en placeholders vacios.
+    const esPlaceholder = contenedor.tagName === "DIV" && contenedor.children.length === 0;
+    if (!esPlaceholder) return;
   
     try {
       const response = await fetch(ruta);
@@ -38,6 +43,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     lupas.forEach(id => {
       const contenedor = document.getElementById(id);
       if (contenedor) {
+          if (contenedor.querySelector("#barraBusqueda") || contenedor.querySelector("#lupaBtn")) {
+              return;
+          }
+
           const barraBusqueda = document.createElement("input");
           barraBusqueda.id = "barraBusqueda";
           barraBusqueda.type = "search";

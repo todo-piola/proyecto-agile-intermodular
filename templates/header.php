@@ -8,6 +8,10 @@ if (session_status() == PHP_SESSION_NONE) {
         <a class="navbar-brand mx-auto" href="/proyecto-agile-intermodular/index.php">
             <img id="logo-encabezado" src="/proyecto-agile-intermodular/img/LOGO LABUTACASOCIAL.webp" alt="logo labutacas">
         </a>
+
+        <!-- LUPA MOVIL -->
+        <div id="contenedor-lupa-movil" class="d-lg-none d-flex"></div>
+
         <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -40,8 +44,21 @@ if (session_status() == PHP_SESSION_NONE) {
             </ul>
             <div id="contenedor-lupa" class="position-relative d-none d-lg-flex align-items-center ms-2"></div>
         </div>
+
+        <button
+            class="btn btn-warning ms-2"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasScrolling"
+            aria-controls="offcanvasScrolling">
+            <i class="bi bi-basket" id="cart-icon">
+                <span id="cart-count">0</span>
+            </i>
+        </button>
     </div>
 </nav>
+
+<?php include(__DIR__ . "/carrito.html"); ?>
 
 <?php if (!isset($_SESSION['usuario_id'])): ?>
 <!-- Modal Login -->
