@@ -28,7 +28,8 @@ export function normalizeQuery(query) {
  */
 export function getQueryFromUrl(){
     const params = new URLSearchParams(window.location.search);
-    return normalizeQuery(params.get('query') || '');
+    // Compatibilidad con enlaces antiguos que usaban ?q=
+    return normalizeQuery(params.get('query') || params.get('q') || '');
 }
 
 /**
@@ -39,10 +40,17 @@ export function getQueryFromUrl(){
  */
 export function buildSearchPageUrl(query) {
     const q = normalizeQuery(query);
-    const repoBase = window.location.hostname.includes('github.io')
-        ? '/proyecto-agile-intermodular'
+    const pathname = window.location.pathname;
+    const projectMarker = '/proyecto-agile-intermodular';
+    const projectMarkerIndex = pathname.indexOf(projectMarker);
+
+    // Si detectamos la carpeta del proyecto en la URL (XAMPP subcarpeta, GitHub Pages, etc.),
+    // conservamos el prefijo completo para no romper las rutas.
+    const repoBase = projectMarkerIndex >= 0
+        ? pathname.slice(0, projectMarkerIndex + projectMarker.length)
         : '';
-    return `${repoBase}/views/search.html?q=${encodeURIComponent(q)}`;
+
+    return `${repoBase}/views/search.php?query=${encodeURIComponent(q)}`;
 }
 
 /**

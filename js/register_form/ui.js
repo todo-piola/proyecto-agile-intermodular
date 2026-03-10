@@ -5,17 +5,12 @@
  * @param {EventTarget} evento - Elemento que disparó el evento (input, select, etc.)
  */
 export function mensajesError(idError, mensaje, evento){
-    //Validación de que el elemento seleccionado exista
     const errElement = document.getElementById(idError);
     if (errElement) errElement.textContent = mensaje;
 
     if(evento){
         const wrapper = evento.closest(".field");
-        if (wrapper){
-            wrapper.classList.add("incorrecto");
-            wrapper.classList.remove("valido");
-        }
-        else{
+        if(wrapper){
             wrapper.classList.add("incorrecto");
             wrapper.classList.remove("valido");
         }
@@ -28,22 +23,18 @@ export function mensajesError(idError, mensaje, evento){
  * @param {string} idError - ID del elemento HTML donde estaba el mensaje
  * @param {EventTarget} evento - Elemento que disparó el evento
  */
+// ui.js
 export function limpiarMensajesError(idError, evento){
     const errElement = document.getElementById(idError);
     if (errElement) errElement.textContent = "";
 
-    if (evento){
+    if(evento){
         const wrapper = evento.closest(".field");
-        if (wrapper){
-            wrapper.classList.add("valido");
-            wrapper.classList.remove("incorrecto");
-        }
-        else{
+        if(wrapper){
             wrapper.classList.add("valido");
             wrapper.classList.remove("incorrecto");
         }
     }
-
 }
 
 

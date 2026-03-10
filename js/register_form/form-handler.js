@@ -227,20 +227,54 @@ function convertirDatosJSON(datos){
  * @param {Event} event - Evento submit del formulario
  * @param {Object} datosForm - Objeto con los datos del formulario a procesar
  */
-export function manejarSubmit(event, datosForm){
+export async function manejarSubmit(event, datosForm){
     event.preventDefault();
     const form = event.target;
 
-    const todoOk = revalidarTodo();
+    // Validación final en frontend
+    if(!revalidarTodo()){
+        u.mostrarMensajeExito("Revisa los errores en el formulario");
+        return;
+    }
+    const sexoSeleccionado = document.querySelector('input[name="sexo"]:checked')?.value || "";
+    const paisSeleccionado = document.getElementById('pais').value;
+    // Preparamos todos los datos del formulario para PHP
+    const payload = {
+        nombre: datosForm.nombreApe.value,
+        correo: datosForm.correo.value,
+        password: datosForm.pass.value,
+        pais: paisSeleccionado,
+        sexo: sexoSeleccionado,
+        fecha: datosForm.fechaN?.value || "",
+        notificaciones: datosForm.notificaciones?.checked ? 1 : 0,
+        revista: datosForm.revista?.checked ? 1 : 0,
+    };
 
-    if (todoOk){
-        u.mostrarMensajeExito("Formulario enviado correctamente");
+    try {
+        const respuesta = await fetch('php/registro.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams(payload)
+        });
 
-        /*
-        Esta variable (datos convertidos) no se utiliza, pero su objetivo es que cuando haya una conexión con el lado servidor
-        los datos se puedan enviar correctamente y de forma segura.
-         */
-        const datosConvertidos = convertirDatosJSON(datosForm);
-        u.limpiarFormulario(form);
+        const textData = await respuesta.text(); // <- obtener texto crudo
+        console.log("Respuesta cruda de PHP:", textData);
+
+        const data = JSON.parse(textData); // parsear después para ver si falla
+        console.log("Respuesta parseada:", data);
+
+        if(data.success){
+            u.mostrarMensajeExito("Usuario registrado correctamente");
+            u.limpiarFormulario(form);
+        } else {
+            u.mostrarMensajeExito("");
+            data.errores.forEach(err => {
+                alert(err);
+            });
+        }
+
+    } catch(err){
+        console.error("Error en registro:", err);
+        u.mostrarMensajeExito("Ocurrió un error al registrar");
     }
 }
