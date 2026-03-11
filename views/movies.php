@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -12,8 +16,8 @@
     <script src="../js/templates-js/templates-loader.js"></script>
 </head>
 <body>
-
-  <div id="encabezado" class="pb-5"></div>
+  <!-- HEADER -->
+  <?php include "../templates/header.php"; ?>
 
   <!-- FONDO FIJO CON IMAGEN -->
   <div class="contenedor-fondo-peliculas">
@@ -142,7 +146,7 @@
 
     </main>
 
-    <div id="piepagina"></div>
+    <?php include "../templates/footer.html"; ?>
 
 <script src="../recursos/bootstrap.bundle.min.js"></script>
 <script type="module" src="../js/main.js"></script>
