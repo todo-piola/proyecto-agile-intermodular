@@ -2,7 +2,9 @@ import * as fh from './register_form/form-handler.js'
 import {mostrarPasswd} from './register_form/ui.js'
 import { getPeliculasSemana, getPeliculasMejorValoradas } from './movie-movies/movie-service.js';
 import { renderizarPeliculas, mostrarError } from './movie-movies/movie-ui.js';
+import { loadCartState } from './cart/cartState.js';
 import { initSearchBarNavigation, initSearchResultsPage } from './search/searchUi.js';
+import { renderCart } from './cart/cartUi.js';
 
 
 // Si estamos en GitHub Pages, usará el nombre del repo.
@@ -117,4 +119,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         mostrarError('grid-mas-gustadas');
         console.error(err);
     }
+
+    //Carrito de comprar
+    loadCartState();
+    renderCart();
 });

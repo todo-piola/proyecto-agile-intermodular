@@ -60,7 +60,7 @@ try {
             'fecha' => $movie['fecha_estreno'] ?: 'Fecha desconocida',
             'descripcion' => $movie['descripcion'] ?: 'Sin descripcion',
             'imagen' => $imagen,
-            'precio' => '3,99 EUR',
+            'precio' => '3.99',
             'director' => $director !== '' ? $director : 'Director desconocido'
         ];
     }, $rows);

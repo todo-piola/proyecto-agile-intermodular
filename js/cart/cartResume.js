@@ -1,8 +1,23 @@
-import { cartState } from "./cartState,js";
+import {
+    cartState,
+    persistCartState,
+    recalculateCartTotal
+} from "./cartState.js";
 
 function recalcTotal(){
-    cartState.total = cartState.items.reduce((acc, item) => 
-        acc + item.price, 0);
+    return recalculateCartTotal();
+}
+
+function parseCartPrice(value) {
+    const parsedPrice = Number.parseFloat(value);
+    return Number.isFinite(parsedPrice) ? parsedPrice : 0;
+}
+
+function normalizeCartItem(item) {
+    return {
+        ...item,
+        precio: parseCartPrice(item.precio ?? item.price)
+    };
 }
 
 /**
@@ -14,10 +29,16 @@ function recalcTotal(){
  * No se aumenta el número de unidades porque solo se permite un único item por película.
  */
 export function addToCart(item) {
-    const exists = cartState.items.find(i => i.id === item.id);
-    if (exists) return;
-    cartState.items.push(item);
+    const normalizedItem = normalizeCartItem(item);
+    const exists = cartState.items.find(i => i.id === normalizedItem.id);
+
+    if (exists) return false;
+
+    cartState.items.push(normalizedItem);
     recalcTotal();
+    persistCartState();
+
+    return true;
 }
 
 /**
@@ -29,9 +50,36 @@ export function addToCart(item) {
  */
 export function eraseMovieFromCart(id){
     const index = cartState.items.findIndex((item) => item.id === id);
-    if (index === -1 ) return;
-    cartState,items.splice(index, 1);
+
+    if (index === -1 ) return false;
+
+    cartState.items.splice(index, 1);
     recalcTotal();
+    persistCartState();
+
+    return true;
+}
+
+export function clearCart() {
+    cartState.items = [];
+    cartState.total = 0;
+    persistCartState();
+}
+
+/**
+ * 
+ * @returns 
+ * Esta función se usa para calcular la fecha de devolución de la película alquilada.
+ */
+export function movieDate(){
+    const date = new Date();
+    date.setDate(date.getDate() + 14);
+    
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear();
+    
+    return `${day}/${month}/${year}`;
 }
 
 /**
