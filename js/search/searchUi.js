@@ -116,7 +116,16 @@ function renderResults() {
         pintarTextoEnTodos(clone, '.anio', movie.fecha);
         pintarTextoEnTodos(clone, '.director', movie.director);
         pintarTextoEnTodos(clone, '.descripcion', movie.descripcion);
-        pintarTextoEnTodos(clone, '.precio', movie.precio);
+        pintarTextoEnTodos(clone, '.precio', `${Number(movie.precio).toFixed(2).replace('.', ',')}€`);
+
+        clone.querySelectorAll('[data-action="add-to-cart"]').forEach( btn => {
+            btn.dataset.movieId = movie.id;
+            btn.dataset.movieTitle = movie.titulo;
+            btn.dataset.movieImage = movie.imagen;
+            btn.dataset.director = movie.director;
+            btn.dataset.fecha = movie.fecha;
+            btn.dataset.moviePrice = movie.precio;
+        });
 
         resultados.appendChild(clone);
     });

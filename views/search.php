@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link href="../css/estilo.css" rel="stylesheet">
+    <link href="../css/cartStyle.css" rel="stylesheet">
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="icon" type="image/png" href="../img/logo_invisible_butaca.png">
@@ -29,7 +30,7 @@
                                 <p class="card-text small  text-white"><span class="descripcion"></span></p>
                                 <div class="d-flex justify-content-between align-items-center align-content-end">
                                     <span class="h5 mb-0 precio text-white"></span>
-                                    <button class="btn btn-primary btn-alquilar">Alquilar</button>
+                                    <button data-action="add-to-cart" class="btn btn-primary btn-alquilar">Alquilar</button>
                                 </div>
                             </div>
                         </div>
@@ -48,7 +49,7 @@
                                         </p>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <span class="small fw-bold precio text-white"></span>
-                                            <button class="btn btn-sm btn-primary btn-alquilar">Alquilar</button>
+                                            <button data-action="add-to-cart" class="btn btn-sm btn-primary btn-alquilar">Alquilar</button>
                                         </div>
                                     </div>
                                 </div>
@@ -66,6 +67,7 @@
         <?php include(__DIR__ . "/../templates/footer.html"); ?>
     </main>
 
+<script src="../recursos/bootstrap.bundle.min.js"></script>
 <script type="module" src="../js/main.js"></script>
 </body>
 </html>
