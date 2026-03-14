@@ -88,12 +88,15 @@ export function movieDate(){
  * Función asíncrona que se encarga del checkout una vez se clicka el botón de finalizar compra.
  */
 export async function checkout(){
-    const res = await fetch('/proyecto-agile-intermodular/php/crear_pedido.php', {
+    const res = await fetch('/proyecto-agile-intermodular/php/detalle_pedido.php', {
         method : 'POST',
         headers : {'Content-Type': 'application/json'},
         body: JSON.stringify({items: cartState.items, total: cartState.total})
     });
 
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    return res.json();
+    const data = await res.json();
+
+    window.location.href = `/proyecto-agile-intermodular/create_order.php?orderId=${data.orderId}`;
+    return data;
 }

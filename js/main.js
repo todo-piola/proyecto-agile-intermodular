@@ -5,6 +5,7 @@ import { renderizarPeliculas, mostrarError } from './movie-movies/movie-ui.js';
 import { loadCartState } from './cart/cartState.js';
 import { initSearchBarNavigation, initSearchResultsPage } from './search/searchUi.js';
 import { renderCart } from './cart/cartUi.js';
+import { loadOrderSummary } from './cart/cart_order.js';
 
 
 // Si estamos en GitHub Pages, usará el nombre del repo.
@@ -123,4 +124,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     //Carrito de comprar
     loadCartState();
     renderCart();
+
+    if (document.querySelector('#product-list')){
+        loadOrderSummary();
+    }
 });
