@@ -1,15 +1,3 @@
-const TOKEN = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4MmFjN2M4NWYyYTZiZWJiNTE3NWI3ODg1ODk3ODgxNSIsIm5iZiI6MTc2OTA4NDcyNy40NDcsInN1YiI6IjY5NzIxNzM3YTQzMTYzMTUxOWUzNmQzOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.vqfF3hbMqw1AQ4UyJ12Tj_Nda3gdcplkdoJxtP_MmhY';
-const BASE_URL = 'https://api.themoviedb.org/3';
-export const IMG_URL = 'https://image.tmdb.org/t/p/w500';
-
-const options = {
-    method : 'GET',
-    headers : {
-        accept : 'application/json',
-        Authorization: `Bearer ${TOKEN}`
-    }
-};
-
 /**
  *
  * @param query
@@ -54,30 +42,11 @@ export function buildSearchPageUrl(query) {
 }
 
 /**
- * Función auxiliar para obtener el director de una película
- * @param movieId
- * @returns {Promise<string>}
- */
-async function fetchDirector(movieId) {
-    try {
-        const url = `${BASE_URL}/movie/${movieId}/credits`;
-        const res = await fetch(url, options);
-        const data = await res.json();
-
-        const director = data.crew?.find(person => person.job === 'Director');
-        return director?.name || 'Director desconocido';
-    } catch (err) {
-        console.error(`Error obteniendo director para película ${movieId}:`, err);
-        return 'Director desconocido';
-    }
-}
-
-/**
  *
  * @param query
  * @param page
  * @returns {Promise<{id: *, titulo, fecha, descripcion, imagen: string|string, precio: string, director}[]|any|*[]>}
- * Esta función realiza la búsqueda de películas en TMDB utilizando la API,
+ * Esta función realiza la búsqueda de películas en la base de datos local,
  * asegurándose de normalizar la consulta, manejar el almacenamiento en caché para mejorar el rendimiento,
  * y mapear los resultados a un formato más amigable para la aplicación.
  */
@@ -86,52 +55,34 @@ export async function searchMovies(query, page = 1) {
 
     if (!cleanQuery || cleanQuery.length < 2) return [];
 
-    const cacheKey = `tmdb_search_${cleanQuery.toLowerCase()}_p${page}`;
+    const cacheKey = `db_search_${cleanQuery.toLowerCase()}_p${page}`;
     const cached = sessionStorage.getItem(cacheKey);
     if (cached) return JSON.parse(cached);
 
     const params = new URLSearchParams({
         query: cleanQuery,
-        include_adult: 'false',
-        language: 'es-ES',
         page: String(page)
     });
 
-    const url = `${BASE_URL}/search/movie?${params.toString()}`;
+    const url = `../php/buscar_peliculas.php?${params.toString()}`;
 
     try {
-        const res = await fetch(url, options);
+        const res = await fetch(url, {
+            method: 'GET',
+            headers: {
+                accept: 'application/json'
+            }
+        });
+
+        if (!res.ok) {
+            throw new Error(`HTTP ${res.status}`);
+        }
+
         const data = await res.json();
+        const results = Array.isArray(data.results) ? data.results : [];
 
-        console.log("Respuesta TMDB:", data);
-
-        // Primero mapeamos los resultados básicos
-        const basicResults = (data.results || []).map(movie => ({
-            id: movie.id,
-            titulo: movie.title || 'Título desconocido',
-            fecha: movie.release_date || 'Fecha desconocida',
-            descripcion: movie.overview || 'Sin descripcion',
-            imagen: movie.poster_path ? `${IMG_URL}${movie.poster_path}` : '../img/poster-prueba.jpg',
-            precio: '3,99 EUR',
-            director: 'Cargando director...' // Temporal mientras obtenemos los directores
-        }));
-
-        /*
-        Necesitamos obtener el director de cada película de manera individual
-        porque la API que usamos de búsqueda no lo incluye en la información general de la película.
-         */
-        const resultsWithDirectors = await Promise.all(
-            basicResults.map(async (movie) => {
-                const director = await fetchDirector(movie.id);
-                return {
-                    ...movie,
-                    director: director
-                };
-            })
-        );
-
-        sessionStorage.setItem(cacheKey, JSON.stringify(resultsWithDirectors));
-        return resultsWithDirectors;
+        sessionStorage.setItem(cacheKey, JSON.stringify(results));
+        return results;
 
     } catch (err) {
         console.error("Error en búsqueda:", err);

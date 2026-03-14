@@ -6,7 +6,7 @@ if (session_status() == PHP_SESSION_NONE) {
 <nav id="encabezado" class="navbar navbar-expand-lg navbar-dark bg-black py-2">
     <div class="container d-flex justify-content-center">
         <a class="navbar-brand mx-auto" href="/proyecto-agile-intermodular/index.php">
-            <img id="logo-encabezado" src="/proyecto-agile-intermodular/img/LOGO LABUTACASOCIAL.webp" alt="logo labutacas">
+            <img id="logo-encabezado" src="/proyecto-agile-intermodular/img/LOGO LABUTACASOCIAL.webp" alt="logo la butaca social">
         </a>
 
         <!-- LUPA MOVIL -->
@@ -46,12 +46,13 @@ if (session_status() == PHP_SESSION_NONE) {
         </div>
 
         <button
+            id="cartBtn"
             class="btn btn-warning ms-2"
             type="button"
             data-bs-toggle="offcanvas"
             data-bs-target="#offcanvasScrolling"
             aria-controls="offcanvasScrolling">
-            <i class="bi bi-basket" id="cart-icon">
+            <i class="bi bi-cart" id="cart-icon">
                 <span id="cart-count">0</span>
             </i>
         </button>
