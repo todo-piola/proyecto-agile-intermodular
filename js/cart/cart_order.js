@@ -1,5 +1,5 @@
 async function getOrderDetails(orderId) {
-    const res = await fetch(`/proyecto-agile-intermodular/php/get_pedido.php?id=${pedidoId}`);
+    const res = await fetch(`/proyecto-agile-intermodular/php/get_pedido.php?id=${orderId}`);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     return res.json();
 }
@@ -26,10 +26,10 @@ function renderTotal(total){
 
 export async function loadOrderSummary(){
     try{
-        const { orderId} = JSON.parse(sessionStorage.getItem('proyecto-agile-intermodular-cart'));
+        const { orderId} = JSON.parse(sessionStorage.getItem('orderSummary'));
         const pedido = await getOrderDetails(orderId);
 
-        renderOrderItems(pedido.items);
+        showItems(pedido.items);
         renderTotal(pedido.total);
     }
     catch(error){
