@@ -58,17 +58,14 @@ $esAdmin = isset($_SESSION['nombre_completo']) && $_SESSION['nombre_completo'] =
             <!-- Información -->
             <div class="col-12 col-md-7">
                 <?php if ($esAdmin): ?>
-                <div class="mt-3 mb-2">
+                <div class="mt-3 mb-4">
                     <p class="fs-3 text-white">Panel CRUD</p>
                     <button class="btn-modificar" data-bs-toggle="modal" data-bs-target="#modalEditar"> Modificar </button>
                     <button class="btn-eliminar" data-bs-toggle="modal" data-bs-target="#modalEliminar"> Eliminar </button>
                     <button class="btn-agregar" data-bs-toggle="modal" data-bs-target="#modalAgregar"> Agregar nueva película </button>
                 </div>
                 <?php endif; ?>
-            </div>
 
-            <!-- Información -->
-            <div class="col-12">
                 <h1 class="titulo-cine-grande"><?= htmlspecialchars($pelicula['titulo']) ?></h1>
 
                 <p class="texto-cine"><strong>Géneros:</strong> <?= htmlspecialchars($pelicula['generos']) ?></p>
