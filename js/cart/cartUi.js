@@ -72,12 +72,14 @@ export function renderCart(){
         cartItemsEl.appendChild(div);
     });
 
-    const checkoutBtn = document.createElement('button');
-    checkoutBtn.id = 'checkout-btn';
-    checkoutBtn.type = 'button';
-    checkoutBtn.className = 'btn btn-warning';
-    checkoutBtn.textContent = 'Finalizar compra';
-    endTransaction.appendChild(checkoutBtn);
+    if (cartState.items.length > 0) {
+        const checkoutBtn = document.createElement('button');
+        checkoutBtn.id = 'checkout-btn';
+        checkoutBtn.type = 'button';
+        checkoutBtn.className = 'btn btn-warning';
+        checkoutBtn.textContent = 'Finalizar compra';
+        endTransaction.appendChild(checkoutBtn);
+    }
 }
 
 if (cartItemsEl) {

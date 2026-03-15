@@ -21,7 +21,7 @@ function showItems(items){
 }
 
 function renderTotal(total){
-    document.querySelector('#total-price').textContent = `Total: ${Number(total).toFixed(2).replace('.', ',')}€`;
+    document.querySelector('#total-price').textContent = `${Number(total).toFixed(2).replace('.', ',')}€`;
 }
 
 export async function loadOrderSummary(){

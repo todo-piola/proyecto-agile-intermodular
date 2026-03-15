@@ -47,7 +47,9 @@
                     <div class="card p-3">
                         <h5>Resumen</h5>
                         <p>Total: <strong id="total-price"></strong></p>
-                        <button class="btn btn-success w-100">Finalizar compra</button>
+                        <a href="/proyecto-agile-intermodular/index.php" class="btn btn-warning">
+                        Seguir alquilando
+                        </a>
                     </div>
                 </div>
             </section>
