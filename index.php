@@ -1,4 +1,9 @@
-<?php require_once("php/conexion.php"); ?>
+<?php
+require_once "php/conexion.php";
+$stmtCatalogo = $conexion->query("SELECT id, titulo, poster FROM peliculas WHERE poster LIKE '/%' ORDER BY RAND() LIMIT 6");
+$catalogoPeliculas = $stmtCatalogo->fetchAll(PDO::FETCH_ASSOC);
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -415,67 +420,27 @@
 
             <!-- Catálogo de películas esperadas -->
             <div class="row p-5 bg-black">
-
                 <div class="col-12 d-md-none">
                     <h3 class="text-center text-md-start w-100 text-white peliculas-esperadas-movil">
                         Películas más esperadas de 2026
                     </h3>
                 </div>
-
                 <div class="d-none d-md-flex">
                     <h3 class="text-center text-md-start w-100 text-white peliculas-esperadas-escritorio">
                         Películas más esperadas de 2026
                     </h3>
                 </div>
-
-                <div class="col-4 col-md-2">
-                    <div class="bg-dark">
-                        <img src="img/poster_CumbresBorrascosas.webp"
-                                class="w-100 object-fit-cover"
-                                alt="">
+                <?php foreach ($catalogoPeliculas as $p): ?>
+                    <div class="col-4 col-md-2">
+                        <a href="views/pelicula.php?id=<?= $p['id'] ?>">
+                            <div class="bg-dark">
+                                <img src="https://image.tmdb.org/t/p/w500<?= $p['poster'] ?>"
+                                    class="w-100 object-fit-cover"
+                                    alt="<?= htmlspecialchars($p['titulo']) ?>">
+                            </div>
+                        </a>
                     </div>
-                </div>
-
-                <div class="col-4 col-md-2">
-                    <div class="bg-dark">
-                        <img src="img/poster_Odisea_Nolan.webp"
-                                class="w-100 object-fit-cover"
-                                alt="">
-                    </div>
-                </div>
-
-                <div class="col-4 col-md-2">
-                    <div class="bg-dark">
-                        <img src="img/poster_proyect_hailMary.webp"
-                                class="w-100 object-fit-cover"
-                                alt="">
-                    </div>
-                </div>
-
-                <div class="col-4 col-md-2">
-                    <div class="bg-dark">
-                        <img src="img/poster_theBride.webp"
-                                class="w-100 object-fit-cover"
-                                alt="">
-                    </div>
-                </div>
-
-                <div class="col-4 col-md-2">
-                    <div class="bg-dark">
-                        <img src="img/poster_WeBuryTheDead.webp"
-                                class="w-100 object-fit-cover"
-                                alt="">
-                    </div>
-                </div>
-
-                <div class="col-4 col-md-2">
-                    <div class="bg-dark">
-                        <img src="img/poster_MandoGrogu.webp"
-                                class="w-100 object-fit-cover"
-                                alt="">
-                    </div>
-                </div>
-
+                    <?php endforeach; ?>            
             </div>
 
             <!-- CTA móvil - Solo visible en pantallas pequeñas -->

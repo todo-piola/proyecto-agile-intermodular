@@ -9,16 +9,21 @@ $iframeUrl = $data['iframeUrl'];
 // Decodificar reparto y fotos de reparto
 $reparto = json_decode($pelicula['reparto'], true);
 $fotos_reparto = json_decode($pelicula['fotos_reparto'], true);
+
+// Comprobamos que usuario es admin
+$esAdmin = isset($_SESSION['nombre_completo']) && $_SESSION['nombre_completo'] === "Administrador";
+
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <title><?= htmlspecialchars($pelicula['titulo']) ?></title>
     <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link href="../css/estilo-cine.css" rel="stylesheet">
     <link href="../css/estilo.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 </head>
 <body>
     <div class="contenedor-fondo-peliculas">
@@ -33,15 +38,34 @@ $fotos_reparto = json_decode($pelicula['fotos_reparto'], true);
         <div class="row g-4">
             <!-- Poster grande -->
             <div class="col-12 col-md-5 d-flex justify-content-center">
-                <img src="https://image.tmdb.org/t/p/w500<?= $pelicula['poster'] ?>"
-                     class="poster-pelicula-peliculas shadow"
-                     style="height:auto; max-height:500px; border-radius:15px;"
-                     alt="<?= htmlspecialchars($pelicula['titulo']) ?>">
+                <?php
+                    $poster = $pelicula['poster'];
+                    // Si empieza por "/" es ruta TMDB, si no, es archivo local
+                    $posterSrc = str_starts_with($poster, '/') 
+                        ? "https://image.tmdb.org/t/p/w500" . $poster 
+                        : "../img/" . $poster;
+                ?>
+                <img src="<?= htmlspecialchars($posterSrc) ?>"
+                    class="poster-pelicula-peliculas shadow"
+                    style="height:auto; max-height:500px; border-radius:15px;"
+                    alt="<?= htmlspecialchars($pelicula['titulo']) ?>">
             </div>
 
-            <!-- Información -->
             <div class="col-12 col-md-7">
+                <?php if ($esAdmin): ?>
+                <div class="mt-3 mb-2">
+                    <p class="fs-3 text-white">Panel CRUD</p>
+                    <button class="btn-modificar" data-bs-toggle="modal" data-bs-target="#modalEditar"> Modificar </button>
+                    <button class="btn-eliminar" data-bs-toggle="modal" data-bs-target="#modalEliminar"> Eliminar </button>
+                    <button class="btn-agregar" data-bs-toggle="modal" data-bs-target="#modalAgregar"> Agregar nueva película </button>
+                </div>
+                <?php endif; ?>
+            </div>   
+
+            <!-- Información -->
+            <div class="col-12">
                 <h1 class="titulo-cine-grande"><?= htmlspecialchars($pelicula['titulo']) ?></h1>
+                
                 <p class="texto-cine"><strong>Géneros:</strong> <?= htmlspecialchars($pelicula['generos']) ?></p>
                 <p class="texto-cine"><strong>Duración:</strong> <?= $pelicula['duracion_minutos'] ?> min</p>
                 <p class="texto-cine"><strong>Estreno:</strong> <?= $pelicula['fecha_estreno'] ?></p>
@@ -67,7 +91,7 @@ $fotos_reparto = json_decode($pelicula['fotos_reparto'], true);
                 <!-- BOTONES DE ACCIÓN -->
                 <div class="mb-4">
                     <button class="btn-comprar">Comprar</button>
-                    <button class="btn-alquilar">+Aquilar</button>
+                    <button class="btn-alquilar">Alquilar</button>
                 </div>
 
                 <!-- Trailer -->
@@ -114,11 +138,114 @@ $fotos_reparto = json_decode($pelicula['fotos_reparto'], true);
                         </button>
                     </div>
                 <?php endif; ?>
-
-                <a href="javascript:history.back()" class="btn btn-cine mt-3">Volver</a>
+                <div class="d-flex justify-content-center">
+                    <a href="javascript:history.back()" class="btn btn-cine mt-3">Volver</a>
+                </div>
             </div>
         </div>
     </main>
+    
+    <!-- Modal para modificar campos (descripcion, presupuesto y recaudación) en película -->
+    <?php if ($esAdmin): ?>
+        <div class="modal fade" id="modalEditar">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="POST" action="../php/actualizar_pelicula.php" enctype="multipart/form-data">
+                <div class="modal-header bg-warning">
+                    <h5 class="modal-title">Editar película</h5>
+                    <button class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="id" value="<?= $pelicula['id'] ?>">
+
+                    <label>Descripción</label>
+                    <textarea class="form-control" name="descripcion"><?= $pelicula['descripcion'] ?></textarea>
+
+                    <label class="mt-3">Presupuesto</label>
+                    <input class="form-control" type="number" name="presupuesto" value="<?= $pelicula['presupuesto'] ?>">
+
+                    <label class="mt-3">Recaudación</label>
+                    <input class="form-control" type="number" name="recaudacion" value="<?= $pelicula['recaudacion'] ?>">
+
+                    <label class="mt-3">Poster (dejar vacío para no cambiar)</label>
+                    <input class="form-control" type="file" name="poster">
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button class="btn btn-warning">Guardar cambios</button>
+                </div>
+            </form>
+
+        </div>
+        </div>
+        </div>
+    <?php endif; ?>
+
+    <!-- Modal para eliminar registro de película -->
+    <?php if ($esAdmin): ?>
+        <div class="modal fade" id="modalEliminar">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <form method="POST" action="../php/eliminar_pelicula.php">
+                        <div class="modal-header bg-danger text-white">
+                            <h5 class="modal-title">Eliminar película</h5>
+                        </div>
+                        <div class="modal-body">
+                            <input type="hidden" name="id" value="<?= $pelicula['id'] ?>">
+                            <input type="hidden" name="titulo" value="<?= htmlspecialchars($pelicula['titulo']) ?>">
+
+                            <p>¿Seguro que quieres eliminar <strong><?= $pelicula['titulo'] ?></strong>?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
+
+    <!-- Modal para añadir nueva película a la bbdd -->
+    <?php if ($esAdmin): ?>
+        <div class="modal fade" id="modalAgregar">
+        <div class="modal-dialog">
+        <div class="modal-content btn-agregar">
+
+            <form method="POST" action="../php/crear_pelicula.php" enctype="multipart/form-data">
+                <div class="modal-header text-white">
+                    <h5 class="modal-title">Agregar nueva película</h5>
+                    <button class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+                    <label>Título *</label>
+                    <input class="form-control" name="titulo" required>
+
+                    <label class="mt-3">Descripción *</label>
+                    <textarea class="form-control" name="descripcion" required></textarea>
+
+                    <label class="mt-3">Géneros *</label>
+                    <input class="form-control" name="generos" required placeholder="Acción, Drama...">
+
+                    <label class="mt-3">Poster</label>
+                    <input type="file" class="form-control" name="poster">
+
+                    <label class="mt-3">Director</label>
+                    <input class="form-control" name="director">
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light text-black" data-bs-dismiss="modal"> Cancelar </button>
+                    <button class="btn btn-warning text-black"> Crear película </button>
+                </div>
+            </form>
+
+        </div>
+        </div>
+        </div>
+    <?php endif; ?>
+
 
     <!-- FOOTER -->
     <?php include "../templates/footer.html"; ?>
