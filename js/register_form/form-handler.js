@@ -248,6 +248,7 @@ export async function manejarSubmit(event, datosForm){
         fecha: datosForm.fechaN?.value || "",
         notificaciones: datosForm.notificaciones?.checked ? 1 : 0,
         revista: datosForm.revista?.checked ? 1 : 0,
+        tarjeta: datosForm.tarjeta?.value || ""
     };
 
     try {

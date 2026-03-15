@@ -6,7 +6,7 @@ import { loadCartState } from './cart/cartState.js';
 import { initSearchBarNavigation, initSearchResultsPage } from './search/searchUi.js';
 import { renderCart } from './cart/cartUi.js';
 import { loadOrderSummary } from './cart/cart_order.js';
-
+import { addToCart, movieDate } from './cart/cartResume.js';
 
 // Si estamos en GitHub Pages, usará el nombre del repo.
 // Si estamos en Local (localhost), se quedará vacío para buscar en la raíz del servidor.
@@ -46,14 +46,16 @@ document.addEventListener('DOMContentLoaded', async () => {
             sexo: document.querySelector('input[name="sexo"]:checked')?.value || "",
             fechaN: document.getElementById('fechaNacimiento'),
             notificaciones: document.getElementById('notificaciones'),
-            revista: document.getElementById('revista')
+            revista: document.getElementById('revista'),
+            tarjeta: document.getElementById('tarjeta')
         }
 
         //Campo adicional para confirmación de contraseña
         const doubleCheck = document.getElementById('confirmarContrasena');
 
         //Icono de ojo para mostrar/ocultar contraseña (usa clase Bootstrap)
-        const icono_ojito = document.querySelector('.bi')
+        const icono_ojito = document.querySelector('.toggle-pass');
+        const inputPass = document.getElementById('contrasena');
 
         //Asigna event listeners a cada campo para validación en tiempo real
         camposFormulario.nombreApe.addEventListener('input', fh.inputNombreApellido);
@@ -62,11 +64,15 @@ document.addEventListener('DOMContentLoaded', async () => {
         doubleCheck.addEventListener('input', fh.inputConfirmacion);
 
         camposFormulario.fechaN.addEventListener('input', fh.inputFecha);
+        camposFormulario.tarjeta.addEventListener('input', fh.inputTarjeta);
 
         //Event listener para el icono de mostrar/ocultar contraseña
-        icono_ojito.addEventListener('click', e => {
-            mostrarPasswd(icono_ojito, camposFormulario.pass);
-        })
+        if(icono_ojito && inputPass){
+            icono_ojito.addEventListener('click', (e) => {
+                e.preventDefault();
+                mostrarPasswd(icono_ojito, inputPass);
+            });
+        }
     
 
         form.addEventListener('submit', (e) => {
@@ -127,5 +133,28 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (document.querySelector('#product-list')){
         loadOrderSummary();
+    }
+    /* ================ Btn alquilar ================ */
+    const btnAlquilar = document.querySelector('.btn-alquilar');
+
+    if (btnAlquilar) {
+        btnAlquilar.addEventListener('click', () => {
+            const item = {
+                id: btnAlquilar.dataset.movieId,
+                titulo: btnAlquilar.dataset.movieTitle,
+                precio: btnAlquilar.dataset.moviePrice,
+                imagen: btnAlquilar.dataset.movieImage,
+                director: btnAlquilar.dataset.director,
+                fecha: movieDate()
+            };
+
+            const agregado = addToCart(item);
+
+            if (!agregado) {
+                alert(`"${item.titulo}" ya está en el carrito.`);
+            }
+
+            renderCart();
+        });
     }
 });

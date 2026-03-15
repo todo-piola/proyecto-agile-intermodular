@@ -57,27 +57,30 @@ export function renderCart(){
         const returnDate = document.createElement('p');
         returnDate.textContent = `Fecha de devolución: ${movieDate()}`;
 
-        const eliminateBtn = document.createElement('button');
-        eliminateBtn.type = 'button';
-        eliminateBtn.className = 'eliminate-movie';
-        eliminateBtn.textContent = 'Eliminar';
-
-
         div.appendChild(img);
         div.appendChild(nombre);
         div.appendChild(precio);
         div.appendChild(returnDate);
-        div.appendChild(eliminateBtn);
+
+        if (!window.location.pathname.includes('create_order.php')) {
+            const eliminateBtn = document.createElement('button');
+            eliminateBtn.type = 'button';
+            eliminateBtn.className = 'eliminate-movie';
+            eliminateBtn.textContent = 'Eliminar';
+            div.appendChild(eliminateBtn);
+        }
 
         cartItemsEl.appendChild(div);
     });
 
-    const checkoutBtn = document.createElement('button');
-    checkoutBtn.id = 'checkout-btn';
-    checkoutBtn.type = 'button';
-    checkoutBtn.className = 'btn btn-warning';
-    checkoutBtn.textContent = 'Finalizar compra';
-    endTransaction.appendChild(checkoutBtn);
+    if (cartState.items.length > 0) {
+        const checkoutBtn = document.createElement('button');
+        checkoutBtn.id = 'checkout-btn';
+        checkoutBtn.type = 'button';
+        checkoutBtn.className = 'btn btn-warning';
+        checkoutBtn.textContent = 'Finalizar compra';
+        endTransaction.appendChild(checkoutBtn);
+    }
 }
 
 if (cartItemsEl) {

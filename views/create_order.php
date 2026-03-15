@@ -16,10 +16,10 @@
         <?php include(__DIR__ . "/../templates/header.php"); ?>
 
             <section class="d-flex gap-3">
-    
+
                 <!--Lista de productos-->
                 <div id="product-list" class="col col-md-9 d-flex flex-column gap-3">
-                    
+
                     <!--Template como el de search PHP para clonar en JS-->
                     <div class="templateResume" style="display: none;">
                         <div class="row align-items-center">
@@ -34,10 +34,10 @@
                                 <p class="rent-date"></p>
                                 <p class="price-rent"></p>
                             </div>
-                            <!--Botón eliminar-->
+                            <!--Botón eliminar
                             <div class="col col-md-3 d-flex justify-content-end align-items-center">
                                 <button class="delete-button btn btn-danger">Eliminar</button>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                 </div>
@@ -47,7 +47,9 @@
                     <div class="card p-3">
                         <h5>Resumen</h5>
                         <p>Total: <strong id="total-price"></strong></p>
-                        <button class="btn btn-success w-100">Finalizar compra</button>
+                        <a href="/proyecto-agile-intermodular/index.php" class="btn btn-warning">
+                        Seguir alquilando
+                        </a>
                     </div>
                 </div>
             </section>

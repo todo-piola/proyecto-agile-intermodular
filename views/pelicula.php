@@ -20,10 +20,14 @@ $esAdmin = isset($_SESSION['nombre_completo']) && $_SESSION['nombre_completo'] =
 <head>
     <meta charset="UTF-8">
     <title><?= htmlspecialchars($pelicula['titulo']) ?></title>
+
     <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <link href="../css/estilo-cine.css" rel="stylesheet">
     <link href="../css/estilo.css" rel="stylesheet">
+    <link href="../css/estilo-cine.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <script src="../js/templates-js/templates-loader.js"></script>
 </head>
 <body>
     <div class="contenedor-fondo-peliculas">
@@ -41,16 +45,17 @@ $esAdmin = isset($_SESSION['nombre_completo']) && $_SESSION['nombre_completo'] =
                 <?php
                     $poster = $pelicula['poster'];
                     // Si empieza por "/" es ruta TMDB, si no, es archivo local
-                    $posterSrc = str_starts_with($poster, '/') 
-                        ? "https://image.tmdb.org/t/p/w500" . $poster 
+                    $posterSrc = str_starts_with($poster, '/')
+                        ? "https://image.tmdb.org/t/p/w500" . $poster
                         : "../img/" . $poster;
                 ?>
                 <img src="<?= htmlspecialchars($posterSrc) ?>"
                     class="poster-pelicula-peliculas shadow"
-                    style="height:auto; max-height:500px; border-radius:15px;"
-                    alt="<?= htmlspecialchars($pelicula['titulo']) ?>">
+                     style="height:auto; max-height:500px; border-radius:0px;"
+                     alt="<?= htmlspecialchars($pelicula['titulo']) ?>">
             </div>
 
+            <!-- Información -->
             <div class="col-12 col-md-7">
                 <?php if ($esAdmin): ?>
                 <div class="mt-3 mb-2">
@@ -60,12 +65,12 @@ $esAdmin = isset($_SESSION['nombre_completo']) && $_SESSION['nombre_completo'] =
                     <button class="btn-agregar" data-bs-toggle="modal" data-bs-target="#modalAgregar"> Agregar nueva película </button>
                 </div>
                 <?php endif; ?>
-            </div>   
+            </div>
 
             <!-- Información -->
             <div class="col-12">
                 <h1 class="titulo-cine-grande"><?= htmlspecialchars($pelicula['titulo']) ?></h1>
-                
+
                 <p class="texto-cine"><strong>Géneros:</strong> <?= htmlspecialchars($pelicula['generos']) ?></p>
                 <p class="texto-cine"><strong>Duración:</strong> <?= $pelicula['duracion_minutos'] ?> min</p>
                 <p class="texto-cine"><strong>Estreno:</strong> <?= $pelicula['fecha_estreno'] ?></p>
@@ -88,11 +93,15 @@ $esAdmin = isset($_SESSION['nombre_completo']) && $_SESSION['nombre_completo'] =
 
                 <p class="texto-cine mt-2"><?= htmlspecialchars($pelicula['descripcion']) ?></p>
 
-                <!-- BOTONES DE ACCIÓN -->
-                <div class="mb-4">
-                    <button class="btn-comprar">Comprar</button>
-                    <button class="btn-alquilar">Alquilar</button>
-                </div>
+                <!-- BOTONES DE AQUILAR -->
+                <button class="btn-alquilar"
+                        data-movie-id="<?= $pelicula['id'] ?>"
+                        data-movie-title="<?= htmlspecialchars($pelicula['titulo'], ENT_QUOTES) ?>"
+                        data-movie-price="<?= $pelicula['precio_alquiler'] ?? 3.99 ?>"
+                        data-movie-image="https://image.tmdb.org/t/p/w500<?= $pelicula['poster'] ?>"
+                        data-director="<?= htmlspecialchars($pelicula['director'], ENT_QUOTES) ?>">
+                    +Alquilar
+                </button>
 
                 <!-- Trailer -->
                 <?php if ($iframeUrl): ?>
@@ -138,13 +147,12 @@ $esAdmin = isset($_SESSION['nombre_completo']) && $_SESSION['nombre_completo'] =
                         </button>
                     </div>
                 <?php endif; ?>
-                <div class="d-flex justify-content-center">
-                    <a href="javascript:history.back()" class="btn btn-cine mt-3">Volver</a>
-                </div>
+
+                <a href="javascript:history.back()" class="btn btn-cine mt-3">Volver</a>
             </div>
         </div>
     </main>
-    
+
     <!-- Modal para modificar campos (descripcion, presupuesto y recaudación) en película -->
     <?php if ($esAdmin): ?>
         <div class="modal fade" id="modalEditar">
@@ -249,6 +257,8 @@ $esAdmin = isset($_SESSION['nombre_completo']) && $_SESSION['nombre_completo'] =
 
     <!-- FOOTER -->
     <?php include "../templates/footer.html"; ?>
+
     <script src="../recursos/bootstrap.bundle.min.js"></script>
+    <script type="module" src="../js/main.js"></script>
 </body>
 </html>

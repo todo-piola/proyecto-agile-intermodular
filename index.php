@@ -64,11 +64,12 @@ $catalogoPeliculas = $stmtCatalogo->fetchAll(PDO::FETCH_ASSOC);
 
                         <!-- Contraseña -->
                         <div class="mb-3 field">
-                            <label for="contrasena" class="form-label">Contraseña<span class="asterisco">*</span>
-                                <i class="bi bi-eye-fill"></i>
+                            <label for="contrasena" class="form-label">
+                                Contraseña<span class="asterisco">*</span>
+                                <i class="bi bi-eye-fill toggle-pass"></i>
                             </label>
                             <input type="password" class="form-control" id="contrasena" required>
-                            <p id = "errContrasena" class="error"></p>
+                            <p id="errContrasena" class="error"></p>
                         </div>
 
                         <!-- Confirmar Contraseña -->
@@ -286,7 +287,7 @@ $catalogoPeliculas = $stmtCatalogo->fetchAll(PDO::FETCH_ASSOC);
                         <!-- Tarjeta de crédito -->
                         <div class="mb-3 field">
                             <label for="tarjeta" class="form-label">Tarjeta bancaria</label>
-                            <input type="text" class="form-control" id="tarjeta">
+                            <input type="text" class="form-control" id="tarjeta" name="tarjeta">
                             <p id = "errTarjeta" class="error"></p>
                         </div>
 
