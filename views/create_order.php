@@ -34,10 +34,10 @@
                                 <p class="rent-date"></p>
                                 <p class="price-rent"></p>
                             </div>
-                            <!--Botón eliminar-->
+                            <!--Botón eliminar
                             <div class="col col-md-3 d-flex justify-content-end align-items-center">
                                 <button class="delete-button btn btn-danger">Eliminar</button>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                 </div>

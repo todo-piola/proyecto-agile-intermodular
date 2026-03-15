@@ -57,17 +57,18 @@ export function renderCart(){
         const returnDate = document.createElement('p');
         returnDate.textContent = `Fecha de devolución: ${movieDate()}`;
 
-        const eliminateBtn = document.createElement('button');
-        eliminateBtn.type = 'button';
-        eliminateBtn.className = 'eliminate-movie';
-        eliminateBtn.textContent = 'Eliminar';
-
-
         div.appendChild(img);
         div.appendChild(nombre);
         div.appendChild(precio);
         div.appendChild(returnDate);
-        div.appendChild(eliminateBtn);
+
+        if (!window.location.pathname.includes('create_order.php')) {
+            const eliminateBtn = document.createElement('button');
+            eliminateBtn.type = 'button';
+            eliminateBtn.className = 'eliminate-movie';
+            eliminateBtn.textContent = 'Eliminar';
+            div.appendChild(eliminateBtn);
+        }
 
         cartItemsEl.appendChild(div);
     });

@@ -15,10 +15,14 @@ $fotos_reparto = json_decode($pelicula['fotos_reparto'], true);
 <head>
     <meta charset="UTF-8">
     <title><?= htmlspecialchars($pelicula['titulo']) ?></title>
+
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/estilo.css" rel="stylesheet">
     <link href="../css/estilo-cine.css" rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <script src="../js/templates-js/templates-loader.js"></script>
 </head>
 <body>
     <div class="contenedor-fondo-peliculas">
@@ -64,11 +68,15 @@ $fotos_reparto = json_decode($pelicula['fotos_reparto'], true);
 
                 <p class="texto-cine mt-2"><?= htmlspecialchars($pelicula['descripcion']) ?></p>
 
-                <!-- BOTONES DE ACCIÓN -->
-                <div class="mb-4">
-                    <button class="btn-comprar">Comprar</button>
-                    <button class="btn-alquilar">+Aquilar</button>
-                </div>
+                <!-- BOTONES DE AQUILAR -->
+                <button class="btn-alquilar"
+                        data-movie-id="<?= $pelicula['id'] ?>"
+                        data-movie-title="<?= htmlspecialchars($pelicula['titulo'], ENT_QUOTES) ?>"
+                        data-movie-price="<?= $pelicula['precio_alquiler'] ?? 3.99 ?>"
+                        data-movie-image="https://image.tmdb.org/t/p/w500<?= $pelicula['poster'] ?>"
+                        data-director="<?= htmlspecialchars($pelicula['director'], ENT_QUOTES) ?>">
+                    +Alquilar
+                </button>
 
                 <!-- Trailer -->
                 <?php if ($iframeUrl): ?>
@@ -122,6 +130,8 @@ $fotos_reparto = json_decode($pelicula['fotos_reparto'], true);
 
     <!-- FOOTER -->
     <?php include "../templates/footer.html"; ?>
+
     <script src="../recursos/bootstrap.bundle.min.js"></script>
+    <script type="module" src="../js/main.js"></script>
 </body>
 </html>

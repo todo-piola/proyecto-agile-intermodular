@@ -6,7 +6,7 @@ import { loadCartState } from './cart/cartState.js';
 import { initSearchBarNavigation, initSearchResultsPage } from './search/searchUi.js';
 import { renderCart } from './cart/cartUi.js';
 import { loadOrderSummary } from './cart/cart_order.js';
-
+import { addToCart, movieDate } from './cart/cartResume.js';
 
 // Si estamos en GitHub Pages, usará el nombre del repo.
 // Si estamos en Local (localhost), se quedará vacío para buscar en la raíz del servidor.
@@ -127,5 +127,28 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (document.querySelector('#product-list')){
         loadOrderSummary();
+    }
+    /* ================ Btn alquilar ================ */
+    const btnAlquilar = document.querySelector('.btn-alquilar');
+
+    if (btnAlquilar) {
+        btnAlquilar.addEventListener('click', () => {
+            const item = {
+                id: btnAlquilar.dataset.movieId,
+                titulo: btnAlquilar.dataset.movieTitle,
+                precio: btnAlquilar.dataset.moviePrice,
+                imagen: btnAlquilar.dataset.movieImage,
+                director: btnAlquilar.dataset.director,
+                fecha: movieDate()
+            };
+
+            const agregado = addToCart(item);
+
+            if (!agregado) {
+                alert(`"${item.titulo}" ya está en el carrito.`);
+            }
+
+            renderCart();
+        });
     }
 });
