@@ -25,9 +25,8 @@ main, nav {
 }
 
 .titulo-cine {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     color: #fff;
-    margin-bottom: 10px;
 }
 
 .titulo-cine-grande {
@@ -38,7 +37,7 @@ main, nav {
 
 .texto-cine {
     font-family: cuerpo;
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: #fff;
 }
 
