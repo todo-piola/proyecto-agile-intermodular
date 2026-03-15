@@ -52,7 +52,9 @@ try {
             fecha_nacimiento DATE,
             pais VARCHAR(100),
             notificaciones TINYINT(1),
-            revista TINYINT(1)
+            revista TINYINT(1),
+            tarjeta VARCHAR(25),
+            imagen_usuario VARCHAR(255)
         );
     ");
 } catch (PDOException $e) {
@@ -179,7 +181,7 @@ try {
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         ");
 
-        while ($totalPeliculas < 30) {
+        while ($totalPeliculas < 150) {
 
             $url = "https://api.themoviedb.org/3/movie/popular?api_key=$apiKey&language=es-ES&page=$pagina";
             $response = file_get_contents($url);
