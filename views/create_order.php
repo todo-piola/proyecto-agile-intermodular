@@ -16,10 +16,10 @@
         <?php include(__DIR__ . "/../templates/header.php"); ?>
 
             <section class="d-flex gap-3">
-    
+
                 <!--Lista de productos-->
                 <div id="product-list" class="col col-md-9 d-flex flex-column gap-3">
-                    
+
                     <!--Template como el de search PHP para clonar en JS-->
                     <div class="templateResume" style="display: none;">
                         <div class="row align-items-center">

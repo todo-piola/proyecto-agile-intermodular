@@ -16,8 +16,8 @@ $fotos_reparto = json_decode($pelicula['fotos_reparto'], true);
     <meta charset="UTF-8">
     <title><?= htmlspecialchars($pelicula['titulo']) ?></title>
     <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/estilo-cine.css" rel="stylesheet">
     <link href="../css/estilo.css" rel="stylesheet">
+    <link href="../css/estilo-cine.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 </head>
 <body>
@@ -35,7 +35,7 @@ $fotos_reparto = json_decode($pelicula['fotos_reparto'], true);
             <div class="col-12 col-md-5 d-flex justify-content-center">
                 <img src="https://image.tmdb.org/t/p/w500<?= $pelicula['poster'] ?>"
                      class="poster-pelicula-peliculas shadow"
-                     style="height:auto; max-height:500px; border-radius:15px;"
+                     style="height:auto; max-height:500px; border-radius:0px;"
                      alt="<?= htmlspecialchars($pelicula['titulo']) ?>">
             </div>
 

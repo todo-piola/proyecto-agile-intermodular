@@ -1,0 +1,194 @@
+/* ========================================
+   TIPOGRAFÍAS
+======================================== */
+@font-face {
+    font-family: titulos;
+    src: url(../recursos/tipografias/MiriamLibre-Regular.woff);
+}
+@font-face {
+    font-family: cuerpo;
+    src: url(../recursos/tipografias/DroidSans.ttf);
+}
+
+/* Titulos y textos */
+.titulo-cine, .titulo-cine-grande, .card-title, .card-director-name, .price-rent {
+    font-family: titulos;
+    color: #fff;
+}
+
+.texto-cine, .card-text, .rent-date, .card p, .offcanvas-body {
+    font-family: cuerpo;
+    color: #ccc;
+}
+
+/* ========================================
+   FONDO GENERAL
+======================================== */
+body, .bg-black {
+    background-color: #000 !important;
+}
+
+/* ========================================
+   TARJETAS DE PELÍCULAS Y PRODUCTOS
+======================================== */
+.card, #resultados .card, #product-list .row {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(8px);
+    border-radius: 15px;
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.7);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover, #resultados .card:hover, #product-list .row:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.9);
+}
+
+/* ========================================
+   IMÁGENES
+======================================== */
+.card img, #product-list img, #cart-items img, .poster-pelicula-peliculas {
+    border-radius: 10px;
+    object-fit: cover;
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Para search.php: altura fija en escritorio */
+@media(min-width: 768px) {
+    #resultados .card img {
+        height: 300px;
+    }
+}
+
+/* Para create_order.php y carrito: altura de los productos */
+#product-list img, #cart-items img {
+    height: 120px;
+}
+
+/* Para peliculas.php y genero: póster principal */
+.poster-pelicula-peliculas {
+    max-width: 350px;
+    height: auto;
+}
+
+/* ========================================
+   BOTONES
+======================================== */
+.btn-alquilar, .delete-button, .btn-success {
+    font-weight: bold;
+    border-radius: 25px;
+    padding: 6px 20px;
+    transition: all 0.3s ease;
+}
+
+.btn-alquilar {
+    background-color: #ffc107;
+    color: #000;
+}
+
+.btn-alquilar:hover {
+    background-color: #e0a800;
+}
+
+.delete-button {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.delete-button:hover {
+    background-color: #b02a37;
+}
+
+.btn-success {
+    background-color: #ffc107;
+    color: #000;
+}
+
+.btn-success:hover {
+    background-color: #e0a800;
+}
+
+/* ========================================
+   OFFCANVAS CARRITO
+======================================== */
+.offcanvas {
+    background: rgba(0, 0, 0, 0.95);
+    color: #fff;
+    backdrop-filter: blur(10px);
+    border-left: 1px solid rgba(255,255,255,0.1);
+}
+
+.offcanvas-header, .offcanvas-body {
+    font-family: cuerpo;
+}
+
+.offcanvas-title {
+    font-family: titulos;
+    color: #ffc107;
+}
+
+#cart-items .card {
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(8px);
+    border-radius: 15px;
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.7);
+    margin-bottom: 10px;
+    padding: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#cart-items .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.9);
+}
+
+#cart-total, #finalizar {
+    font-family: titulos;
+    color: #fff;
+    margin-top: 15px;
+}
+
+#finalizar button {
+    background-color: #ffc107;
+    color: #000;
+    font-weight: bold;
+    border-radius: 25px;
+    width: 100%;
+    padding: 6px 0;
+    transition: all 0.3s ease;
+}
+
+#finalizar button:hover {
+    background-color: #e0a800;
+}
+
+/* ========================================
+   SEPARADORES
+======================================== */
+.linea-blanca {
+    border: none;
+    border-top: 2px solid white;
+    margin: 20px auto;
+    width: 95%;
+}
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+@media (max-width: 768px) {
+    #product-list, #resultados {
+        flex-direction: column;
+    }
+
+    #resultados .card img, #product-list img {
+        height: auto;
+    }
+
+    .poster-pelicula-peliculas {
+        max-width: 100%;
+    }
+}

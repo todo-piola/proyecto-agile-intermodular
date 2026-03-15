@@ -10,26 +10,77 @@
     src: url(../recursos/tipografias/DroidSans.ttf);
 }
 
-.titulo-cine {
+/* Aplicación de tipografías */
+.btn,
+.card-body,
+main, nav {
+    font-family: cuerpo;
+}
+
+/* Para títulos y textos de películas */
+.titulo-cine,
+.titulo-cine-grande {
     font-family: titulos;
-    font-size: 1.2rem; /* para listas.php */
-    color: #fff;
-    margin-bottom: 10px;
     text-align: center;
 }
 
+.titulo-cine {
+    font-size: 1.2rem;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
 .titulo-cine-grande {
-    font-family: titulos;
-    font-size: 2.5rem; /* para pelicula.php */
+    font-size: 2.5rem;
     color: #fff;
     margin-bottom: 20px;
-    text-align: center;
 }
 
 .texto-cine {
     font-family: cuerpo;
     font-size: 0.9rem;
     color: #fff;
+}
+
+/* ========================================
+   HEADER Y FOOTER
+======================================== */
+#piepagina {
+    display: flex;
+    width: 100%;
+    background-color: #000000;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar-nav .nav-link {
+    transition: all 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #eca35a !important;
+    transform: translateY(-2px);
+}
+
+.footer-link {
+    text-decoration: none;
+    color: #aaa;
+    transition: all 0.3s ease;
+}
+
+.footer-link:hover {
+    color: #ffc107;
+    padding-left: 5px;
+}
+
+.footer-icon {
+    color: #aaa;
+    transition: all 0.3s ease;
+}
+
+.footer-icon:hover {
+    color: #ffc107;
+    transform: scale(1.2);
 }
 
 /* ========================================
@@ -60,7 +111,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.3);
+    background: rgba(0,0,0,0.4);
 }
 
 /* ========================================
@@ -86,16 +137,61 @@
     text-align: center;
 }
 
-/* ========================================
-   POSTERS
-======================================== */
-.poster-pelicula-peliculas {
+.poster-pelicula-peliculas{
     width: 100%;
-    height: 100%;
-    object-fit: contain;
-    border-radius: 10px;
+    max-width: 350px;
+    height: auto;
+    border-radius: 15px;
     display: block;
-    margin: 0 auto;
+}
+.poster-pelicula-peliculas{
+    max-height: none;
+}
+/* ========================================
+   CARD DE GÉNERO
+======================================== */
+.card-genero {
+    position: relative;
+    height: 180px;
+    border-radius: 15px;
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-family: titulos;
+    font-size: 1.2rem;
+    text-shadow: 0 0 8px rgba(0,0,0,0.8);
+    transition: transform 0.3s ease, filter 0.3s ease, background-color 0.3s ease;
+}
+
+.card-genero::after {
+    content: "";
+    position: absolute;
+    top:0; left:0;
+    width:100%; height:100%;
+    background: rgba(69, 68, 68, 0.4);
+    transition: background 0.3s ease;
+}
+
+.card-genero:hover {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+}
+
+.card-genero:hover::after {
+    background: rgba(241, 207, 27, 0.75);
+}
+
+.card-genero h5 {
+    position: relative;
+    z-index: 1;
+    transition: color 0.3s ease;
+}
+
+.card-genero:hover h5 {
+    color: #000;
 }
 
 /* ========================================
@@ -116,71 +212,8 @@
     background-color: #e0a800;
 }
 
-/* ========================================
-   SEPARADORES
-======================================== */
-.linea-blanca {
-    border: none;
-    border-top: 2px solid white;
-    margin: 20px auto;
-    width: 95%;
-}
-
-/* ========================================
-   CARD DE GÉNERO - OPCIÓN A
-======================================== */
-.card-genero {
-    position: relative;
-    height: 180px;
-    border-radius: 15px;
-    overflow: hidden;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    font-family: titulos;
-    font-size: 1.2rem;
-    text-shadow: 0 0 8px rgba(0,0,0,0.8);
-    transition: transform 0.3s ease, filter 0.3s ease, background-color 0.3s ease;
-}
-
-/* Overlay oscuro inicial */
-.card-genero::after {
-    content: "";
-    position: absolute;
-    top:0; left:0;
-    width:100%; height:100%;
-    background: rgba(69, 68, 68, 0.4);
-    transition: background 0.3s ease;
-}
-
-/* Hover: resalta con color más brillante */
-.card-genero:hover {
-    transform: scale(1.05);
-    filter: brightness(1.1);
-}
-
-/* Hover overlay más oscuro / color distinto */
-.card-genero:hover::after {
-    background: rgba(241, 207, 27, 0.75); /* amarillo transparente */
-}
-
-/* Texto siempre visible encima del overlay */
-.card-genero h5 {
-    position: relative;
-    z-index: 1;
-    transition: color 0.3s ease;
-}
-
-.card-genero:hover h5 {
-    color: #000; /* Contraste con overlay amarillo */
-}
-/* ========================================
-   BOTONES ESPECIALES DE PELÍCULA
-======================================== */
 .btn-comprar {
-    background-color: rgba(250, 218, 11, 0.86); /* dorado */
+    background-color: rgba(250, 218, 11, 0.86);
     color: #000;
     font-weight: bold;
     border: none;
@@ -191,12 +224,12 @@
 }
 
 .btn-comprar:hover {
-    background-color: rgb(255, 243, 5); /* dorado más oscuro */
+    background-color: rgb(255, 243, 5);
     box-shadow: 0 4px 15px rgba(0, 51, 102, 0.5);
 }
 
 .btn-alquilar {
-    background-color: #001f4d; /* azul marino */
+    background-color: #001f4d;
     color: #fff;
     font-weight: bold;
     border: none;
@@ -206,8 +239,18 @@
 }
 
 .btn-alquilar:hover {
-    background-color: #003366; /* azul más oscuro */
+    background-color: #003366;
     box-shadow: 0 4px 15px rgba(0, 51, 102, 0.5);
+}
+
+/* ========================================
+   SEPARADORES
+======================================== */
+.linea-blanca {
+    border: none;
+    border-top: 2px solid white;
+    margin: 20px auto;
+    width: 95%;
 }
 
 /* ========================================
