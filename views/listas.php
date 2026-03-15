@@ -42,7 +42,7 @@ $generosUnicos = require "../php/obtener_generos.php";
             <?php endforeach; ?>
         </div>
 
-        <div class="text-center">
+        <div class="text-center my-4">
             <a href="../index.php" class="btn btn-cine">Volver al inicio</a>
         </div>
     </main>

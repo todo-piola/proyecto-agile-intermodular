@@ -115,7 +115,7 @@ $esAdmin = isset($_SESSION['nombre_completo']) && $_SESSION['nombre_completo'] =
 
                 <!-- Carrusel reparto -->
                 <?php if (!empty($reparto) && !empty($fotos_reparto)): ?>
-                    <p class="texto-cine mt-3"><strong>Reparto principal:</strong></p>
+                    <h5 class="titulo-cine">Reparto</h5>
                     <div id="carouselReparto" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <?php

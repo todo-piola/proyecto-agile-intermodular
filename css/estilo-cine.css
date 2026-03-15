@@ -113,9 +113,13 @@ main, nav {
 .poster-pelicula-peliculas{
     max-height: none;
 }
-
-.btn-cine:hover {
+.btn-cine {
+    color: #000;
+    border-radius: 50px;
     background-color: #e0a800;
+}
+.btn-cine:hover {
+    background-color: #ffcd41;
 }
 
 /* ========================================
