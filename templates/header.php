@@ -18,7 +18,7 @@ if (session_status() == PHP_SESSION_NONE) {
         <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
             <ul class="navbar-nav text-center fs-5 gap-lg-4">
                 <li class="nav-item">
-                    <a class="nav-link texto-cta text-white" href="/proyecto-agile-intermodular/views/movies.html">Películas</a>
+                    <a class="nav-link texto-cta text-white" href="/proyecto-agile-intermodular/views/movies.php">Películas</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link texto-cta text-white" href="/proyecto-agile-intermodular/views/listas.php">Lista</a>

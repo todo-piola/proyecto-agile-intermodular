@@ -104,17 +104,22 @@ export async function checkout(){
         method : 'POST',
         headers : {'Content-Type': 'application/json'},
         body: JSON.stringify({
-            orderId: orderId, 
+            orderId: orderId,
             itemsData: cartState.items.map(item => ({
                 movieId: item.id,
-                endTime: item.fechaDevolucion ?? movieDate(),
-            })),
+                precio: item.precio
+            }))
         })
     });
 
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
 
-    window.location.href = `/proyecto-agile-intermodular/create_order.php?orderId=${orderId}`;
+    /* Guardamos el pedido para que la página de resumen lo pueda leer */
+    sessionStorage.setItem('orderSummary', JSON.stringify({
+        orderId: orderId
+    }));
+
+    window.location.href = `/proyecto-agile-intermodular/views/create_order.php?orderId=${orderId}`;
     return data;
 }

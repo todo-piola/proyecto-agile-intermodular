@@ -1,5 +1,18 @@
 <?php
 session_start();
+require_once "../php/conexion.php";
+
+// Obtener 1 película aleatoria para el póster destacado
+$stmtPoster = $conexion->query("SELECT id, titulo, trailer_url FROM peliculas WHERE trailer_url IS NOT NULL AND trailer_url != '' ORDER BY RAND() LIMIT 1");
+$peliculaDestacada = $stmtPoster->fetch(PDO::FETCH_ASSOC);
+
+// Obtener 16 películas aleatorias SOLO de TMDB (poster empieza por /)
+$stmt = $conexion->query("SELECT id, titulo, poster FROM peliculas WHERE poster LIKE '/%' ORDER BY RAND() LIMIT 16");
+$peliculas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// Dividir en dos grupos de 8
+$peliculasSemana = array_slice($peliculas, 0, 8);
+$peliculasGustadas = array_slice($peliculas, 8, 8);
 ?>
 
 <!DOCTYPE html>
@@ -27,6 +40,11 @@ session_start();
 
   <main class="container-fluid p-5 position-relative">
 
+    <?php if (isset($_SESSION['mensaje'])): ?>
+      <div class="alert alert-success text-center"> <?= $_SESSION['mensaje'] ?> </div>
+      <?php unset($_SESSION['mensaje']); ?>
+    <?php endif; ?>
+
     <!-- ===================== GRID DE PELÍCULAS ================= -->
     <div class="row g-5 justify-content-around">
 
@@ -35,8 +53,19 @@ session_start();
           <p class="fs-3 text-white text-center mt-3 cuerpo animate__animated animate__rubberBand animate__delay-2s">
               Mejores películas semana
           </p>
-          <div class="row row-cols-2 d-md-none gy-3 justify-content-center" id="grid-mas-vistas-sm"></div>
-          <div class="row d-none d-md-flex row-cols-md-4 gy-3 justify-content-center" id="grid-mas-vistas"></div>
+
+          <div class="row row-cols-2 row-cols-md-4 gy-3 justify-content-center">
+            <?php foreach ($peliculasSemana as $pelicula): ?>
+              <div class="col text-center">
+                <a href="pelicula.php?id=<?= $pelicula['id'] ?>">
+                  <img src="https://image.tmdb.org/t/p/w500<?= $pelicula['poster'] ?>" 
+                  class="img-fluid rounded shadow poster-grid" 
+                  alt="<?= htmlspecialchars($pelicula['titulo']) ?>" >
+                </a>
+              </div>
+            <?php endforeach; ?>
+          </div>
+
       </section>
 
       <!-- SECCIÓN 2: Películas mejor valoradas -->
@@ -44,10 +73,19 @@ session_start();
           <p class="fs-3 text-white text-center mt-3 cuerpo animate__animated animate__rubberBand animate__delay-2s">
               Películas que más gustan
           </p>
-          <div class="row row-cols-2 d-md-none gy-3 justify-content-center" id="grid-mas-gustadas-sm"></div>
-          <div class="row d-none d-md-flex row-cols-md-4 gy-3 justify-content-center" id="grid-mas-gustadas"></div>
-      </section>
+          <div class="row row-cols-2 row-cols-md-4 gy-3 justify-content-center">
+          <?php foreach ($peliculasGustadas as $pelicula): ?>
+              <div class="col text-center">
+                <a href="pelicula.php?id=<?= $pelicula['id'] ?>">
+                  <img src="https://image.tmdb.org/t/p/w500<?= $pelicula['poster'] ?>" 
+                  class="img-fluid rounded shadow poster-grid" 
+                  alt="<?= htmlspecialchars($pelicula['titulo']) ?>" >
+                </a>
+              </div>
+            <?php endforeach; ?>
+          </div>
 
+      </section>
     </div>
 
     <!-- FILA INFERIOR: reseñas a la izquierda, trailer a la derecha -->
@@ -93,14 +131,28 @@ session_start();
                 </div>
             </div>
         </div>
-
+        
         <!-- COLUMNA TRAILER: solo visible en xl -->
         <div class="col-xl-6 d-none d-xl-flex flex-column">
-            <p class="fs-3 text-white text-center cuerpo">Tráiler de la semana</p>
+            <p class="fs-3 text-white text-center cuerpo">Tráiler destacado</p>
             <div class="ratio ratio-16x9 rounded overflow-hidden flex-grow-1">
-                <video class="w-100 h-100 object-fit-cover rounded-4" controls autoplay muted loop>
-                    <source src="../img/trailer.mp4" type="video/mp4">
-                </video>
+                <?php if ($peliculaDestacada): ?>
+                    <?php
+                        $url = $peliculaDestacada['trailer_url'];
+                        // Convierte watch?v=XXXX o youtu.be/XXXX a formato embed
+                        if (preg_match('/(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)/', $url, $matches)) {
+                            $videoId = $matches[1];
+                            $embedUrl = "https://www.youtube.com/embed/{$videoId}?autoplay=1&mute=1&loop=1&playlist={$videoId}";
+                        }
+                    ?>
+                    <iframe 
+                        src="<?= htmlspecialchars($embedUrl) ?>"
+                        class="w-100 h-100 rounded-4"
+                        frameborder="0"
+                        allow="autoplay; encrypted-media"
+                        allowfullscreen>
+                    </iframe>
+                <?php endif; ?>
             </div>
         </div>
 

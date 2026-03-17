@@ -11,10 +11,14 @@ $peliculas = $data['peliculas'];
 <head>
     <meta charset="UTF-8">
     <title>Películas de <?= htmlspecialchars($genero) ?></title>
+
     <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/estilo-cine.css" rel="stylesheet">
     <link href="../css/estilo.css" rel="stylesheet">
+    <link href="../css/estilo-cine.css" rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <script src="../js/templates-js/templates-loader.js"></script>
 </head>
 <body>
     <div class="contenedor-fondo-peliculas">
@@ -33,7 +37,8 @@ $peliculas = $data['peliculas'];
                     <a href="pelicula.php?id=<?= $p['id'] ?>" style="text-decoration:none;">
                         <div class="card-cine shadow h-100 d-flex flex-column">
                             <div style="flex:1;">
-                                <img src="https://image.tmdb.org/t/p/w500<?= $p['poster'] ?>" class="poster-pelicula-peliculas" alt="<?= htmlspecialchars($p['titulo']) ?>">
+                            <?php $posterSrc = str_starts_with($p['poster'], '/') ? "https://image.tmdb.org/t/p/w500" . $p['poster'] : "../img/" . $p['poster']; ?>
+                                <img src="<?= htmlspecialchars($posterSrc) ?>" class="poster-pelicula-peliculas" alt="<?= htmlspecialchars($p['titulo']) ?>">
                             </div>
                             <div class="card-body">
                                 <h5 class="titulo-cine"><?= htmlspecialchars($p['titulo']) ?></h5>
@@ -54,5 +59,6 @@ $peliculas = $data['peliculas'];
     <?php include "../templates/footer.html"; ?>
 
     <script src="../recursos/bootstrap.bundle.min.js"></script>
+    <script type="module" src="../js/main.js"></script>
 </body>
 </html>

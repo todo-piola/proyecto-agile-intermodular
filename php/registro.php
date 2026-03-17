@@ -16,6 +16,7 @@ $sexo           = $_POST["sexo"] ?? "";
 $fecha          = $_POST["fecha"] ?? "";
 $notificaciones = !empty($_POST["notificaciones"]) ? 1 : 0;
 $revista        = !empty($_POST["revista"]) ? 1 : 0;
+$tarjeta = trim($_POST["tarjeta"] ?? "");
 
 // ===== VALIDACIONES =====
 
@@ -54,18 +55,33 @@ if(empty($errores)) {
     }
 }
 
+// solo números y longitud mínima 12
+if($tarjeta !== "" && !preg_match('/^[0-9]{12,19}$/', $tarjeta)){
+    $errores[] = "La tarjeta debe contener entre 12 y 19 números.";
+}
+
 // ===== INSERTAR USUARIO =====
 if(empty($errores)){
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
     try {
         $sql = "INSERT INTO usuarios
-                (nombre_completo, telefono, correo, contrasenia, sexo, fecha_nacimiento, pais, notificaciones, revista)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                (nombre_completo, telefono, correo, contrasenia, sexo, fecha_nacimiento, pais, notificaciones, revista, tarjeta)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
         $stmt = $conexion->prepare($sql);
+
         $stmt->execute([
-            $nombreCompleto, $telefono, $correo, $password_hash,
-            $sexo, $fecha, $pais, $notificaciones, $revista
+            $nombreCompleto,
+            $telefono,
+            $correo,
+            $password_hash,
+            $sexo,
+            $fecha,
+            $pais,
+            $notificaciones,
+            $revista,
+            $tarjeta
         ]);
 
     } catch(PDOException $e) {

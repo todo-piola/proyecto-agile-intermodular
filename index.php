@@ -1,4 +1,9 @@
-<?php require_once("php/conexion.php"); ?>
+<?php
+require_once "php/conexion.php";
+$stmtCatalogo = $conexion->query("SELECT id, titulo, poster FROM peliculas WHERE poster LIKE '/%' ORDER BY RAND() LIMIT 6");
+$catalogoPeliculas = $stmtCatalogo->fetchAll(PDO::FETCH_ASSOC);
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -59,11 +64,12 @@
 
                         <!-- Contraseña -->
                         <div class="mb-3 field">
-                            <label for="contrasena" class="form-label">Contraseña<span class="asterisco">*</span>
-                                <i class="bi bi-eye-fill"></i>
+                            <label for="contrasena" class="form-label">
+                                Contraseña<span class="asterisco">*</span>
+                                <i class="bi bi-eye-fill toggle-pass"></i>
                             </label>
                             <input type="password" class="form-control" id="contrasena" required>
-                            <p id = "errContrasena" class="error"></p>
+                            <p id="errContrasena" class="error"></p>
                         </div>
 
                         <!-- Confirmar Contraseña -->
@@ -281,7 +287,7 @@
                         <!-- Tarjeta de crédito -->
                         <div class="mb-3 field">
                             <label for="tarjeta" class="form-label">Tarjeta bancaria</label>
-                            <input type="text" class="form-control" id="tarjeta">
+                            <input type="text" class="form-control" id="tarjeta" name="tarjeta">
                             <p id = "errTarjeta" class="error"></p>
                         </div>
 
@@ -415,67 +421,27 @@
 
             <!-- Catálogo de películas esperadas -->
             <div class="row p-5 bg-black">
-
                 <div class="col-12 d-md-none">
                     <h3 class="text-center text-md-start w-100 text-white peliculas-esperadas-movil">
                         Películas más esperadas de 2026
                     </h3>
                 </div>
-
                 <div class="d-none d-md-flex">
                     <h3 class="text-center text-md-start w-100 text-white peliculas-esperadas-escritorio">
                         Películas más esperadas de 2026
                     </h3>
                 </div>
-
-                <div class="col-4 col-md-2">
-                    <div class="bg-dark">
-                        <img src="img/poster_CumbresBorrascosas.webp"
-                                class="w-100 object-fit-cover"
-                                alt="">
+                <?php foreach ($catalogoPeliculas as $p): ?>
+                    <div class="col-4 col-md-2">
+                        <a href="views/pelicula.php?id=<?= $p['id'] ?>">
+                            <div class="bg-dark">
+                                <img src="https://image.tmdb.org/t/p/w500<?= $p['poster'] ?>"
+                                    class="w-100 object-fit-cover"
+                                    alt="<?= htmlspecialchars($p['titulo']) ?>">
+                            </div>
+                        </a>
                     </div>
-                </div>
-
-                <div class="col-4 col-md-2">
-                    <div class="bg-dark">
-                        <img src="img/poster_Odisea_Nolan.webp"
-                                class="w-100 object-fit-cover"
-                                alt="">
-                    </div>
-                </div>
-
-                <div class="col-4 col-md-2">
-                    <div class="bg-dark">
-                        <img src="img/poster_proyect_hailMary.webp"
-                                class="w-100 object-fit-cover"
-                                alt="">
-                    </div>
-                </div>
-
-                <div class="col-4 col-md-2">
-                    <div class="bg-dark">
-                        <img src="img/poster_theBride.webp"
-                                class="w-100 object-fit-cover"
-                                alt="">
-                    </div>
-                </div>
-
-                <div class="col-4 col-md-2">
-                    <div class="bg-dark">
-                        <img src="img/poster_WeBuryTheDead.webp"
-                                class="w-100 object-fit-cover"
-                                alt="">
-                    </div>
-                </div>
-
-                <div class="col-4 col-md-2">
-                    <div class="bg-dark">
-                        <img src="img/poster_MandoGrogu.webp"
-                                class="w-100 object-fit-cover"
-                                alt="">
-                    </div>
-                </div>
-
+                    <?php endforeach; ?>            
             </div>
 
             <!-- CTA móvil - Solo visible en pantallas pequeñas -->

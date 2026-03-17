@@ -7,10 +7,14 @@ $generosUnicos = require "../php/obtener_generos.php";
 <head>
     <meta charset="UTF-8">
     <title>Géneros de Películas</title>
+
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/estilo-cine.css" rel="stylesheet">
     <link href="../css/estilo.css" rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <script src="../js/templates-js/templates-loader.js"></script>
 </head>
 <body>
 
@@ -38,7 +42,7 @@ $generosUnicos = require "../php/obtener_generos.php";
             <?php endforeach; ?>
         </div>
 
-        <div class="text-center">
+        <div class="text-center my-4">
             <a href="../index.php" class="btn btn-cine">Volver al inicio</a>
         </div>
     </main>
@@ -47,5 +51,6 @@ $generosUnicos = require "../php/obtener_generos.php";
     <?php include "../templates/footer.html"; ?>
 
     <script src="../recursos/bootstrap.bundle.min.js"></script>
+    <script type="module" src="../js/main.js"></script>
 </body>
 </html>
