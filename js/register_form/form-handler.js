@@ -1,6 +1,5 @@
 import * as v from './validators.js';
 import * as u from './ui.js';
-import {limpiarMensajeErrorFecha, mensajeErrorFecha} from "./ui.js";
 
 //Objeto que almacena el estado de validación de cada campo del formulario
 //Inicialmente todos en false excepto fecha, dirección, pais y tarjeta que 
@@ -252,7 +251,7 @@ export async function manejarSubmit(event, datosForm){
     };
 
     try {
-        const respuesta = await fetch('php/registro.php', {
+        const respuesta = await fetch('/proyecto-agile-intermodular/php/registro.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: new URLSearchParams(payload)
