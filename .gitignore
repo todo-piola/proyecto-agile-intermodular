@@ -3,4 +3,6 @@ package.json
 LICENSE
 .idea/
 .vscode/
+node_modules/
 .node-modules/
+.node_modules/

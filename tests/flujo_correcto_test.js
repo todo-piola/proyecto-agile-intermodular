@@ -1,5 +1,7 @@
 const { Builder, By, until } = require("selenium-webdriver");
-require("chromedriver");
+const chrome = require("selenium-webdriver/chrome");
+
+const RUN_HEADLESS = process.env.E2E_HEADLESS !== "0";
 
 let expect;
 before(async () => {
@@ -11,7 +13,11 @@ before(async () => {
     let driver;
 
     before(async () => {
-        driver = await new Builder().forBrowser("chrome").build();
+        const options = new chrome.Options();
+        if (RUN_HEADLESS) options.addArguments("--headless=new");
+        options.addArguments("--window-size=1366,900");
+        options.addArguments("--disable-gpu");
+        driver = await new Builder().forBrowser("chrome").setChromeOptions(options).build();
     });
 
     after(async () => {
