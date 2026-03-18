@@ -1,0 +1,9 @@
+body{
+    background-color: #f8f5f0;
+}
+
+.linea-centrada {
+    border-top: 2px solid black; /* color gris Bootstrap */
+    width: 95%; /* casi todo el ancho pero con espacio */
+    margin: 15px auto 25px auto; /* espacio alrededor */
+}
