@@ -103,10 +103,10 @@ $peliculasGustadas = array_slice($peliculas, 8, 8);
                   </div>
                   <div class="col-md-8">
                     <div class="card-body">
-                      <h5 class="card-title mt-3">Card title</h5>
-                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      <h5 class="card-title mt-3">Reseña de Fulanito</h5>
+                      <p class="card-text">En el Sprint 3, la idea es crear un campo reseñas asociado a una tabla intermedia Reseñas_Pelicula donde se relacionen Usuario y Película con Reseña </p>
                       <div class="likes-comentarios d-flex gap-2 justify-content-center">
-                        <p class="text-danger">Deja tu like</p>
+                        <p class="text-danger">Aquí se mostrará la cantidad de likes que tiene la reseña de tal usuario y si el usuario logeado interactúa clicando en el botón, aumentará en uno la cantidad de likes</p>
                         <i class="bi bi-heart fs-5 text-danger corazon"></i>
                       </div>
                     </div>
@@ -120,10 +120,10 @@ $peliculasGustadas = array_slice($peliculas, 8, 8);
                   </div>
                   <div class="col-md-8">
                     <div class="card-body">
-                      <h5 class="card-title mt-3">Card title</h5>
-                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      <h5 class="card-title mt-3">Reseña de Fulanito</h5>
+                      <p class="card-text">En el Sprint 3, la idea es crear un campo reseñas asociado a una tabla intermedia Reseñas_Pelicula donde se relacionen Usuario y Película con Reseña</p>
                       <div class="likes-comentarios d-flex gap-2 justify-content-center">
-                        <p class="text-danger">Deja tu like</p>
+                        <p class="text-danger">Aquí se mostrará la cantidad de likes que tiene la reseña de tal usuario y si el usuario interactúa clicando en el botón, aumentará en uno la cantidad de likes</p>
                         <i class="bi bi-heart fs-5 text-danger corazon"></i>
                       </div>
                     </div>
