@@ -59,9 +59,10 @@
                 </div>
             </template>
 
-            <div id="resultados" class="row"></div>
-            <div id="sinResultados" class="text-warning"></div>
-
+            <div class="container-fluid px-4">
+                <div id="resultados" class="row gy-4"></div>
+                <div id="sinResultados" class="text-warning"></div>
+            </div>
         </section>
 
         <?php include(__DIR__ . "/../templates/footer.html"); ?>

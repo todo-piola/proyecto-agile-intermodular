@@ -32,12 +32,12 @@
             </section>
             <section class="mt-5">
                 <h3 class="ms-5">Actividad reciente</h3>
-                <div class="linea-centrada mb-4"></div> <!-- más espacio después de la línea -->
+                <div class="linea-centrada mb-4"></div> 
                 
-                <div class="container-fluid px-5"> <!-- más padding lateral -->
-                    <div class="row g-4 justify-content-center"> <!-- más espacio entre columnas -->
+                <div class="container-fluid px-5"> 
+                    <div class="row g-4 justify-content-center">
                         <div class="col-6 col-md-3">
-                            <img src="../img/poster-prueba.jpg" alt="" class="img-fluid rounded"> <!-- esquinas redondeadas -->
+                            <img src="../img/poster-prueba.jpg" alt="" class="img-fluid rounded"> 
                         </div>
                         <div class="col-6 col-md-3">
                             <img src="../img/poster-prueba.jpg" alt="" class="img-fluid rounded">
@@ -81,7 +81,7 @@
                     <h3 class="ms-5 mb-4">Amigos</h3>
                     
                     <div class="container-fluid">
-                        <!-- Primera fila - 3 amigos -->
+
                         <div class="row g-4 justify-content-center mb-4">
                             <div class="col-4 col-md-4">
                                 <div class="d-flex justify-content-center">
@@ -106,7 +106,7 @@
                             </div>
                         </div>
                         
-                        <!-- Segunda fila - 3 amigos -->
+
                         <div class="row g-4 justify-content-center">
                             <div class="col-4 col-md-4">
                                 <div class="d-flex justify-content-center">
