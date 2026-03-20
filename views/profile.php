@@ -83,7 +83,7 @@
                     <h3 class="ms-5 mb-4">Amigos</h3>
                     
                     <div class="container-fluid">
-                        <!-- Primera fila - 3 amigos -->
+
                         <div class="row g-4 justify-content-center mb-4">
                             <div class="col-4 col-md-4">
                                 <div class="d-flex justify-content-center">
@@ -108,7 +108,7 @@
                             </div>
                         </div>
                         
-                        <!-- Segunda fila - 3 amigos -->
+
                         <div class="row g-4 justify-content-center">
                             <div class="col-4 col-md-4">
                                 <div class="d-flex justify-content-center">
