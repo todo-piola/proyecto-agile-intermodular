@@ -1,0 +1,22 @@
+body {
+    background-color: #6f6f6f;
+}
+
+.linea-centrada {
+    border-top: 2px solid #dee2e6; /* color gris Bootstrap */
+    width: 95%; /* casi todo el ancho pero con espacio */
+    margin: 15px auto 25px auto; /* espacio alrededor */
+}
+
+/* Si quieres que las fotos tengan un borde sutil */
+.rounded-circle {
+    border: 2px solid #f0f0f0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+
+/* Efecto hover sutil */
+.rounded-circle:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s;
+}
