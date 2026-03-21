@@ -4,6 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <title>Perfil</title>
+    <link href="../css/estilo.css" rel="stylesheet">
+    <link href="../css/cartStyle.css" rel="stylesheet">
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/estilo.css" rel="stylesheet">
     <link href="../css/estilo_perfil.css" rel="stylesheet">

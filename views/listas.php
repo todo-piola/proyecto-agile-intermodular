@@ -7,7 +7,6 @@ $generosUnicos = require "../php/obtener_generos.php";
 <head>
     <meta charset="UTF-8">
     <title>Géneros de Películas</title>
-
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/estilo-cine.css" rel="stylesheet">
     <link href="../css/estilo.css" rel="stylesheet">
