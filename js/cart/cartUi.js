@@ -118,7 +118,7 @@ document.addEventListener('click', async(e) => {
         window.location.href = '/proyecto-agile-intermodular/index.php';
     }
     catch(err){
-        alert('Error al procesar el pedido. Inténtalo de nuevo.');
+        alert('Tienes que iniciar sesion');
         console.error(err);
     }
 });
