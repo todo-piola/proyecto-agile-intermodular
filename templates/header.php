@@ -24,10 +24,10 @@ if (session_status() == PHP_SESSION_NONE) {
                     <a class="nav-link texto-cta text-white" href="/proyecto-agile-intermodular/views/listas.php">Lista</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link texto-cta text-white" href="#">Blog</a>
+                    <a class="nav-link texto-cta text-white" href="/proyecto-agile-intermodular/views/blog.php">Blog</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link texto-cta text-white" href="#">Contacto</a>
+                    <a class="nav-link texto-cta text-white" href="/proyecto-agile-intermodular/views/about_contacto.php">Contacto</a>
                 </li>
                 <?php if (isset($_SESSION['usuario_id'])): ?>
                     <li class="nav-item">
