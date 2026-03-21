@@ -137,6 +137,13 @@ document.addEventListener('click', (e) => {
         fecha : btn.dataset.fecha
     };
 
-    addToCart(item);
+    const agregado = addToCart(item);
+    
+    if (agregado) {
+        alert(`¡"${item.titulo}" ha sido añadido al carrito!`);
+    } else {
+        alert(`"${item.titulo}" ya está en el carrito.`);
+    }
+    
     renderCart();
 });

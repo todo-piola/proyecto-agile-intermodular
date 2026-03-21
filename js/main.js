@@ -163,7 +163,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             const agregado = addToCart(item);
 
-            if (!agregado) {
+            if (agregado) {
+                alert(`¡"${item.titulo}" ha sido añadido al carrito!`);
+            } else {
                 alert(`"${item.titulo}" ya está en el carrito.`);
             }
 
