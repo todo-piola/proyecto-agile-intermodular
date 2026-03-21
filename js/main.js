@@ -32,6 +32,19 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Ahora 'repo' es inteligente y se adapta al entorno
     await cargarComponente('footer-main', `${repo}/componentes/footer.html`);
 
+    const isHome = window.location.pathname.endsWith('/index.php')
+        || window.location.pathname === '/proyecto-agile-intermodular/'
+        || window.location.pathname === '/proyecto-agile-intermodular';
+
+    if (isHome) {
+        const checkoutSuccessMessage = sessionStorage.getItem('checkoutSuccessMessage');
+
+        if (checkoutSuccessMessage) {
+            alert(checkoutSuccessMessage);
+            sessionStorage.removeItem('checkoutSuccessMessage');
+        }
+    }
+
     initSearchBarNavigation();
     await initSearchResultsPage();
 

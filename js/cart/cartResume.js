@@ -115,11 +115,13 @@ export async function checkout(){
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
 
-    /* Guardamos el pedido para que la página de resumen lo pueda leer */
+    /* Guardamos el pedido por si en el futuro se quiere consultar el resumen */
     sessionStorage.setItem('orderSummary', JSON.stringify({
         orderId: orderId
     }));
 
-    window.location.href = `/proyecto-agile-intermodular/views/create_order.php?orderId=${orderId}`;
-    return data;
+    return {
+        ...data,
+        orderId
+    };
 }
