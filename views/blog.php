@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Blog</title>
     <link href="../css/estilo.css" rel="stylesheet">
     <link href="../css/cartStyle.css" rel="stylesheet">
     <link href="../css/bootstrap.min.css" rel="stylesheet">

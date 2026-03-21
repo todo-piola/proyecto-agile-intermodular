@@ -20,7 +20,7 @@ $peliculasGustadas = array_slice($peliculas, 8, 8);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LABUTACASOCIAL</title>
+    <title>Películas</title>
     <link href="../css/estilo.css" rel="stylesheet">
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">

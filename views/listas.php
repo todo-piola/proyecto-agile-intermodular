@@ -13,7 +13,7 @@ $generosUnicos = require "../php/obtener_generos.php";
     <link href="../css/estilo.css" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-
+    <link rel="icon" type="image/png" href="../img/logo_invisible_butaca.png">
     <script src="../js/templates-js/templates-loader.js"></script>
 </head>
 <body>
