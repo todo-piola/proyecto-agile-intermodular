@@ -102,14 +102,23 @@ if (cartItemsEl) {
 document.addEventListener('click', async(e) => {
     if (e.target.id !== 'checkout-btn') return;
 
+    const total = formatCartPrice(cartState.total);
+    const confirmationMessage = `¿Está seguro que desea continuar con la compra? Se le cargará en su tarjeta un total de ${total}€.`;
+
+    if (!window.confirm(confirmationMessage)) {
+        return;
+    }
+
     try{
         await checkout();
         clearCart();
         renderCart();
-        //Aquí tendré que redireccionar a la página de resumen de pedido
+
+        sessionStorage.setItem('checkoutSuccessMessage', 'Compra finalizada.');
+        window.location.href = '/proyecto-agile-intermodular/index.php';
     }
     catch(err){
-        alert('Error al procesar el pedido. Inténtalo de nuevo.');
+        alert('Tienes que iniciar sesion');
         console.error(err);
     }
 });
@@ -128,6 +137,13 @@ document.addEventListener('click', (e) => {
         fecha : btn.dataset.fecha
     };
 
-    addToCart(item);
+    const agregado = addToCart(item);
+    
+    if (agregado) {
+        alert(`¡"${item.titulo}" ha sido añadido al carrito!`);
+    } else {
+        alert(`"${item.titulo}" ya está en el carrito.`);
+    }
+    
     renderCart();
 });
