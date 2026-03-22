@@ -7,3 +7,7 @@ https://todo-piola.github.io/proyecto-agile-intermodular/
 
 ## Enlace al video del Sprint1
 https://drive.google.com/file/d/1LeKBq_iLvZVc1lis6cFKClcJuEICNctf/view?usp=drive_link
+
+## Enlace al video del Sprint2
+https://drive.google.com/file/d/1i95phgNYWfNxXfxwlpW6gcDSQJ8xG9Kc/view?usp=sharing
+https://drive.google.com/file/d/1tpkvpeZNtQUqEwufKRsTYy3mJ3Yyk7Oy/view?usp=drive_link - Vídeo corto mostrando el diseño responsive
