@@ -1,8 +1,12 @@
-import React from 'react'
 import { createRoot } from 'react-dom/client'
-import Cart from './components/Cart.jsx'
+
 import Pelicula from './components/Pelicula.jsx'
+
+import Cart from './components/Cart.jsx'
 import { useCart } from './hooks/useCart.js'
+
+import RegisterForm from './components/RegisterForm.jsx'
+import LoginForm from './components/LoginForm.jsx'
 
 const cartContainer = document.getElementById('cart-root');
 if (cartContainer) {
@@ -12,6 +16,16 @@ if (cartContainer) {
 const peliculaContainer = document.getElementById('react-pelicula');
 if (peliculaContainer && window.PELICULA_DATA) {
   createRoot(peliculaContainer).render(<PeliculaWrapper />);
+}
+
+const modalRoot = document.getElementById('modal-root');
+if (modalRoot) {
+  createRoot(modalRoot).render(
+    <>
+      <LoginForm />
+      <RegisterForm />
+    </>
+  );
 }
 
 function CartWrapper() {
