@@ -3,6 +3,9 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 ?>
+
+<script type="module" src="http://localhost:5173/src/main.jsx"></script>
+
 <nav id="encabezado" class="navbar navbar-expand-lg navbar-dark bg-black py-2">
     <div class="container d-flex justify-content-center">
         <a class="navbar-brand mx-auto" href="/proyecto-agile-intermodular/index.php">

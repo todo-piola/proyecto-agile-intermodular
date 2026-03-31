@@ -1,8 +1,4 @@
-import {
-    cartState,
-    persistCartState,
-    recalculateCartTotal
-} from "./cartState.js";
+import { cartState, persistCartState, recalculateCartTotal } from "./cartState.js";
 
 function recalcTotal(){
     return recalculateCartTotal();

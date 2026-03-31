@@ -12,6 +12,14 @@ $peliculas = $data['peliculas'];
     <meta charset="UTF-8">
     <title>Películas de <?= htmlspecialchars($genero) ?></title>
 
+    <script type="module">
+        import RefreshRuntime from 'http://localhost:5173/@react-refresh'
+        RefreshRuntime.injectIntoGlobalHook(window)
+        window.$RefreshReg$ = () => {}
+        window.$RefreshSig$ = () => (type) => type
+        window.__vite_plugin_react_preamble_installed__ = true
+    </script>
+
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/estilo.css" rel="stylesheet">
     <link href="../css/estilo-cine.css" rel="stylesheet">

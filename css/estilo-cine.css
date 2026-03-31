@@ -219,10 +219,11 @@ main, nav {
 .btn-agregar:hover {
     background-color: #003366; /* azul más oscuro */
     box-shadow: 0 4px 15px rgba(0, 51, 102, 0.5);
+    color: white !important;
 }
 
 .btn-eliminar {
-    background-color: rgba(224, 79, 79, 0.86); /* dorado */
+    background-color: rgba(224, 79, 79, 0.86); /* rojo */
     color: #ffffff;
     font-weight: bold;
     border: none;
@@ -233,7 +234,7 @@ main, nav {
 }
 
 .btn-eliminar:hover {
-    background-color: rgb(255, 21, 21); /* dorado más oscuro */
+    background-color: rgb(255, 21, 21); /* rojo mas brillante*/
     box-shadow: 0 4px 15px rgba(0, 51, 102, 0.5);
 }
 

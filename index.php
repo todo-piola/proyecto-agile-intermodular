@@ -10,11 +10,23 @@ $catalogoPeliculas = $stmtCatalogo->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LABUTACASOCIAL</title>
+
+    <script type="module">
+        import RefreshRuntime from 'http://localhost:5173/@react-refresh'
+        RefreshRuntime.injectIntoGlobalHook(window)
+        window.$RefreshReg$ = () => {}
+        window.$RefreshSig$ = () => (type) => type
+        window.__vite_plugin_react_preamble_installed__ = true
+    </script>
+
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/estilo-cine.css" rel="stylesheet">
     <link href="css/estilo.css" rel="stylesheet">
     <link href="css/cartStyle.css" rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="icon" type="image/png" href="img/logo_invisible_butaca.png">
+
     <script src="js/templates-js/templates-loader.js"></script>
 </head>
 <body>
@@ -22,6 +34,19 @@ $catalogoPeliculas = $stmtCatalogo->fetchAll(PDO::FETCH_ASSOC);
         <?php include("templates/header.php"); ?>
 
         <div class="container-fluid bg-black">
+
+            <!-- Mensaje confirmación pedido -->
+            <div id="msg-pedido" class="alert alert-success d-none position-fixed  m-4" style="z-index:9999">
+                 ¡Pedido realizado con éxito! Disfruta tus películas.
+            </div>
+
+            <script>
+                if (sessionStorage.getItem('pedido_ok')) {
+                    sessionStorage.removeItem('pedido_ok');
+                    document.getElementById('msg-pedido').classList.remove('d-none');
+                    setTimeout(() => document.getElementById('msg-pedido').classList.add('d-none'), 6000);
+                }
+            </script>
 
             <div class="row d-md-none align-items-center p-5" id="hero-movil" style="background-image: url('img/img-landing-parasite.jpg')">
                 <div class="col-12 col-md-4 text-start text-white p-1">

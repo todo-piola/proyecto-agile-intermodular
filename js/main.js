@@ -1,12 +1,9 @@
-import * as fh from './register_form/form-handler.js'
-import {mostrarPasswd} from './register_form/ui.js'
+import * as fh from '../react/src/js/registerauth/form-handler.js'
+import {mostrarPasswd} from '../react/src/js/registerauth/ui.js'
 import { getPeliculasSemana, getPeliculasMejorValoradas } from './movie-movies/movie-service.js';
 import { renderizarPeliculas, mostrarError } from './movie-movies/movie-ui.js';
-import { loadCartState } from './cart/cartState.js';
 import { initSearchBarNavigation, initSearchResultsPage } from './search/searchUi.js';
-import { renderCart } from './cart/cartUi.js';
-import { loadOrderSummary } from './cart/cart_order.js';
-import { addToCart, movieDate } from './cart/cartResume.js';
+import { loadCartState } from './cart/cartState.js';
 
 // Si estamos en GitHub Pages, usará el nombre del repo.
 // Si estamos en Local (localhost), se quedará vacío para buscar en la raíz del servidor.

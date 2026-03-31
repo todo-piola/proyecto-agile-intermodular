@@ -21,6 +21,15 @@ $esAdmin = isset($_SESSION['nombre_completo']) && $_SESSION['nombre_completo'] =
     <meta charset="UTF-8">
     <title><?= htmlspecialchars($pelicula['titulo']) ?></title>
 
+    <script type="module">
+        import RefreshRuntime from 'http://localhost:5173/@react-refresh'
+        RefreshRuntime.injectIntoGlobalHook(window)
+        window.$RefreshReg$ = () => {}
+        window.$RefreshSig$ = () => (type) => type
+        window.__vite_plugin_react_preamble_installed__ = true
+    </script>
+
+
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/estilo.css" rel="stylesheet">
     <link href="../css/estilo-cine.css" rel="stylesheet">
@@ -92,15 +101,13 @@ $esAdmin = isset($_SESSION['nombre_completo']) && $_SESSION['nombre_completo'] =
 
                 <p class="texto-cine mt-2"><?= htmlspecialchars($pelicula['descripcion']) ?></p>
 
-                <!-- BOTONES DE AQUILAR -->
-                <button class="btn-alquilar"
-                        data-movie-id="<?= $pelicula['id'] ?>"
-                        data-movie-title="<?= htmlspecialchars($pelicula['titulo'], ENT_QUOTES) ?>"
-                        data-movie-price="<?= $pelicula['precio_alquiler'] ?? 3.99 ?>"
-                        data-movie-image="https://image.tmdb.org/t/p/w500<?= $pelicula['poster'] ?>"
-                        data-director="<?= htmlspecialchars($pelicula['director'], ENT_QUOTES) ?>">
-                    +Alquilar
-                </button>
+                <!-- Aquí el botón para el carrito -->
+                <div id="cart-root"></div>
+                <div id="react-pelicula"></div>
+
+                <script>
+                    window.PELICULA_DATA = <?= json_encode($pelicula) ?>;
+                </script>
 
                 <!-- Trailer -->
                 <?php if ($iframeUrl): ?>
@@ -252,12 +259,16 @@ $esAdmin = isset($_SESSION['nombre_completo']) && $_SESSION['nombre_completo'] =
         </div>
         </div>
     <?php endif; ?>
+    
+    <script> 
+        window.PELICULA_ID = <?= $pelicula['id'] ?>;
+        window.PELICULA_DATA = <?= json_encode($pelicula) ?>;
+    </script>
 
 
     <!-- FOOTER -->
     <?php include "../templates/footer.html"; ?>
 
     <script src="../recursos/bootstrap.bundle.min.js"></script>
-    <script type="module" src="../js/main.js"></script>
 </body>
 </html>
