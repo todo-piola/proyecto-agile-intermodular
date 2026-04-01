@@ -1,50 +1,52 @@
+// useCart.js — Carrito global con persistencia en localStorage
 import { useState, useEffect } from "react";
 
-const STORAGE_KEY = 'cine_cart';
+const STORAGE_KEY = "cine_cart";
 
-function loadCart() {
-  try {
-    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-  } catch { return []; }
-}
+// Persistencia del carrito en localStorage
+const loadCart = () => {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; 
+};
 
-function saveCart(cart) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
-}
-
+// Estado global del carrito  compartido entre componentes
 let globalCart = loadCart();
 let listeners = [];
 
-function notify() {
-  saveCart(globalCart);
-  listeners.forEach(l => l([...globalCart]));
-}
+const syncCart = () => {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(globalCart));
+  listeners.forEach(fn => fn([...globalCart]));
+};
 
+// Hook del estado del carrito
 export function useCart() {
   const [cart, setCart] = useState(globalCart);
 
+
   useEffect(() => {
     listeners.push(setCart);
-    return () => { listeners = listeners.filter(l => l !== setCart); };
+    return () => { 
+      listeners = listeners.filter(fn => fn !== setCart); // Limpia los listeners al desmontar el componente
+    };
   }, []);
 
+  // No permite duplicados (una sola entrada por película)
   const addToCart = (item) => {
     if (globalCart.some(i => i.id === item.id)) return;
-    globalCart.push(item);
-    notify();
+    globalCart = [...globalCart, item];
+    syncCart();
   };
 
   const removeFromCart = (id) => {
     globalCart = globalCart.filter(i => i.id !== id);
-    notify();
+    syncCart();
   };
 
   const clearCart = () => {
     globalCart = [];
-    notify();
+    syncCart();
   };
 
-  const total = cart.reduce((acc, i) => acc + Number(i.precio), 0);
+  const total = cart.reduce((acc, {precio}) => acc + Number(precio), 0);
 
   return { cart, addToCart, removeFromCart, clearCart, total };
 }
