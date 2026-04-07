@@ -1,4 +1,5 @@
 import { createRoot } from 'react-dom/client'
+import { SearchBar } from './components/SearchBar.jsx'
 
 import Pelicula from './components/Pelicula.jsx'
 
@@ -26,6 +27,16 @@ if (modalRoot) {
       <RegisterForm />
     </>
   );
+}
+
+const desktopSearchContainer = document.getElementById('contenedor-lupa');
+if (desktopSearchContainer) {
+  createRoot(desktopSearchContainer).render(<SearchBar />)
+}
+
+const mobileSearchContainer = document.getElementById('contenedor-lupa-movil');
+if (mobileSearchContainer){
+  createRoot(mobileSearchContainer).render(<SearchBar mobile={true} />)
 }
 
 function CartWrapper() {
