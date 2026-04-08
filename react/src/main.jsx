@@ -1,5 +1,6 @@
 import { createRoot } from 'react-dom/client'
 import { SearchBar } from './components/SearchBar.jsx'
+import SearchResultPage from "./components/SearchResultPage.jsx";
 
 import Pelicula from './components/Pelicula.jsx'
 
@@ -47,4 +48,9 @@ function CartWrapper() {
 function PeliculaWrapper() {
   const { addToCart } = useCart();
   return <Pelicula addToCart={addToCart} />;
+}
+
+const searchResultsRoot = document.getElementById("react-search-results");
+if (searchResultsRoot) {
+  createRoot(searchResultsRoot).render(<SearchResultPage />);
 }

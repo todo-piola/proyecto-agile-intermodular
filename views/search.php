@@ -72,8 +72,7 @@
             </template>
 
             <div class="container-fluid px-4">
-                <div id="resultados" class="row gy-4"></div>
-                <div id="sinResultados" class="text-warning"></div>
+                <div id="react-search-results"></div>
             </div>
         </section>
 

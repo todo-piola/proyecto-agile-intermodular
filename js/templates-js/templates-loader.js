@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", async () => {
   await cargarTemplate("encabezado", "/templates/header.html");
   await cargarTemplate("carrito", "/templates/carrito.html");
-    insertarLupas(); // Hasta que header.html no cargue, no se insertan las lupas
+    //insertarLupas(); // Hasta que header.html no cargue, no se insertan las lupas
     await cargarTemplate("piepagina", "/templates/footer.html");
   });
   
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   
   /**
    * Inserta las lupas en los contenedores correspondientes
-   */
+
   function insertarLupas() {
     const lupas = ["contenedor-lupa", "contenedor-lupa-movil"];
   
@@ -65,3 +65,4 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     });
   }
+     */

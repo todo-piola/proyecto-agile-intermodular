@@ -42,8 +42,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
-    initSearchBarNavigation();
-    await initSearchResultsPage();
+    //initSearchBarNavigation();
+    //await initSearchResultsPage();
 
     /* =========== FORMULARIO REGISTRO =============== */
     const form = document.getElementById('form-envio-1');
