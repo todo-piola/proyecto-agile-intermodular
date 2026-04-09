@@ -45,7 +45,7 @@ export function SearchBar({ mobile = false }) {
     clearTimeout(timerRef.current);
     timerRef.current = setTimeout(() => {
       navigateToSearch(value);
-    }, 100);
+    }, 300);
   };
 
   return (

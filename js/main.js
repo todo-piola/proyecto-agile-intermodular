@@ -42,8 +42,15 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
-    //initSearchBarNavigation();
-    //await initSearchResultsPage();
+    /* Código legacy referente a la barra de búsqueda.
+   Referencia histórica para el TFG:
+   - initSearchBarNavigation()
+   - initSearchResultsPage()
+   Motivo de desactivación:
+   - React ya gestiona barra y resultados para evitar doble render/eventos.
+*/
+// initSearchBarNavigation();
+// await initSearchResultsPage();
 
     /* =========== FORMULARIO REGISTRO =============== */
     const form = document.getElementById('form-envio-1');

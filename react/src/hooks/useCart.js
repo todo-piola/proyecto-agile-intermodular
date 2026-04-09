@@ -3,9 +3,44 @@ import { useState, useEffect } from "react";
 
 const STORAGE_KEY = "cine_cart";
 
+/*
+    Se construyen una serie de ufnciones cuyo objetivo es:
+    normalizar los datos de las películas que van al carrito.
+  */
+  const normalizePoster = (item) => {
+    if (item.poster) return item.poster;
+    if (item.imagen) return item.imagen;
+    return "";
+  }
+
+  const normalizePrice = (value) => {
+      const n = Number(value);
+      return Number.isFinite(n) ? n : 0;
+  }
+
+  const normalizeCartItem = (item) => ({
+    id: String(item.id),
+    titulo: item.titulo || "",
+    precio: normalizePrice(item.precio),
+    poster: normalizePoster(item),
+    director: item.director || "",
+    fecha: item.fecha || ""
+  });
+
 // Persistencia del carrito en localStorage
 const loadCart = () => {
-    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; 
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return [];
+
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed)) return [];
+
+    return parsed.map(normalizeCartItem);
+  } catch {
+    localStorage.removeItem(STORAGE_KEY);
+    return [];
+  }
 };
 
 // Estado global del carrito  compartido entre componentes
@@ -31,13 +66,15 @@ export function useCart() {
 
   // No permite duplicados (una sola entrada por película)
   const addToCart = (item) => {
-    if (globalCart.some(i => i.id === item.id)) return;
-    globalCart = [...globalCart, item];
+    const normalized = normalizeCartItem(item);
+
+    if (globalCart.some(i => String(i.id) === normalized.id)) return;
+    globalCart = [...globalCart, normalized];
     syncCart();
   };
 
   const removeFromCart = (id) => {
-    globalCart = globalCart.filter(i => i.id !== id);
+    globalCart = globalCart.filter(i => String(i.id) !== String(id));
     syncCart();
   };
 

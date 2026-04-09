@@ -3,10 +3,27 @@ import { createPortal } from "react-dom";
 
 // Normaliza la URL del póster (fallback + URL completa de TMDB)
 function getPosterUrl(poster) {
-  if (!poster) return '../img/poster-prueba.jpg';
-  return poster.startsWith('/')
-    ? `https://image.tmdb.org/t/p/w92${poster}`
-    : poster;
+  if (!poster) return "../img/poster-prueba.jpg";
+
+  const value = String(poster).trim();
+
+  // URL absoluta
+  if (/^https?:\/\//i.test(value)) {
+    // Unifica tamaño TMDB para que todas se vean igual en carrito
+    return value.replace("/w500", "/w92");
+  }
+
+  // Ruta absoluta del proyecto
+  if (value.startsWith("/proyecto-agile-intermodular/")) return value;
+
+  // Ruta local /img/...
+  if (value.startsWith("/img/")) return `/proyecto-agile-intermodular${value}`;
+
+  // Ruta tipo "/abc.jpg" -> normalmente path de TMDB
+  if (value.startsWith("/")) return `https://image.tmdb.org/t/p/w92${value}`;
+
+  // Nombre de archivo local guardado en BD
+  return `../img/${value}`;
 }
 
 function Cart({ cart, total, removeFromCart, clearCart }) {
