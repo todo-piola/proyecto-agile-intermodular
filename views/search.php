@@ -13,15 +13,15 @@
         window.__vite_plugin_react_preamble_installed__ = true
     </script>
 
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/estilo.css" rel="stylesheet">
-    <link href="../css/cartStyle.css" rel="stylesheet">
-    <link href="../css/estilo-cine.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/estilo.css" rel="stylesheet">
+    <link href="css/cartStyle.css" rel="stylesheet">
+    <link href="css/estilo-cine.css" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <link rel="icon" type="image/png" href="../img/logo_invisible_butaca.png">
+    <link rel="icon" type="image/png" href="img/logo_invisible_butaca.png">
 
-    <script src="../js/templates-js/templates-loader.js"></script>
+    <script src="js/templates-js/templates-loader.js"></script>
 </head>
 <body>
     <main>
@@ -79,7 +79,7 @@
         <?php include(__DIR__ . "/../templates/footer.html"); ?>
     </main>
 
-<script src="../recursos/bootstrap.bundle.min.js"></script>
-<script type="module" src="../js/main.js"></script>
+<script src="recursos/bootstrap.bundle.min.js"></script>
+<script type="module" src="js/main.js"></script>
 </body>
 </html>
