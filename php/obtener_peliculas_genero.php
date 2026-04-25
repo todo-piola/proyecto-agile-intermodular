@@ -1,18 +1,37 @@
 <?php
+
 require_once "conexion.php";
 
+header('Content-Type: application/json; charset=utf-8');
+
 if (!isset($_GET['genero'])) {
-    die("Género no especificado");
+    echo json_encode([
+        "error" => "Género no especificado",
+        "peliculas" => []
+    ]);
+    exit;
 }
 
 $genero = $_GET['genero'];
 
-$stmt = $conexion->prepare("SELECT * FROM peliculas WHERE generos LIKE ?");
-$stmt->execute(["%$genero%"]);
+try {
+    $stmt = $conexion->prepare("
+        SELECT *
+        FROM peliculas
+        WHERE generos LIKE ?
+    ");
 
-$peliculas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt->execute(["%$genero%"]);
+    $peliculas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-return [
-    "genero" => $genero,
-    "peliculas" => $peliculas
-];
+    echo json_encode([
+        "genero" => $genero,
+        "peliculas" => $peliculas
+    ]);
+
+} catch (PDOException $e) {
+    echo json_encode([
+        "error" => $e->getMessage(),
+        "peliculas" => []
+    ]);
+}

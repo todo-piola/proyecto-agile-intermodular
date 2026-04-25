@@ -10,6 +10,18 @@ import { useCart } from './hooks/useCart.js'
 import RegisterForm from './components/RegisterForm.jsx'
 import LoginForm from './components/LoginForm.jsx'
 
+import MovieGallery from './components/MovieGallery.jsx'
+
+const gallery = document.getElementById('movie-gallery');
+
+if (gallery) {
+  const genero = gallery.dataset.genero;
+
+  createRoot(gallery).render(
+      <MovieGallery genero={genero} />
+  );
+}
+
 const cartContainer = document.getElementById('cart-root');
 if (cartContainer) {
   createRoot(cartContainer).render(<CartWrapper />);
