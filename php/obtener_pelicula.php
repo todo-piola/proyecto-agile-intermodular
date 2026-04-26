@@ -7,6 +7,9 @@ if (!isset($_GET['id'])) {
 
 $id = $_GET['id'];
 
+/* =========================
+   PELÍCULA
+========================= */
 $stmt = $conexion->prepare("SELECT * FROM peliculas WHERE id=?");
 $stmt->execute([$id]);
 
@@ -16,10 +19,12 @@ if (!$pelicula) {
     die("Película no encontrada");
 }
 
+/* =========================
+   TRAILER
+========================= */
 $iframeUrl = null;
 
 if (!empty($pelicula['trailer_url'])) {
-
     parse_str(parse_url($pelicula['trailer_url'], PHP_URL_QUERY), $youtubeParams);
 
     if (isset($youtubeParams['v'])) {
@@ -27,7 +32,25 @@ if (!empty($pelicula['trailer_url'])) {
     }
 }
 
+/* =========================
+   RESEÑAS
+========================= */
+$stmtResenas = $conexion->prepare("
+    SELECT r.*, u.nombre_completo
+    FROM resenas r
+    JOIN usuarios u ON r.id_usuario = u.id
+    WHERE r.id_pelicula = ?
+    ORDER BY r.fecha DESC
+");
+
+$stmtResenas->execute([$id]);
+$resenas = $stmtResenas->fetchAll(PDO::FETCH_ASSOC);
+
+/* =========================
+   RETURN FINAL
+========================= */
 return [
     "pelicula" => $pelicula,
-    "iframeUrl" => $iframeUrl
+    "iframeUrl" => $iframeUrl,
+    "resenas" => $resenas
 ];
