@@ -5,7 +5,12 @@ session_destroy();
 
 // Borrar cookie
 setcookie("usuario_cookie", "", time() - 3600, "/");
+
+// Limpiar carrito en el siguiente load
+setcookie("clear_cart", "1", time() + 60, "/");
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="es">

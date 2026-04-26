@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once "../php/conexion.php";
+require_once __DIR__ . "/../php/conexion.php";
 
 // Obtener 1 película aleatoria para el póster destacado
 $stmtPoster = $conexion->query("SELECT id, titulo, trailer_url FROM peliculas WHERE trailer_url IS NOT NULL AND trailer_url != '' ORDER BY RAND() LIMIT 1");
@@ -19,23 +19,36 @@ $peliculasGustadas = array_slice($peliculas, 8, 8);
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="app-base" content="<?= rtrim(dirname($_SERVER['SCRIPT_NAME']), '/') ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Películas</title>
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/estilo.css" rel="stylesheet">
-    <link href="../css/cartStyle.css" rel="stylesheet">
+
+    <script type="module">
+        import RefreshRuntime from 'http://localhost:5173/@react-refresh'
+        RefreshRuntime.injectIntoGlobalHook(window)
+        window.$RefreshReg$ = () => {}
+        window.$RefreshSig$ = () => (type) => type
+        window.__vite_plugin_react_preamble_installed__ = true
+    </script>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/estilo.css" rel="stylesheet">
+    <link href="css/cartStyle.css" rel="stylesheet">
+    <link href="css/estilo-cine.css" rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-    <link rel="icon" type="image/png" href="../img/logo_invisible_butaca.png">
-    <script src="../js/templates-js/templates-loader.js"></script>
+    <link rel="icon" type="image/png" href="img/logo_invisible_butaca.png">
+    
+    <script src="js/templates-js/templates-loader.js"></script>
 </head>
 <body>
   <!-- HEADER -->
-  <?php include "../templates/header.php"; ?>
+  <?php include __DIR__ . "/../templates/header.php"; ?>
 
   <!-- FONDO FIJO CON IMAGEN -->
   <div class="contenedor-fondo-peliculas">
-      <img id="fondo-peliculas" src="../img/view-peliculas-fondo.webp" class="d-block">
+      <img id="fondo-peliculas" src="img/view-peliculas-fondo.webp" class="d-block">
       <div class="capa-oscura"></div> 
   </div>
 
@@ -58,7 +71,7 @@ $peliculasGustadas = array_slice($peliculas, 8, 8);
           <div class="row row-cols-2 row-cols-md-4 gy-3 justify-content-center">
             <?php foreach ($peliculasSemana as $pelicula): ?>
               <div class="col text-center">
-                <a href="pelicula.php?id=<?= $pelicula['id'] ?>">
+                <a href="index.php?route=pelicula&id=<?= $pelicula['id'] ?>">
                   <img src="https://image.tmdb.org/t/p/w500<?= $pelicula['poster'] ?>" 
                   class="img-fluid rounded shadow poster-grid" 
                   alt="<?= htmlspecialchars($pelicula['titulo']) ?>" >
@@ -77,7 +90,7 @@ $peliculasGustadas = array_slice($peliculas, 8, 8);
           <div class="row row-cols-2 row-cols-md-4 gy-3 justify-content-center">
           <?php foreach ($peliculasGustadas as $pelicula): ?>
               <div class="col text-center">
-                <a href="pelicula.php?id=<?= $pelicula['id'] ?>">
+                <a href="index.php?route=pelicula&id=<?= $pelicula['id'] ?>">
                   <img src="https://image.tmdb.org/t/p/w500<?= $pelicula['poster'] ?>" 
                   class="img-fluid rounded shadow poster-grid" 
                   alt="<?= htmlspecialchars($pelicula['titulo']) ?>" >
@@ -100,7 +113,7 @@ $peliculasGustadas = array_slice($peliculas, 8, 8);
             <div class="card mb-3 border-0 rounded-4" style="max-width: 540px;">
                 <div class="row g-0">
                   <div class="col-md-4 peliculas-reseñas">
-                    <img src="../img/poster-prueba.jpg" class="img-fluid object-fit-cover h-100 w-100 rounded-top poster-peliculas-reseñas">
+                    <img src="img/poster-prueba.jpg" class="img-fluid object-fit-cover h-100 w-100 rounded-top poster-peliculas-reseñas">
                   </div>
                   <div class="col-md-8">
                     <div class="card-body">
@@ -117,7 +130,7 @@ $peliculasGustadas = array_slice($peliculas, 8, 8);
             <div class="card mb-3 border-0 rounded-4 align-content-center" style="max-width: 540px;">
                 <div class="row g-0">
                   <div class="col-md-4 peliculas-reseñas">
-                    <img src="../img/poster-prueba.jpg" class="img-fluid object-fit-cover h-100 w-100 rounded-top poster-peliculas-reseñas">
+                    <img src="img/poster-prueba.jpg" class="img-fluid object-fit-cover h-100 w-100 rounded-top poster-peliculas-reseñas">
                   </div>
                   <div class="col-md-8">
                     <div class="card-body">
@@ -162,7 +175,7 @@ $peliculasGustadas = array_slice($peliculas, 8, 8);
             <div class="card mb-3 border-0 rounded-4" style="max-width: 540px;">
                 <div class="row g-0">
                   <div class="col-md-4 peliculas-reseñas">
-                    <img src="../img/poster-prueba.jpg" class="img-fluid object-fit-cover h-100 w-100 rounded-top poster-peliculas-reseñas">
+                    <img src="img/poster-prueba.jpg" class="img-fluid object-fit-cover h-100 w-100 rounded-top poster-peliculas-reseñas">
                   </div>
                   <div class="col-md-8">
                     <div class="card-body">
@@ -179,7 +192,7 @@ $peliculasGustadas = array_slice($peliculas, 8, 8);
             <div class="card mb-3 border-0 rounded-4 align-content-center" style="max-width: 540px;">
                 <div class="row g-0">
                   <div class="col-md-4 peliculas-reseñas">
-                    <img src="../img/poster-prueba.jpg" class="img-fluid object-fit-cover h-100 w-100 rounded-top poster-peliculas-reseñas">
+                    <img src="img/poster-prueba.jpg" class="img-fluid object-fit-cover h-100 w-100 rounded-top poster-peliculas-reseñas">
                   </div>
                   <div class="col-md-8">
                     <div class="card-body">
@@ -199,9 +212,9 @@ $peliculasGustadas = array_slice($peliculas, 8, 8);
 
     </main>
 
-    <?php include "../templates/footer.html"; ?>
+    <?php include __DIR__ . "/../templates/footer.html"; ?>
 
-<script src="../recursos/bootstrap.bundle.min.js"></script>
-<script type="module" src="../js/main.js"></script>
+<script src="recursos/bootstrap.bundle.min.js"></script>
+<script type="module" src="js/main.js"></script>
 </body>
 </html>

@@ -3,7 +3,6 @@ session_start();
 require "conexion.php";
 
 if (isset($_POST['login'])) {
-
     // Recoger los datos del formulario
     $correo = trim($_POST['correo'] ?? '');
     $password = trim($_POST['password'] ?? '');
@@ -53,7 +52,10 @@ if (isset($_POST['login'])) {
                     setcookie("contador_sesiones", 0, time() + 86400, "/");
                 }
 
-                // Redirigir al inicio
+                // Login correcto — limpiar carrito de invitado
+                setcookie("clear_cart", "1", time() + 60, "/");
+                $_SESSION['usuario_id'] = $usuario['id'];
+
                 header("Location: ../index.php");
                 exit;
 

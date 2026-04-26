@@ -6,17 +6,17 @@
 
             <!-- Logo y descripción -->
             <div class="col-md-4 mb-4">
-                <img id="logo-footer" src="/proyecto-agile-intermodular/img/LOGO LABUTACASOCIAL.webp" alt="logo labutacas">
+                <img id="logo-footer" src="img/LOGO LABUTACASOCIAL.webp" alt="logo labutacas">
             </div>
 
             <!-- Enlaces rápidos -->
             <div class="col-md-4 mb-4">
                 <h5 class="mb-3">Explora</h5>
                 <ul class="list-unstyled">
-                    <li><a href="/proyecto-agile-intermodular/views/movies.php" class="footer-link">Películas</a></li>
-                    <li><a href="/proyecto-agile-intermodular/views/listas.php" class="footer-link">Lista</a></li>
-                    <li><a href="/proyecto-agile-intermodular/views/blog.php" class="footer-link">Blog</a></li>
-                    <li><a href="/proyecto-agile-intermodular/views/about_contacto.php" class="footer-link">Contacto</a></li>
+                    <li><a href="index.php?route=movies" class="footer-link">Películas</a></li>
+                    <li><a href="index.php?route=listas" class="footer-link">Lista</a></li>
+                    <li><a href="index.php?route=blog" class="footer-link">Blog</a></li>
+                    <li><a href="index.php?route=contacto" class="footer-link">Contacto</a></li>
                 </ul>
             </div>
 
@@ -40,4 +40,13 @@
         </div>
 
     </div>
+
+    <script>
+        if (document.cookie.includes('clear_cart=1')) {
+          localStorage.removeItem('cine_cart');
+          document.cookie = 'clear_cart=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+        }
+    </script>
+
+    <script type="module" src="http://localhost:5173/src/main.jsx"></script>
 </footer>

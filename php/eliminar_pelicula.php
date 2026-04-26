@@ -14,5 +14,5 @@ $stmt->execute([$id]);
 
 $_SESSION['mensaje'] = "La película '$titulo' fue eliminada correctamente";
 
-header("Location: ../views/movies.php");
+header("Location: ../index.php?route=movies");
 exit;

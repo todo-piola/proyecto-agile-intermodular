@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", async () => {
   await cargarTemplate("encabezado", "/templates/header.html");
   await cargarTemplate("carrito", "/templates/carrito.html");
-    insertarLupas(); // Hasta que header.html no cargue, no se insertan las lupas
+    //insertarLupas(); // Hasta que header.html no cargue, no se insertan las lupas
     await cargarTemplate("piepagina", "/templates/footer.html");
   });
   
@@ -35,8 +35,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
   
   /**
-   * Inserta las lupas en los contenedores correspondientes
-   */
+   * Código legacy para insertar iconos de lupa en el header.
+   * Es un referencia histórica, el motivo que quede documentado para el proyecto intermodular.
+   * Actualmente, las lupas se renderizan desde React dentro de SearchBar.jsx,
+   * además de ser funcionales junto a la barra de búsqueda.
+
   function insertarLupas() {
     const lupas = ["contenedor-lupa", "contenedor-lupa-movil"];
   
@@ -65,3 +68,4 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     });
   }
+     */

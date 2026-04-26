@@ -2,41 +2,13 @@
     background-color: grey;
 }
 
-#cart-items {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 24px;
-    padding: 16px 0;
+.poster-carrito{
+    width: '50px'; 
+    height: '75px';
+    object-fit: 'cover';
+    border-radius: '4px';
 }
 
-.cart-item {
-    width: 100%;
-    max-width: 280px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 12px;
-    padding: 16px;
-}
-
-.cart-item img {
-    width: 50%;
-}
-
-.cart-item h3,
-.cart-item p {
-    margin: 0;
-}
-
-.eliminate-movie {
-    margin-top: 8px;
-}
-
-#cart-total,
-#finalizar {
-    margin-top: 20px;
-    text-align: center;
+.btn-eliminar{
+    color: white !important;
 }

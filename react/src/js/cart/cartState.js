@@ -47,10 +47,9 @@ export function persistCartState() {
 
     if (cartState.items.length === 0) {
         window.localStorage.removeItem(CART_STORAGE_KEY);
-        return;
-    }
-
-    window.localStorage.setItem(CART_STORAGE_KEY, JSON.stringify({
-        items: cartState.items
-    }));
+      } else {
+        window.localStorage.setItem(CART_STORAGE_KEY, JSON.stringify({
+          items: cartState.items
+        }));
+      }
 }
