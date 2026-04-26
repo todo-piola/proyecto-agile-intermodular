@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$data = require "../php/obtener_pelicula.php";
+$data = require __DIR__ . "/../php/obtener_pelicula.php";
 
 $pelicula = $data['pelicula'];
 $iframeUrl = $data['iframeUrl'];
@@ -19,26 +19,36 @@ $esAdmin = isset($_SESSION['nombre_completo']) && $_SESSION['nombre_completo'] =
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="app-base" content="<?= rtrim(dirname($_SERVER['SCRIPT_NAME']), '/') ?>">
     <title><?= htmlspecialchars($pelicula['titulo']) ?></title>
 
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/estilo.css" rel="stylesheet">
-    <link href="../css/estilo-cine.css" rel="stylesheet">
-    <link href="../css/cartStyle.css" rel="stylesheet">
+    <script type="module">
+        import RefreshRuntime from 'http://localhost:5173/@react-refresh'
+        RefreshRuntime.injectIntoGlobalHook(window)
+        window.$RefreshReg$ = () => {}
+        window.$RefreshSig$ = () => (type) => type
+        window.__vite_plugin_react_preamble_installed__ = true
+    </script>
+
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/estilo.css" rel="stylesheet">
+    <link href="css/estilo-cine.css" rel="stylesheet">
+    <link href="css/cartStyle.css" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <link rel="icon" type="image/png" href="../img/logo_invisible_butaca.png">
+    <link rel="icon" type="image/png" href="img/logo_invisible_butaca.png">
 
-    <script src="../js/templates-js/templates-loader.js"></script>
+    <script src="js/templates-js/templates-loader.js"></script>
 </head>
 <body>
     <div class="contenedor-fondo-peliculas">
-        <img id="fondo-peliculas" src="../img/view-peliculas-fondo.webp">
+        <img id="fondo-peliculas" src="img/view-peliculas-fondo.webp">
         <div class="capa-oscura"></div>
     </div>
 
     <!-- HEADER -->
-    <?php include "../templates/header.php"; ?>
+    <?php include __DIR__ . "/../templates/header.php"; ?>
 
     <main class="container py-5 position-relative">
         <div class="row g-4">
@@ -49,7 +59,7 @@ $esAdmin = isset($_SESSION['nombre_completo']) && $_SESSION['nombre_completo'] =
                     // Si empieza por "/" es ruta TMDB, si no, es archivo local
                     $posterSrc = str_starts_with($poster, '/')
                         ? "https://image.tmdb.org/t/p/w500" . $poster
-                        : "../img/" . $poster;
+                        : "img/" . $poster;
                 ?>
                 <img src="<?= htmlspecialchars($posterSrc) ?>"
                     class="poster-pelicula-peliculas shadow"
@@ -92,15 +102,13 @@ $esAdmin = isset($_SESSION['nombre_completo']) && $_SESSION['nombre_completo'] =
 
                 <p class="texto-cine mt-2"><?= htmlspecialchars($pelicula['descripcion']) ?></p>
 
-                <!-- BOTONES DE AQUILAR -->
-                <button class="btn-alquilar"
-                        data-movie-id="<?= $pelicula['id'] ?>"
-                        data-movie-title="<?= htmlspecialchars($pelicula['titulo'], ENT_QUOTES) ?>"
-                        data-movie-price="<?= $pelicula['precio_alquiler'] ?? 3.99 ?>"
-                        data-movie-image="https://image.tmdb.org/t/p/w500<?= $pelicula['poster'] ?>"
-                        data-director="<?= htmlspecialchars($pelicula['director'], ENT_QUOTES) ?>">
-                    +Alquilar
-                </button>
+                <!-- Aquí el botón para el carrito -->
+                <div id="cart-root"></div>
+                <div id="react-pelicula"></div>
+
+                <script>
+                    window.PELICULA_DATA = <?= json_encode($pelicula) ?>;
+                </script>
 
                 <!-- Trailer -->
                 <?php if ($iframeUrl): ?>
@@ -125,7 +133,7 @@ $esAdmin = isset($_SESSION['nombre_completo']) && $_SESSION['nombre_completo'] =
                                 <div class="d-flex justify-content-center">
                                     <?php foreach($grupo as $j => $actor): ?>
                                     <div class="text-center mx-2" style="width: 120px; height: 250px;">
-                                        <img src="<?= $fotos_reparto[$i*3+$j] ?? '../img/default-actor.png' ?>"
+                                        <img src="<?= $fotos_reparto[$i*3+$j] ?? 'img/default-actor.png' ?>"
                                              class="rounded shadow mb-2"
                                              style="width:100%; height:140px; object-fit: cover;"
                                              alt="<?= htmlspecialchars($actor) ?>">
@@ -193,7 +201,7 @@ $esAdmin = isset($_SESSION['nombre_completo']) && $_SESSION['nombre_completo'] =
         <div class="modal fade" id="modalEditar">
         <div class="modal-dialog">
         <div class="modal-content">
-            <form method="POST" action="../php/actualizar_pelicula.php" enctype="multipart/form-data">
+            <form method="POST" action="php/actualizar_pelicula.php" enctype="multipart/form-data">
                 <div class="modal-header bg-warning">
                     <h5 class="modal-title">Editar película</h5>
                     <button class="btn-close" data-bs-dismiss="modal"></button>
@@ -229,7 +237,7 @@ $esAdmin = isset($_SESSION['nombre_completo']) && $_SESSION['nombre_completo'] =
         <div class="modal fade" id="modalEliminar">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
-                    <form method="POST" action="../php/eliminar_pelicula.php">
+                    <form method="POST" action="php/eliminar_pelicula.php">
                         <div class="modal-header bg-danger text-white">
                             <h5 class="modal-title">Eliminar película</h5>
                         </div>
@@ -255,7 +263,7 @@ $esAdmin = isset($_SESSION['nombre_completo']) && $_SESSION['nombre_completo'] =
         <div class="modal-dialog">
         <div class="modal-content btn-agregar">
 
-            <form method="POST" action="../php/crear_pelicula.php" enctype="multipart/form-data">
+            <form method="POST" action="php/crear_pelicula.php" enctype="multipart/form-data">
                 <div class="modal-header text-white">
                     <h5 class="modal-title">Agregar nueva película</h5>
                     <button class="btn-close" data-bs-dismiss="modal"></button>
@@ -288,12 +296,16 @@ $esAdmin = isset($_SESSION['nombre_completo']) && $_SESSION['nombre_completo'] =
         </div>
         </div>
     <?php endif; ?>
+    
+    <script> 
+        window.PELICULA_ID = <?= $pelicula['id'] ?>;
+        window.PELICULA_DATA = <?= json_encode($pelicula) ?>;
+    </script>
 
 
     <!-- FOOTER -->
-    <?php include "../templates/footer.html"; ?>
+    <?php include __DIR__ . "/../templates/footer.html"; ?>
 
-    <script src="../recursos/bootstrap.bundle.min.js"></script>
-    <script type="module" src="../js/main.js"></script>
+    <script src="recursos/bootstrap.bundle.min.js"></script>
 </body>
 </html>

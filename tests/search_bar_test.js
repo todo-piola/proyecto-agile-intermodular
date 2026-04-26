@@ -55,7 +55,7 @@ describe("Barra de búsqueda - LABUTACASOCIAL", function () {
 
         await driver.wait(async () => {
             const currentUrl = await driver.getCurrentUrl();
-            return currentUrl.includes("/views/search.php?query=");
+            return currentUrl.includes("route=search") && currentUrl.includes("query=");
         }, 10000);
 
         const currentUrl = await driver.getCurrentUrl();
@@ -90,7 +90,7 @@ describe("Barra de búsqueda - LABUTACASOCIAL", function () {
 
         await driver.wait(async () => {
             const currentUrl = await driver.getCurrentUrl();
-            return currentUrl.includes("/views/search.php?query=");
+            return currentUrl.includes("route=search") && currentUrl.includes("query=");
         }, 10000);
 
         const currentUrl = await driver.getCurrentUrl();

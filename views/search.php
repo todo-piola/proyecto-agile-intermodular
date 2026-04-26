@@ -3,13 +3,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/estilo.css" rel="stylesheet">
-    <link href="../css/cartStyle.css" rel="stylesheet">
+    <meta name="app-base" content="<?= rtrim(dirname($_SERVER['SCRIPT_NAME']), '/') ?>">
+    <title>Búsqueda</title>
+
+    <script type="module">
+        import RefreshRuntime from 'http://localhost:5173/@react-refresh'
+        RefreshRuntime.injectIntoGlobalHook(window)
+        window.$RefreshReg$ = () => {}
+        window.$RefreshSig$ = () => (type) => type
+        window.__vite_plugin_react_preamble_installed__ = true
+    </script>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/estilo.css" rel="stylesheet">
+    <link href="css/cartStyle.css" rel="stylesheet">
+    <link href="css/estilo-cine.css" rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <link rel="icon" type="image/png" href="../img/logo_invisible_butaca.png">
-    <script src="../js/templates-js/templates-loader.js"></script>
+    <link rel="icon" type="image/png" href="img/logo_invisible_butaca.png">
+
+    <script src="js/templates-js/templates-loader.js"></script>
 </head>
 <body>
     <main>
@@ -60,15 +73,14 @@
             </template>
 
             <div class="container-fluid px-4">
-                <div id="resultados" class="row gy-4"></div>
-                <div id="sinResultados" class="text-warning"></div>
+                <div id="react-search-results"></div>
             </div>
         </section>
 
         <?php include(__DIR__ . "/../templates/footer.html"); ?>
     </main>
 
-<script src="../recursos/bootstrap.bundle.min.js"></script>
-<script type="module" src="../js/main.js"></script>
+<script src="recursos/bootstrap.bundle.min.js"></script>
+<script type="module" src="js/main.js"></script>
 </body>
 </html>
