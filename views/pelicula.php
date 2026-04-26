@@ -181,7 +181,7 @@ $esAdmin = isset($_SESSION['nombre_completo']) && $_SESSION['nombre_completo'] =
         <?php endif; ?>
         <?php if (isset($_SESSION['usuario_id'])): ?>
 
-            <form method="POST" action="../php/guardar_resena.php" class="mt-4">
+            <form method="POST" action="php/guardar_resena.php" class="mt-4">
 
                 <input type="hidden" name="id_pelicula" value="<?= $pelicula['id'] ?>">
 

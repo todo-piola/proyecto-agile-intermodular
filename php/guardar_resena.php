@@ -38,7 +38,7 @@ try {
 
     $stmt->execute([$comentario, $id_usuario, $id_pelicula]);
 
-    header("Location: ../views/pelicula.php?id=" . $id_pelicula);
+    header("Location: ../index.php?route=pelicula&id=" . $id_pelicula);
     exit;
 
 } catch (PDOException $e) {
