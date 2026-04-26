@@ -11,7 +11,9 @@ export default function MovieGallery({ genero }) {
 
         setLoading(true);
 
-        fetch(`http://localhost/proyecto-agile-intermodular/php/obtener_peliculas_genero.php?genero=${encodeURIComponent(genero)}`)
+        const API_BASE = window.location.origin + window.location.pathname.split('/index.php')[0];
+
+        fetch(`${API_BASE}/php/obtener_peliculas_genero.php?genero=${encodeURIComponent(genero)}`)
             .then(res => {
                 if (!res.ok) {
                     throw new Error("Error en la respuesta del servidor");
