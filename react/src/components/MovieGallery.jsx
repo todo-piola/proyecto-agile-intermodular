@@ -11,7 +11,24 @@ export default function MovieGallery({ genero }) {
 
         setLoading(true);
 
-        const API_BASE = window.location.origin + window.location.pathname.split('/index.php')[0];
+        const pathname = window.location.pathname;
+        const metaBase = document
+            .querySelector('meta[name="app-base"]')
+            ?.getAttribute("content")
+            ?.trim();
+
+        const marker = "/proyecto-agile-intermodular";
+        const idx = pathname.indexOf(marker);
+
+        const basePath = metaBase
+            ? metaBase.replace(/\/+$/, "")
+            : idx >= 0
+                ? pathname.slice(0, idx + marker.length)
+                : pathname.lastIndexOf("/index.php") >= 0
+                    ? pathname.slice(0, pathname.lastIndexOf("/index.php"))
+                    : "";
+
+        const API_BASE = window.location.origin + basePath;
 
         fetch(`${API_BASE}/php/obtener_peliculas_genero.php?genero=${encodeURIComponent(genero)}`)
             .then(res => {

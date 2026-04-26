@@ -8,6 +8,7 @@ $genero = $_GET['genero'] ?? 'Todos';
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="app-base" content="<?= rtrim(dirname($_SERVER['SCRIPT_NAME']), '/') ?>">
     <title>Películas de <?= htmlspecialchars($genero) ?></title>
 
     <script type="module">

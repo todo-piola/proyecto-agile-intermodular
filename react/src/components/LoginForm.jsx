@@ -34,6 +34,25 @@ export default function LoginForm() {
     }
   };
 
+  const getBasePath = () => {
+    const pathname = window.location.pathname;
+    const metaBase = document
+      .querySelector('meta[name="app-base"]')
+      ?.getAttribute("content")
+      ?.trim();
+
+    if (metaBase) return metaBase.replace(/\/+$/, "");
+
+    const marker = "/proyecto-agile-intermodular";
+    const idx = pathname.indexOf(marker);
+    if (idx >= 0) return pathname.slice(0, idx + marker.length);
+
+    const indexPos = pathname.lastIndexOf("/index.php");
+    if (indexPos >= 0) return pathname.slice(0, indexPos);
+
+    return "";
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -56,6 +75,8 @@ export default function LoginForm() {
     e.target.submit();
   };
 
+  const basePath = getBasePath();
+
   return (
     <div className="modal fade" id="modalLogin" tabIndex="-1" aria-hidden="true">
       <div className="modal-dialog modal-dialog-centered">
@@ -68,7 +89,7 @@ export default function LoginForm() {
 
           <div className="modal-body">
             {/* action y method envían el formulario a PHP sin fetch */}
-            <form method="POST" action="/proyecto-agile-intermodular/php/login.php" onSubmit={handleSubmit} noValidate>
+            <form method="POST" action={basePath + "/php/login.php"} onSubmit={handleSubmit} noValidate>
               <input type="hidden" name="login" value="1" />
 
               <div className="mb-3">

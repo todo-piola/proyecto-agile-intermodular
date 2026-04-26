@@ -19,6 +19,7 @@ $esAdmin = isset($_SESSION['nombre_completo']) && $_SESSION['nombre_completo'] =
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="app-base" content="<?= rtrim(dirname($_SERVER['SCRIPT_NAME']), '/') ?>">
     <title><?= htmlspecialchars($pelicula['titulo']) ?></title>
 
     <script type="module">

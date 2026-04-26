@@ -68,6 +68,25 @@ export default function RegisterForm() {
     validarCampo(name, value);
   };
 
+  const getBasePath = () => {
+    const pathname = window.location.pathname;
+    const metaBase = document
+      .querySelector('meta[name="app-base"]')
+      ?.getAttribute("content")
+      ?.trim();
+
+    if (metaBase) return metaBase.replace(/\/+$/, "");
+
+    const marker = "/proyecto-agile-intermodular";
+    const idx = pathname.indexOf(marker);
+    if (idx >= 0) return pathname.slice(0, idx + marker.length);
+
+    const indexPos = pathname.lastIndexOf("/index.php");
+    if (indexPos >= 0) return pathname.slice(0, indexPos);
+
+    return "";
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMensaje("");
@@ -89,11 +108,16 @@ export default function RegisterForm() {
     setEnviando(true);
     try {
       // Se envía JSON; el PHP lo lee con json_decode en lugar de $_POST
-      const res = await fetch("/proyecto-agile-intermodular/php/registro.php", {
+      const basePath = getBasePath();
+      const res = await fetch(`${basePath}/php/registro.php`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
+
+      if (!res.ok) {
+        throw new Error("HTTP " + res.status);
+      }
 
       const data = await res.json();
 

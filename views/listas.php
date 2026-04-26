@@ -6,6 +6,7 @@ $generosUnicos = require __DIR__ . "/../php/obtener_generos.php";
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="app-base" content="<?= rtrim(dirname($_SERVER['SCRIPT_NAME']), '/') ?>">
     <title>Géneros de Películas</title>
 
     <script type="module">
