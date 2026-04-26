@@ -150,19 +150,20 @@ $esAdmin = isset($_SESSION['nombre_completo']) && $_SESSION['nombre_completo'] =
                 <a href="javascript:history.back()" class="btn btn-cine mt-3">Volver</a>
             </div>
         </div>
+        <!-- Reseñas -->
         <hr class="linea-blanca mt-5">
 
         <h4 class="text-white">Reseñas</h4>
 
         <?php if (!empty($resenas)): ?>
             <?php foreach ($resenas as $r): ?>
-                <div class="card bg-dark text-white mb-3 p-3">
+                <div class="seccion-peliculas mb-3 p-3">
                     <div class="d-flex justify-content-between">
-                        <strong><?= htmlspecialchars($r['nombre_completo']) ?></strong>
-                        <small class="text-muted"><?= $r['fecha'] ?></small>
+                        <strong class="texto-cine"><?= htmlspecialchars($r['nombre_completo']) ?></strong>
+                        <small class="texto-cine"><?= $r['fecha'] ?></small>
                     </div>
 
-                    <p class="mt-2 mb-0">
+                    <p class="mt-2 mb-0 texto-cine">
                         <?= htmlspecialchars($r['comentario']) ?>
                     </p>
                 </div>
