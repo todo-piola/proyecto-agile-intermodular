@@ -150,6 +150,41 @@ $esAdmin = isset($_SESSION['nombre_completo']) && $_SESSION['nombre_completo'] =
                 <a href="javascript:history.back()" class="btn btn-cine mt-3">Volver</a>
             </div>
         </div>
+        <hr class="linea-blanca mt-5">
+
+        <h4 class="text-white">Reseñas</h4>
+
+        <?php if (!empty($resenas)): ?>
+            <?php foreach ($resenas as $r): ?>
+                <div class="card bg-dark text-white mb-3 p-3">
+                    <div class="d-flex justify-content-between">
+                        <strong><?= htmlspecialchars($r['nombre_completo']) ?></strong>
+                        <small class="text-muted"><?= $r['fecha'] ?></small>
+                    </div>
+
+                    <p class="mt-2 mb-0">
+                        <?= htmlspecialchars($r['comentario']) ?>
+                    </p>
+                </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p class="text-warning">Todavía no hay reseñas.</p>
+        <?php endif; ?>
+        <?php if (isset($_SESSION['usuario_id'])): ?>
+
+            <form method="POST" action="../php/guardar_resena.php" class="mt-4">
+
+                <input type="hidden" name="id_pelicula" value="<?= $pelicula['id'] ?>">
+
+                <textarea name="comentario" class="form-control mb-2"
+                          placeholder="Escribe tu reseña..." required></textarea>
+
+                <button class="btn btn-warning">Publicar reseña</button>
+            </form>
+
+        <?php else: ?>
+            <p class="text-warning">Inicia sesión para escribir una reseña</p>
+        <?php endif; ?>
     </main>
 
     <!-- Modal para modificar campos (descripcion, presupuesto y recaudación) en película -->

@@ -145,7 +145,25 @@ try {
 } catch(PDOException $e) {
     die("Error creando admin: " . $e->getMessage());
 }
-
+//////////////////////////////////////////////////////
+// TABLA RESEÑA
+//////////////////////////////////////////////////////
+try {
+    $conexion->exec("
+        CREATE TABLE IF NOT EXISTS resenas (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            comentario TEXT NOT NULL,
+            puntuacion INT,
+            fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            id_usuario INT,
+            id_pelicula INT,
+            FOREIGN KEY (id_usuario) REFERENCES usuarios(id) ON DELETE CASCADE,
+            FOREIGN KEY (id_pelicula) REFERENCES peliculas(id) ON DELETE CASCADE
+        ) ENGINE=InnoDB;
+    ");
+} catch (PDOException $e) {
+    die("No se puede crear la tabla RESEÑA: " . $e->getMessage());
+}
 //////////////////////////////////////////////////////
 // TABLA SESIONES
 //////////////////////////////////////////////////////
