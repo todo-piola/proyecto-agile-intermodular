@@ -24,7 +24,7 @@ export function SearchBar({ mobile = false }) {
     localStorage.setItem("busquedaTimestamp", String(Date.now()));
 
     const base = buildBasePath();
-    window.location.href = `${base}/views/search.php?query=${encodeURIComponent(queryClean)}`;
+    window.location.href = base + "/index.php?route=search&query=" + encodeURIComponent(queryClean);
   };
 
   const goSearch = () => {

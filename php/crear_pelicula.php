@@ -33,5 +33,5 @@ $stmt->execute([$titulo, $descripcion, $generos, $poster, $director]);
 
 $idNueva = $conexion->lastInsertId();
 
-header("Location: ../views/pelicula.php?id=" . $idNueva);
+header("Location: ../index.php?route=pelicula&id=" . $idNueva);
 exit;

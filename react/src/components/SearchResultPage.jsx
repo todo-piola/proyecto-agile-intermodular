@@ -42,7 +42,7 @@ function SearchCard({movie, addToCart}) {
     const marker = "/proyecto-agile-intermodular";
     const markerIndex = pathname.indexOf(marker);
     const base = markerIndex >= 0 ? pathname.slice(0, markerIndex + marker.length) : "";
-    const detailUrl = `${base}/views/pelicula.php?id=${movie.id}`;
+    const detailUrl = `${base}/index.php?route=pelicula&id=${movie.id}`;
 
     return (
         <div className = " col-12 col-md-6 mb-4">

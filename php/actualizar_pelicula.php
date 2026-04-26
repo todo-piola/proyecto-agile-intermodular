@@ -32,5 +32,5 @@ $stmt = $conexion->prepare("
 ");
 $stmt->execute($params);
 
-header("Location: ../views/pelicula.php?id=" . $id);
+header("Location: ../index.php?route=pelicula&id=" . $id);
 exit;
