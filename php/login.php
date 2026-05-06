@@ -28,6 +28,7 @@ if (isset($_POST['login'])) {
                 $_SESSION['usuario_id'] = $usuario['id'];
                 $_SESSION['nombre_completo'] = $usuario['nombre_completo'];
                 $_SESSION['correo'] = $usuario['correo'];
+                $_SESSION['rol'] = $usuario['rol']; 
 
                 // Crear cookie si acepta
                 if ($aceptarCookies) {

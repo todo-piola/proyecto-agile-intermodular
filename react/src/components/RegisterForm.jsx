@@ -123,6 +123,9 @@ export default function RegisterForm() {
 
       if (data.success) {
         setMensaje("Usuario registrado correctamente");
+
+        window.location.href = '/proyecto-agile-intermodular/index.php';
+
         setForm(estadoVacio);
         setErrores({});
         setValidos({});

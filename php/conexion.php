@@ -45,6 +45,7 @@ try {
         CREATE TABLE IF NOT EXISTS usuarios (
             id INT AUTO_INCREMENT PRIMARY KEY,
             nombre_completo VARCHAR(100) NOT NULL,
+            rol ENUM('administrador', 'usuario'),
             telefono VARCHAR(9),
             correo VARCHAR(100) NOT NULL UNIQUE,
             contrasenia VARCHAR(255) NOT NULL,
@@ -136,8 +137,8 @@ try {
     if (!$admin) {
         $passwordHash = password_hash("1234", PASSWORD_DEFAULT);
         $stmtInsert = $conexion->prepare("
-            INSERT INTO usuarios (nombre_completo, correo, contrasenia)
-            VALUES ('Administrador', 'admin@admin.com', :pass)
+            INSERT INTO usuarios (nombre_completo, correo, rol, contrasenia)
+            VALUES ('Administrador', 'admin@admin.com', 'administrador', :pass)
         ");
         $stmtInsert->bindParam(":pass", $passwordHash);
         $stmtInsert->execute();

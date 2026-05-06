@@ -2,9 +2,13 @@
 session_start();
 require_once "conexion.php";
 
-if ($_SESSION['nombre_completo'] !== "Administrador") {
+
+$esAdmin = isset($_SESSION['rol']) && $_SESSION['rol'] === 'administrador';
+
+if (!$esAdmin) {
     exit("No autorizado");
 }
+
 
 $id = $_POST['id'];
 $titulo = $_POST['titulo'];

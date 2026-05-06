@@ -12,7 +12,6 @@ $routes = [
     'blog' => __DIR__ . '/views/blog.php',
     'contacto' => __DIR__ . '/views/about_contacto.php',
     'perfil' => __DIR__ . '/views/profile.php',
-    'profile' => __DIR__ . '/views/profile.php',
     'search' => __DIR__ . '/views/search.php',
     'pelicula' => __DIR__ . '/views/pelicula.php',
     'peliculas_genero' => __DIR__ . '/views/peliculas_genero.php'

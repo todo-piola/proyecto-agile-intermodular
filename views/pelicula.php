@@ -11,7 +11,7 @@ $reparto = json_decode($pelicula['reparto'], true);
 $fotos_reparto = json_decode($pelicula['fotos_reparto'], true);
 
 // Comprobamos que usuario es admin
-$esAdmin = isset($_SESSION['nombre_completo']) && $_SESSION['nombre_completo'] === "Administrador";
+$esAdmin = isset($_SESSION['rol']) && $_SESSION['rol'] === 'administrador';
 
 ?>
 
@@ -21,15 +21,6 @@ $esAdmin = isset($_SESSION['nombre_completo']) && $_SESSION['nombre_completo'] =
     <meta charset="UTF-8">
     <meta name="app-base" content="<?= rtrim(dirname($_SERVER['SCRIPT_NAME']), '/') ?>">
     <title><?= htmlspecialchars($pelicula['titulo']) ?></title>
-
-    <script type="module">
-        import RefreshRuntime from 'http://localhost:5173/@react-refresh'
-        RefreshRuntime.injectIntoGlobalHook(window)
-        window.$RefreshReg$ = () => {}
-        window.$RefreshSig$ = () => (type) => type
-        window.__vite_plugin_react_preamble_installed__ = true
-    </script>
-
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/estilo.css" rel="stylesheet">

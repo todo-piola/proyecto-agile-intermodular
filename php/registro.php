@@ -58,15 +58,23 @@ if (empty($errores)) {
     // Nunca se guarda la contraseña en texto plano, siempre hasheada
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
     try {
-        $sql = "INSERT INTO usuarios
-                    (nombre_completo, correo, contrasenia, sexo, fecha_nacimiento, pais, notificaciones, revista, tarjeta)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        $stmt = $conexion->prepare($sql);
-        $stmt->execute([
-            $nombreCompleto, $correo, $password_hash,
-            $sexo, $fecha, $pais,
-            $notificaciones, $revista, $tarjeta
-        ]);
+        $sql = "INSERT INTO usuarios (nombre_completo, correo, contrasenia, sexo, fecha_nacimiento, pais, notificaciones, revista, tarjeta, rol)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $stmt = $conexion->prepare($sql);
+            $stmt->execute([
+                $nombreCompleto, $correo, $password_hash,
+                $sexo, $fecha, $pais,
+                $notificaciones, $revista, $tarjeta,
+                'usuario'  // rol por defecto
+            ]);
+
+        $nuevoId = $conexion->lastInsertId();
+        session_start();
+        $_SESSION['usuario_id']      = $nuevoId;
+        $_SESSION['nombre_completo'] = $nombreCompleto;
+        $_SESSION['correo']          = $correo;
+        $_SESSION['rol']             = 'usuario';
+
     } catch (PDOException $e) {
         $errores[] = "Error al registrar: " . $e->getMessage();
     }
