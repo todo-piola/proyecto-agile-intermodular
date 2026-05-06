@@ -37,6 +37,11 @@ if (session_status() == PHP_SESSION_NONE) {
                         <span class="nav-link text-warning">Hola, <?php echo $_SESSION['nombre_completo'] ?? ''; ?></span>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link texto-cta text-white" href="index.php?route=perfil">
+                            <i class="bi bi-person-circle"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link texto-cta text-white" href="php/logout.php">Cerrar sesión</a>
                     </li>
                 <?php else: ?>
